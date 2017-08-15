@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../semantic/dist/semantic.min.css"
+        "../semantic/dist/semantic.min.css",
+        "../node_modules/dragula/dist/dragula.css"
       ],
       "scripts": [
         "jquery-3.2.0.js",

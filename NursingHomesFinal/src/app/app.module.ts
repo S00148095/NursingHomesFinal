@@ -17,6 +17,9 @@ import { ResultComponent } from "./result/result.component";
 import { ReviewComponent } from "./review/review.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
 
+
+import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
     TopBarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DragulaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

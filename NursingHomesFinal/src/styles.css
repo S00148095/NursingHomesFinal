@@ -142,13 +142,6 @@ p
 {
     font-size: 18px;
 }
-.ui.message
-{
-    text-align: center;
-    vertical-align: top;
-    padding: 1px;
-    max-height: 21px;
-}
 .ui.vertical.segment:last-child 
 {
     border: none;

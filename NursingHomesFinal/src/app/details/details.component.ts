@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import 'script.js'
+import 'script.js';
 import { Home } from "../Home";
 import { Review } from "../Review";
 import { User } from "../User";

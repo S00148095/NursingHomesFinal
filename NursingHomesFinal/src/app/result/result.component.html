@@ -2,7 +2,7 @@
   <div class="ui horizontal nomargin nooverflow segments" [style.border]="SelectedStyle()" (click)="UpdateCurrentHome()" [routerLink]="['../details']">
     <div class="corner-ribbon top-right yellow" *ngIf="CheckPremium()">Premium</div>
     <div class="ui small segment">
-      <img class="image" src="home.jpg" />
+      <img class="image" src="/assets/home.jpg" />
     </div>
     <div class="ui segment">
       <p *ngIf="CheckTier()" class="other inline"><i>{{topReview.comment}}</i><br/>{{topReview.user}}</p>

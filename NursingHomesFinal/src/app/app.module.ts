@@ -19,6 +19,18 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
 
 
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
+import { ColumnComponent } from './column/column.component';
+import { DashHousingComponent } from './dash-housing/dash-housing.component';
+import { EmailActionsComponent } from './email-actions/email-actions.component';
+import { InitialColumnComponent } from './initial-column/initial-column.component';
+import { ProspectNoteComponent } from './prospect-note/prospect-note.component';
+import { ReportsComponent } from './reports/reports.component';
+import { HomePanelsComponent } from './home-panels/home-panels.component';
+import { ProspectPageComponent } from './prospect-page/prospect-page.component';
+import { DashSearchResultsComponent } from './dash-search-results/dash-search-results.component';
+import { ProspectTileComponent } from './prospect-tile/prospect-tile.component';
+import { TrashboxComponent } from './trashbox/trashbox.component';
+import { FinalColumnComponent } from './final-column/final-column.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +48,19 @@ import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
     ResultComponent,
     ReviewComponent,
     SearchResultsComponent,
-    TopBarComponent
+    TopBarComponent,
+    ColumnComponent,
+    DashHousingComponent,
+    EmailActionsComponent,
+    InitialColumnComponent,
+    ProspectNoteComponent,
+    ReportsComponent,
+    HomePanelsComponent,
+    ProspectPageComponent,
+    DashSearchResultsComponent,
+    ProspectTileComponent,
+    TrashboxComponent,
+    FinalColumnComponent
   ],
   imports: [
     BrowserModule,

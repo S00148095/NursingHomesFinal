@@ -31,6 +31,22 @@ import { DashSearchResultsComponent } from './dash-search-results/dash-search-re
 import { ProspectTileComponent } from './prospect-tile/prospect-tile.component';
 import { TrashboxComponent } from './trashbox/trashbox.component';
 import { FinalColumnComponent } from './final-column/final-column.component';
+import { Routes, RouterModule } from "@angular/router";
+import { StorageService } from "./storage.service";
+
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'account', component: AccountComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'details', component: DetailsComponent },
+  { path: 'edit-details', component: EditDetailsComponent },
+  { path: 'forgot', component: ForgotComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'search-results', component: SearchResultsComponent },
+  { path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -64,9 +80,10 @@ import { FinalColumnComponent } from './final-column/final-column.component';
   ],
   imports: [
     BrowserModule,
-    DragulaModule
+    DragulaModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

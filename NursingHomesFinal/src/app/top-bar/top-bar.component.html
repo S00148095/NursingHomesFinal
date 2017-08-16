@@ -1,3 +1,11 @@
-<p>
-  top-bar works!
-</p>
+<div class="fixed padded header">
+  <h1 class="inline" [routerLink]="['../home']">CareFinder</h1>
+  <a class="ui inline blue right floated button" *ngIf="CheckUser()" [routerLink]="['../login']">Log In</a>
+  <div class="inline" *ngIf="CheckUserNegative()">
+    <div class="ui medium right floated buttons">
+      <button class="ui left attached blue button" [routerLink]="['../account']">Account</button>
+      <button class="ui  blue button" [routerLink]="['../dashboard']">Dashboard</button>
+      <button class="ui right attached blue button" (click)="Logout()">Log Out</button>
+    </div>
+  </div>
+</div>

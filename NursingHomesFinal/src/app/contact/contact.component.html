@@ -1,3 +1,41 @@
-<p>
-  contact works!
-</p>
+<div class="centred scrollablecontent">
+  <div class="contactdetails" *ngIf="CheckHome()">
+    <h3>{{currentHome.name}}</h3>
+    <p>{{currentHome.address}}, {{currentHome.county}}</p>
+    <p>{{currentHome.phone}}</p>
+    <p>{{currentHome.email}}</p>
+  </div>
+  <form class="ui form">
+    <div class="field">
+      <label>To</label>
+      <input type="text" name="to" placeholder="To" [value]="CheckHomeEmail()">
+    </div>
+    <div class="field">
+      <label>From</label>
+      <input type="text" name="from" placeholder="From" [value]="CheckUserEmail()">
+    </div>
+    <div class="field">
+      <label>Phone</label>
+      <input type="text" name="phone" placeholder="Telephone Number" [value]="CheckUserPhone()">
+    </div>
+    <div class="field">
+      <label>Resident</label>
+      <input type="text" name="resident" placeholder="Resident Name">
+    </div>
+    <div class="field">
+      <label>Subject</label>
+      <select class="ui dropdown">
+    <option value="">Select Option</option>
+    <option value="general">General</option>
+    <option value="urgent">Urgent</option>
+    <option value="viewing">Viewing</option>
+    <option value="complaint">Complaint</option>
+    </select>
+    </div>
+    <div class="field">
+      <label>Details</label>
+      <textarea></textarea>
+    </div>
+    <button class="ui fluid button">Get In Touch</button>
+  </form>
+</div>

@@ -1,3 +1,129 @@
-<p>
-  details works!
-</p>
+<div class="padded scrollablecontent" *ngIf="CheckHome()">
+  <br/>
+  <h1>{{currentHome.name}}</h1>
+  <div class="full">
+      <img class="other display" src="home.jpg" />
+      <p>Address: {{currentHome.address}}, {{currentHome.county}}</p>
+      <p>Phone: {{currentHome.phone}}</p>
+      <p>Email: {{currentHome.email}}</p>
+      <p>Contact: {{currentHome.contact}}</p>
+      <p class="inline">Website: </p>
+      <a class="inline" href={{currentHome.site}}>{{currentHome.site}}</a>
+      <p>HIQA: {{currentHome.hiqa}}</p>
+      <p>Bed/Staff Patient ratio: {{currentHome.ratio}}</p>
+      <p>{{currentHome.description}}</p>
+      <h2>Care Types Offered</h2>
+      <table class="full table" id="Care"></table>
+      <h2>Facilities</h2>
+      <table class="full table" id="Facilities"></table>
+      <div class="ui fluid buttons">
+          <button class="ui button" id="expand" onclick="Expand1()">Leave a Review</button>
+          <div class=or></div>
+          <a class="ui button" [routerLink]="['../contact']">Get in Contact</a>
+      </div>
+      <div class="contentexpanded1">
+          <div class="ui form">
+              <div class="three fields">
+                  <div class="field">
+                      <label>Care</label>
+                      <select class="ui dropdown" #criteria1>
+                      <option value="">Select Option</option>    
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Cleanliness</label>
+                      <select class="ui dropdown" #criteria2>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Staff</label>
+                      <select class="ui dropdown" #criteria3>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="three fields">
+                  <div class="field">
+                      <label>Premises</label>
+                      <select class="ui dropdown" #criteria4>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Food</label>
+                      <select class="ui dropdown" #criteria5>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Facilities</label>
+                      <select class="ui dropdown" #criteria6>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="three fields">
+                  <div class="field">
+                      <label>Management</label>
+                      <select class="ui dropdown" #criteria7>
+                      <option value="">Select Option</option>    
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Rooms</label>
+                      <select class="ui dropdown" #criteria8>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Safety</label>
+                      <select class="ui dropdown" #criteria9>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="three fields">
+                  <div class="field">
+                      <label>Value</label>
+                      <select class="ui dropdown" #criteria10>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Location</label>
+                      <select class="ui dropdown" #criteria11>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+                  <div class="field">
+                      <label>Activities</label>
+                      <select class="ui dropdown" #criteria12>
+                      <option value="">Select Option</option>
+                      <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="field">
+                  <label>Details</label>
+                  <textarea #comment></textarea>
+              </div>
+              <button class="ui fluid button" id="create" (click)="LeaveReview(criteria1.value,criteria2.value,criteria3.value,criteria4.value,criteria5.value,criteria6.value,criteria7.value,criteria8.value,criteria9.value,criteria10.value,criteria11.value,criteria12.value,comment.value)">Leave Review</button>
+          </div>
+      </div>
+      <div class="ui vertical segments">
+          <app-review *ngFor="let Review of Reviews" [Review]="Review" [Home]="currentHome" [Tier]="currentHome.tier"></app-review>
+      </div>
+  </div>
+</div>

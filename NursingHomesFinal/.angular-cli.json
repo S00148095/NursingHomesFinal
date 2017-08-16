@@ -24,7 +24,8 @@
         "../node_modules/dragula/dist/dragula.css"
       ],
       "scripts": [
-        "jquery-3.2.0.js",
+        "jquery-3.2.0.js",		
+        "script.js",
         "../semantic/dist/semantic.min.js"
       ],
       "environmentSource": "environments/environment.ts",

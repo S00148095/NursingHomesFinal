@@ -1,3 +1,45 @@
-<p>
-  account works!
-</p>
+<div class="scrollablecontent">
+  <div *ngIf="CheckUserNegative()" class="padded">
+    <br/>
+    <h1>Welcome {{User.fName}}</h1>
+    <div class="inline other">
+      <form class="ui form">
+        <div class="contentexpanded">
+          <div class="field">
+            <label>Password</label>
+            <input type="text" name="password" placeholder="Password">
+          </div>
+          <div class="field">
+            <label>New Password</label>
+            <input type="text" name="newpassword" placeholder="New Password">
+          </div>
+          <div class="field">
+            <label>Confirm New Password</label>
+            <input type="text" name="confirmpassword" placeholder="Confirm New Password">
+          </div>
+          <button class="ui fluid button" id="changepassword">Change Password</button>
+        </div>
+        <div class="contentexpanded">
+          <div class="field">
+            <label>New Email</label>
+            <input type="text" name="newemail" placeholder="New Email">
+          </div>
+          <div class="field">
+            <label>Confirm New Email</label>
+            <input type="text" name="confirmemail" placeholder="Confirm New Email">
+          </div>
+          <button class="ui fluid button" id="changeemail">Change Email</button>
+        </div>
+        <button class="ui button" id="expand" onclick="Expand()">Change Password/Email</button>
+      </form>
+    </div>
+    <div class="half inline">
+      <h2 class="iconbutton">Homes</h2>
+      <app-listing *ngFor="let Home of User.homes" [Display]="Home.name" [Link]="['../edit-details']"></app-listing>
+    </div>
+  </div>
+  <div class="centred" *ngIf="CheckUser()">
+    <br/>
+    <h1>Sorry! You don't appear to be logged in</h1>
+  </div>
+  </div>

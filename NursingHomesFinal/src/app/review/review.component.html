@@ -1,3 +1,70 @@
-<p>
-  review works!
-</p>
+<div class="ui raised vertical segment">
+  <h4 class="inline iconbutton">{{Review.user}}</h4>
+  <div class="ui inline mini green animated button" (click)="IncrementAgreed()">
+    <div class="hidden content">Agree</div>
+    <div class="visible content">
+      <i class="arrow circle up icon"></i>
+    </div>
+  </div>
+  <div class="ui inline mini red animated button" (click)="IncrementDisagreed()">
+    <div class="hidden content">Disagree</div>
+    <div class="visible content">
+      <i class="arrow circle down icon"></i>
+    </div>
+  </div>
+  <p class="inline smallpad nobottommargin other" *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
+  <div id="ratingsbar" style="overflow: hidden;">
+    <div style="background-color: green;" [style.width]="Agreed()"></div>
+    <div style="background-color: red;" [style.width]="Disagreed()"></div>
+  </div>
+  <div class="ui horizontal segments">
+    <div class="ui segment">
+      <p>Care: {{Review.care}}</p>
+      <p>Cleanliness: {{Review.cleanliness}}</p>
+      <p>Staff: {{Review.staff}}</p>
+      <p>Premises: {{Review.premises}}</p>
+    </div>
+    <div class="ui segment">
+      <p>Food: {{Review.food}}</p>
+      <p>Facilities: {{Review.facilities}}</p>
+      <p>Management: {{Review.management}}</p>
+      <p>Rooms: {{Review.rooms}}</p>
+    </div>
+    <div class="ui segment">
+      <p>Safety: {{Review.safety}}</p>
+      <p>Value: {{Review.value}}</p>
+      <p>Location: {{Review.location}}</p>
+      <p>Activities: {{Review.activities}}</p>
+    </div>
+    <div class="ui small segment">
+      <div class=rating>
+        <i [ngClass]="CheckRating(1)"></i>
+        <i [ngClass]="CheckRating(2)"></i>
+        <i [ngClass]="CheckRating(3)"></i>
+        <i [ngClass]="CheckRating(4)"></i>
+        <i [ngClass]="CheckRating(5)"></i>
+      </div>
+      <h3>{{Review.overall}}/10</h3>
+    </div>
+  </div>
+  <p class="padded">{{Review.comment}}</p>
+  <div class="padded" *ngIf="CheckValid()">
+    <button class="ui button" id="expand" onclick="Expand2()">Respond</button>
+    <div class="contentexpanded2">
+      <div class="field">
+        <label>Response:</label>
+        <select class="ui dropdown" #option>
+    <option value="">Select Option</option>
+    <option value="seen">Seen</option>
+    <option *ngIf="CheckTier(1)" value="isolated incident">Isolated Incident</option>
+    <option *ngIf="CheckTier(1)" value="problem solved">Problem Solved</option>
+    <option *ngIf="CheckTier(1)" value="thanks">Thanks</option>
+    <option *ngIf="CheckTier(2)" value="investigating problem">Investigating Problem</option>
+    <option *ngIf="CheckTier(2)" value="apologies">Apologies</option>
+    <option *ngIf="CheckTier(3)" value="fake review">Fake Review</option>
+    <option *ngIf="CheckTier(3)" value="customer contacted">Customer Contacted</option>
+    </select>
+        <button class="ui button" (click)="LeaveReview(option.value)" onclick="Expand2()">Send</button>
+      </div>
+    </div>
+  </div>

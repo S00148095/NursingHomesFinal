@@ -27,15 +27,15 @@
       <label>Confirm Password</label>
       <input type="text" name="confirmpassword" placeholder="Password">
     </div>
-        <button class="ui fluid button" id="create">Create Account</button>
+        <button class="ui fluid custombutton button" id="create">Create Account</button>
     </div>
     <div class="ui fluid buttons">
-    <button class="ui button" id="expand" onclick="Expand()">Sign Up</button>
+    <button class="ui custombutton button" id="expand" onclick="Expand()">Sign Up</button>
     <div class=or></div>
-    <a class="ui button" (click)="Login()" [routerLink]="['../account']">Log In</a>
+    <a class="ui custombutton button" (click)="Login()" [routerLink]="['../account']">Log In</a>
     </div>
   </form>
   <br/>
   <p class="inline">Having trouble?</p>
-  <a class="ui button" [routerLink]="['../forgot']">Recover Password</a>
+  <a class="ui custombutton button" [routerLink]="['../forgot']">Recover Password</a>
 </div>

@@ -16,10 +16,10 @@
       <table class="full table" id="Care"></table>
       <h2>Facilities</h2>
       <table class="full table" id="Facilities"></table>
-      <div class="ui fluid buttons">
-          <button class="ui button" id="expand" onclick="Expand1()">Leave a Review</button>
+      <div class="ui fluid custombutton buttons">
+          <button class="ui custombutton button" id="expand" onclick="Expand1()">Leave a Review</button>
           <div class=or></div>
-          <a class="ui button" [routerLink]="['../contact']">Get in Contact</a>
+          <a class="ui custombutton button" [routerLink]="['../contact']">Get in Contact</a>
       </div>
       <div class="contentexpanded1">
           <div class="ui form">
@@ -119,7 +119,7 @@
                   <label>Details</label>
                   <textarea #comment></textarea>
               </div>
-              <button class="ui fluid button" id="create" (click)="LeaveReview(criteria1.value,criteria2.value,criteria3.value,criteria4.value,criteria5.value,criteria6.value,criteria7.value,criteria8.value,criteria9.value,criteria10.value,criteria11.value,criteria12.value,comment.value)">Leave Review</button>
+              <button class="ui fluid custombutton button" id="create" (click)="LeaveReview(criteria1.value,criteria2.value,criteria3.value,criteria4.value,criteria5.value,criteria6.value,criteria7.value,criteria8.value,criteria9.value,criteria10.value,criteria11.value,criteria12.value,comment.value)">Leave Review</button>
           </div>
       </div>
       <div class="ui vertical segments">

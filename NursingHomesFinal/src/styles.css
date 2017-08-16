@@ -88,24 +88,24 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.ui.button
+.ui.custombutton.button
 {   
     background-color: #49D49D;
     color: white;
     text-align: center;
 }
-.ui.button:active
+.ui.custombutton.button:active
 {      
     transform: translateY(4px);
     background-color: #49D49D;
     color: white;
 }
-.ui.button:focus
+.ui.custombutton.button:focus
 {      
     background-color: #49D49D;
     color: white;
 }
-.ui.button:hover
+.ui.custombutton.button:hover
 {   
     background-color: #49D49D;
     color: white;

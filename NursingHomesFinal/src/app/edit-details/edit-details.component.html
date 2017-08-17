@@ -1,5 +1,5 @@
 <div class="centred scrollablecontent" *ngIf="CheckHome()">
-  <form class="ui form">
+  <div class="ui form">
     <div class="field">
       <label>Name</label>
       <input type="text" [value]="GetName()" name="name" placeholder="Name">
@@ -11,7 +11,7 @@
     <div class="field">
       <label>County</label>
       <input type="text" [value]="GetCounty()" name="county" placeholder="County">
-    </div> 
+    </div>
     <div class="field">
       <label>Country</label>
       <input type="text" [value]="GetCountry()" name="country" placeholder="Country">
@@ -27,7 +27,7 @@
     <div class="field">
       <label>Contact Name</label>
       <input type="text" [value]="GetContact()" name="contact" placeholder="Contact">
-    </div> 
+    </div>
     <div class="field">
       <label>Website</label>
       <input type="text" [value]="GetSite()" name="website" placeholder="Website">
@@ -39,12 +39,34 @@
     <div class="field">
       <label>Number of Staff</label>
       <input type="text" [value]="GetStaff()" name="staff" placeholder="Staff">
-    </div>  
+    </div>
     <div class="field">
-    <label>Description</label>
-    <textarea [value]="GetDescription()"></textarea>
-    <!--Add care types and facilities-->
+      <label>Description</label>
+      <textarea [value]="GetDescription()"></textarea>
+    </div>
+    <div class="field">
+      <label>Facilites</label>
+      <div class="full">
+        <div class="inline field" *ngFor="let Facility of facilities">
+          <div class="ui quarter checkbox">
+            <input type="checkbox" [attr.checked]="Facility.value == true ? 'checked' : null">
+            <label>{{Facility.name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+        <label>Care Types</label>
+        <div class="full">
+          <div class="inline field" *ngFor="let Facility of careTypes">
+            <div class="ui quarter checkbox">
+              <input type="checkbox" [attr.checked]="Facility.value == true ? 'checked' : null">
+              <label>{{Facility.name}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-    <button class="ui fluid custombutton button">Update</button>
-  </form>
+  <br/>
+  <button class="ui fluid custombutton button">Update</button>
 </div>

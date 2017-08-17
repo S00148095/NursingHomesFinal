@@ -1,4 +1,4 @@
-import { Review } from "app/Review";
+import { Review } from "./Review";
 
 export class Home {
     constructor
@@ -14,7 +14,8 @@ export class Home {
         public contact: string,
         public site: string,
         public hiqa: string,
-        public ratio: string,
+        public beds: string,
+        public staff: string,
         public description: string,
         public careTypes:boolean[],
         public facilities:boolean[],

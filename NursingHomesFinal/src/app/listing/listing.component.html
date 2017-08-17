@@ -1,6 +1,6 @@
 <div>
   <h3 class="inline iconbutton">{{Display}}</h3>
-  <div class="ui inline mini grey animated button" [routerLink]="getLink()">
+  <div class="ui inline mini grey animated button" (click)="UpdateCurrentHome()" [routerLink]="getLink()">
     <div class="hidden content">Edit</div>
     <div class="visible content">
       <i class="write icon"></i>

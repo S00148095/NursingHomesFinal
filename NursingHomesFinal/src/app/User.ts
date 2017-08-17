@@ -1,5 +1,5 @@
-import { Person } from "app/Person";
-import { Home } from "app/Home";
+import { Person } from "./Person";
+import { Home } from "./Home";
 
 export class User {
     constructor

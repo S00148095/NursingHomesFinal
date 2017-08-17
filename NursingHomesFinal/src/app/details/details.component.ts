@@ -17,15 +17,17 @@ export class DetailsComponent implements OnInit {
   currentHome: Home;
   Reviews: Review[];
   newReview: Review;
-  currentUser:User;
-  values:any[] = [
-    {id:1,name:'1'},
-    {id:2,name:'2'},
-    {id:3,name:'3'},
-    {id:4,name:'4'},
-    {id:5,name:'5'}
+  currentUser: User;
+  ratio: string;
+  gcd: number;
+  values: any[] = [
+    { id: 1, name: '1' },
+    { id: 2, name: '2' },
+    { id: 3, name: '3' },
+    { id: 4, name: '4' },
+    { id: 5, name: '5' }
   ];
-  
+
   constructor(private storageService: StorageService, private router: Router) {
     this.GetReviews();
   }
@@ -36,10 +38,27 @@ export class DetailsComponent implements OnInit {
     this.Reviews = [];
     this.GetHome();
     if (this.currentHome != null) {
+      this.calculateRatio();
       this.Reviews = this.currentHome.reviews;
       this.Reviews = this.SortReviews(this.Reviews);
-      this.currentHome.reviews=this.SortReviews(this.currentHome.reviews);
+      this.currentHome.reviews = this.SortReviews(this.currentHome.reviews);
     }
+  }
+  calculateRatio(): void {
+    this.gcd = this.GCD(parseFloat(this.currentHome.beds), parseFloat(this.currentHome.staff));
+    this.ratio = parseFloat(this.currentHome.beds) / this.gcd + ":" + parseFloat(this.currentHome.staff)
+  }
+  GCD(a, b): number {
+    while (a != 0 && b != 0) {
+      if (a > b)
+        a %= b;
+      else
+        b %= a;
+    }
+    if (a == 0)
+      return b;
+    else
+      return a;
   }
   CheckHome() {
     this.GetHome();
@@ -58,26 +77,25 @@ export class DetailsComponent implements OnInit {
   }
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     this.GetUser();
-    if(this.currentUser!=null&&this.currentUser!=undefined&&criteria1!=""&&criteria2!=""&&criteria3!=""&&criteria4!=""&&criteria5!=""&&criteria6!=""&&criteria7!=""&&criteria8!=""&&criteria9!=""&&criteria10!=""&&criteria11!=""&&criteria12!=""&&comment!=""){
-    this.newReview = new Review(this.currentUser.fName+" "+this.currentUser.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) +parseFloat(criteria3) +parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6)+parseFloat(criteria7) + parseFloat(criteria8) +parseFloat(criteria9) +parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 6 ), comment, 0,0,"");
-    this.storageService.UpdateReviews(this.newReview);
-    this.GetReviews();
-    myExtObject.clear();
+    if (this.currentUser != null && this.currentUser != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
+      this.newReview = new Review(this.currentUser.fName + " " + this.currentUser.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 6), comment, 0, 0, "");
+      this.storageService.UpdateReviews(this.newReview);
+      this.GetReviews();
+      myExtObject.clear();
     }
   }
   GetUser(): void {
     this.currentUser = this.storageService.getUser();
   }
-  SortReviews(Reviews:Review[]) :Review[] {
-    switch(Reviews)
-    {
+  SortReviews(Reviews: Review[]): Review[] {
+    switch (Reviews) {
       default:
-      Reviews.sort((a, b) => {
-      if (a.agreed > b.agreed) return -1;
-      else if (a.agreed < b.agreed) return 1;
-      else return 0;
-    });
-    return Reviews
+        Reviews.sort((a, b) => {
+          if (a.agreed > b.agreed) return -1;
+          else if (a.agreed < b.agreed) return 1;
+          else return 0;
+        });
+        return Reviews
     }
   }
   ngOnInit() {

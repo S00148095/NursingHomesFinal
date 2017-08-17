@@ -19,6 +19,8 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
 
 
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
+
+
 import { ColumnComponent } from './column/column.component';
 import { DashHousingComponent } from './dash-housing/dash-housing.component';
 import { EmailActionsComponent } from './email-actions/email-actions.component';
@@ -34,6 +36,14 @@ import { FinalColumnComponent } from './final-column/final-column.component';
 import { Routes, RouterModule } from "@angular/router";
 import { StorageService } from "./storage.service";
 
+
+import { WebsiteSideRouteComponent } from "./website-side-route/website-side-route.component";
+import { CrmSideRouteComponent } from "./crm-side-route/crm-side-route.component";
+
+/*===============
+
+Changing this in favour of nested routing, as a test at least
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -47,6 +57,52 @@ const routes: Routes = [
   { path: 'search-results', component: SearchResultsComponent },
   { path: '**', component: NotFoundComponent }
 ];
+
+*/
+
+
+
+
+const routes: Routes = [
+  { path: '', redirectTo: 'webSide', pathMatch: 'full' },
+  { path: 'webSide',
+    component: WebsiteSideRouteComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home/login', redirectTo: 'login', pathMatch: 'full'},
+      { path: 'webSide', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent },
+      { path: 'account', component: AccountComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'details', component: DetailsComponent },
+      { path: 'edit-details', component: EditDetailsComponent },
+      { path: 'forgot', component: ForgotComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'search-results', component: SearchResultsComponent },
+      { path: '**', component: NotFoundComponent }
+    ]
+  },
+  { path: 'crmSide',
+    component: CrmSideRouteComponent
+    /*children: [
+      {
+        path: 'compC',
+        component: ComponentCComponent
+      },
+      {
+        path: 'compD',
+        component: ComponentDComponent
+      }
+    ]*/
+  }
+
+]
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -76,7 +132,9 @@ const routes: Routes = [
     DashSearchResultsComponent,
     ProspectTileComponent,
     TrashboxComponent,
-    FinalColumnComponent
+    FinalColumnComponent,
+    WebsiteSideRouteComponent,
+    CrmSideRouteComponent
   ],
   imports: [
     BrowserModule,

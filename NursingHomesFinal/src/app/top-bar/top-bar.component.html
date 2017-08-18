@@ -1,6 +1,16 @@
 <div class="fixed padded header">
   <h1 class="inline" [routerLink]="['../webSide']">CareFinder</h1>
+
+<!--  this is the button before auth0
   <a class="ui inline blue right floated button" *ngIf="CheckUser()" [routerLink]="['login']">Log In</a>
+-->
+
+  <!--------------------------------------------------------------------------------------------->
+  <!--  Auth0 -->
+  <a class="ui inline blue right floated button" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</a>
+  <a class="ui inline blue right floated button" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log Out</a>
+
+  <!--------------------------------------------------------------------------------------------->
   <div class="inline" *ngIf="CheckUserNegative()">
     <div class="ui medium right floated buttons">
       <button class="ui left attached blue button" [routerLink]="['/webSide/account']">Account</button>

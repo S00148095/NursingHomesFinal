@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
+import { AuthService } from './../auth.service';
 
 @Component({
   selector: 'app-account',
@@ -8,8 +9,9 @@ import { StorageService } from "../storage.service";
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+  profile: any;
   User: User;
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService, public auth: AuthService) {
     this.GetUser();
   }
 
@@ -31,6 +33,14 @@ export class AccountComponent implements OnInit {
     else return false;
   }
   ngOnInit() {
+    if (this.auth.userProfile) {
+      this.profile = this.auth.userProfile;
+    } else {
+      this.auth.getProfile((err, profile) => {
+        this.profile = profile;
+      });
+    }
+    console.log(this.profile);
   }
 
 }

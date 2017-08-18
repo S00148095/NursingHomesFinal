@@ -40,6 +40,10 @@ import { StorageService } from "./storage.service";
 import { WebsiteSideRouteComponent } from "./website-side-route/website-side-route.component";
 import { CrmSideRouteComponent } from "./crm-side-route/crm-side-route.component";
 
+
+import { AuthService } from './auth.service';
+import { CallbackComponent } from './callback/callback.component';
+
 /*===============
 
 Changing this in favour of nested routing, as a test at least
@@ -95,7 +99,9 @@ const routes: Routes = [
         component: ComponentDComponent
       }
     ]*/
-  }
+  },
+  { path: 'callback', component: CallbackComponent }
+
 
 ]
 
@@ -134,14 +140,15 @@ const routes: Routes = [
     TrashboxComponent,
     FinalColumnComponent,
     WebsiteSideRouteComponent,
-    CrmSideRouteComponent
+    CrmSideRouteComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
     DragulaModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [StorageService],
+  providers: [StorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,5 @@
+<!--
+
 <div class="scrollablecontent">
   <div *ngIf="CheckUserNegative()" class="padded">
     <br/>
@@ -43,3 +45,19 @@
     <h1>Sorry! You don't appear to be logged in</h1>
   </div>
   </div>
+
+-->
+
+
+
+  <div class="scrollablecontent">
+    <div class="padded">
+      <br/>
+      <img src="{{profile?.picture}}" class="avatar" alt="avatar">
+      <h1>Welcome {{profile?.name}}</h1>
+      <pre class="full-profile">{{ profile | json }}</pre>
+
+
+
+    </div>
+    </div>

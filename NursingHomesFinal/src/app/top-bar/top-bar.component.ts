@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 
+
+
+import { AuthService } from '../auth.service';
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -9,9 +13,10 @@ import { StorageService } from "../storage.service";
 })
 export class TopBarComponent implements OnInit {
   User: User;
-  constructor(private storageService: StorageService) 
+  constructor(private storageService: StorageService, public auth: AuthService)
   {
     this.GetUser();
+    auth.handleAuthentication();
   }
 
   Logout() {
@@ -19,7 +24,7 @@ export class TopBarComponent implements OnInit {
     this.GetUser();
   }
   GetUser(): void {
-    this.User=this.storageService.getUser();    
+    this.User=this.storageService.getUser();
   }
   CheckUser()
   {
@@ -43,5 +48,9 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
+
+
 
 }

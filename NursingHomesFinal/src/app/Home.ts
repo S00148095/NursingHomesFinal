@@ -20,7 +20,10 @@ export class Home {
         public careTypes:boolean[],
         public facilities:boolean[],
         public tier: number,
-        public reviews: Review[]
+        public reviews: Review[],
+        public lat:number,
+        public long:number,
+        public distance: number
         ) {
 
     }

@@ -44,6 +44,21 @@ export class SearchResultsComponent implements OnInit {
           }
         });
         break;
+        case "distance":
+        this.Homes.sort((a, b) => {
+          if (a.distance < b.distance) return -1;
+          else if (a.distance > b.distance) return 1;
+          else {
+            if (a.rating > b.rating) {
+              return -1;
+            }
+            else if (a.rating < b.rating) {
+              return 1;
+            }
+            else return 0;
+        };
+        });
+        break;
         case "descending":
         this.Homes.sort((a, b) => {
           if (a.name > b.name) return -1;

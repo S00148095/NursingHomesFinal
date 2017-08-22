@@ -50,7 +50,7 @@
 }
 .half
 {
-    width: 30%;
+    width: 40%;
 }
 .small
 {
@@ -249,4 +249,15 @@ td
 .quarter
 {
     width:23%;
+}
+.map_canvas
+{
+    display: none;
+    width: 40%; 
+    height: 50%; 
+    overflow: hidden;
+}
+html, body
+{
+    height:100%;
 }

@@ -27,6 +27,7 @@
         "jquery-3.2.0.js",
         "script.js",
         "../semantic/dist/semantic.min.js",
+		"../geocomplete/jquery.geocomplete.js",
         "../node_modules/auth0-js/build/auth0.js"
       ],
       "environmentSource": "environments/environment.ts",

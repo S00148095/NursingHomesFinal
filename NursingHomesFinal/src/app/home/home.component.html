@@ -322,10 +322,9 @@
                 <div id="inputs" class="ui form">
                     <div class="field">
                         <label>Your Address</label>
-                        <input type="text" name="address" id="source" placeholder="Address" #address>
+                        <input type="text" name="address" id="geocomplete" onclick="geocomplete()" placeholder="Address" #address>
                     </div>
                 </div>
-                <div id="map-canvas"></div>
                 <br/>
                 <div class="ui fluid custombutton buttons">
                     <button class="ui custombutton button" id="expand" onclick="Switch()">Search by Criteria</button>
@@ -334,5 +333,6 @@
                 </div>
             </div>
         </div>
+        <div class="map_canvas"></div>
     </div>
 </div>

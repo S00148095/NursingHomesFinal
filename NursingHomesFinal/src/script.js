@@ -29,6 +29,7 @@ var lat = null;
 var long = null;
 var storedaddress;
 var keycounter = 0;
+
 function rad(x) {
     return x * Math.PI / 180;
 }
@@ -90,6 +91,26 @@ function GetLocalData(address, array) {
         }
     }
     return array;
+}
+function geocomplete() {   
+    if(!$('.map_canvas').is(':visible')){
+    $('.map_canvas').slideToggle(0);
+    }
+    var options = {
+        map: ".map_canvas",
+        mapOptions:
+        {
+             zoom: 10,
+             draggable:false,
+             fullscreenControl:false,
+             streetViewControl:false,
+             zoomControl:false,
+             mapTypeControl:false
+        },
+        location: "Dublin, Ireland"
+    };
+
+    $("#geocomplete").geocomplete(options); 
 }
 function Expand() {
     $('.contentexpanded').slideToggle('slow');

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../storage.service";
-import 'script.js';
 import { Home } from "../Home";
+import 'script.js';
 
 declare var myExtObject: any;
 
@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   searchCriteria: string[];
   lats: number[] = [];
   longs: number[] = [];
-  GetData: any[] = [];
 
   constructor(private storageService: StorageService) {
     this.GetHomes();
@@ -35,35 +34,14 @@ export class HomeComponent implements OnInit {
     this.searchCriteria = [option, county];
     this.SetCriteria();
   }
-  UpdateHomes() {
-    this.storageService.updateHomes(this.Homes);
-  }
   Calculate(address) {
+    address = address || 'Dublin, Ireland';
     for (var i = 0; i < this.Homes.length; i++) {
       this.lats.push(this.Homes[i].lat);
       this.longs.push(this.Homes[i].long);
     }
     myExtObject.CalculateDistance(address, this.lats, this.longs);
-    this.RetrieveData(address);
-  }
-  RetrieveData(address) {    
-    address = address || 'Dublin, Ireland';
-    for (var i = 0; i < this.Homes.length; i++) {
-      this.GetData[i] = [];
-      this.GetData[i].push(this.Homes[i].lat);
-      this.GetData[i].push(this.Homes[i].long);
-      this.GetData[i].push(10);
-    }
-    this.GetData = myExtObject.RetrieveData(address, this.GetData);
-    for (var i = 0; i < this.Homes.length; i++) {
-      for (var j = 0; j < this.GetData.length; j++) {
-        if (this.GetData[j][0] == this.Homes[i].lat && this.GetData[j][1] == this.Homes[i].long) {
-          this.Homes[i].distance = this.GetData[j][2];
-        }
-      }
-    }
-    myExtObject.ClearData();
-    this.UpdateHomes();
+    this.storageService.updateAddress(address);
     this.UpdateCriteria("distance", "");
   }
   ngOnInit() {

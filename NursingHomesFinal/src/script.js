@@ -51,7 +51,7 @@ function compareLatLong(testaddress, testlat, testlong) {
     localStorage.setItem(keycounter, JSON.stringify(testObject));
     keycounter++;
 }
-function getLatitudeLongitude(testaddress, testlat, testlong) {
+function getLatitudeLongitude(testaddress) {
     var promise = new Promise(function (resolve, reject) {
         if (lat == null || long == null || storedaddress != testaddress) {
             testaddress = testaddress || 'Dublin, Ireland';
@@ -63,7 +63,6 @@ function getLatitudeLongitude(testaddress, testlat, testlong) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         lat = results[0].geometry.location.lat();
                         long = results[0].geometry.location.lng();
-                        compareLatLong(testaddress, testlat, testlong);
                         storedaddress = testaddress;
                         resolve("success");
                     }
@@ -105,11 +104,10 @@ function geocomplete() {
              fullscreenControl:false,
              streetViewControl:false,
              zoomControl:false,
-             mapTypeControl:false
-        },
-        location: "Dublin, Ireland"
+             mapTypeControl:false,
+             center:{lat: 53.3498, lng: -6.2603}
+        }
     };
-
     $("#geocomplete").geocomplete(options); 
 }
 function Expand() {
@@ -153,13 +151,17 @@ var myExtObject = (function () {
             return GetLocalData(address, testarray);
         },
         CalculateDistance: function (address, lats, longs) {
-            keycounter = 0;
+            keycounter = 0;          
+            getLatitudeLongitude(address)
+            .then(function()
+            {                
             for (var i = 0; i < lats.length; i++) {
-                getLatitudeLongitude(address, lats[i], longs[i])
-                    .catch(function (error) {
-                        alert(error.message);
-                    });
+                compareLatLong(address,lats[i],longs[i]);
             }
+            })
+            .catch(function (error) {
+                alert(error.message);
+            });
         },
         Clear: function () {
             $("textarea, select").val("");

@@ -11,7 +11,16 @@ export class StorageService {
     CurrentUser: User = null;
     CurrentHome: Home = null;
     Criteria: string[] = ["rating", ""];
+    address:string;
 
+    updateAddress(address)
+    {
+        this.address=address;
+    }
+    getAddress()
+    {
+        return this.address;
+    }
     updateHomes(Homes) {
         this.Homes=Homes;
     }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Home } from "../Home";
 import { StorageService } from "../storage.service";
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-search-results',
@@ -11,6 +14,7 @@ export class SearchResultsComponent implements OnInit {
   Homes: Home[];
   currentHome: Home;
   searchCriteria: string[];
+  GetData: any[] = [];
 
   constructor(private storageService: StorageService) {
     this.GetHomes();
@@ -44,7 +48,8 @@ export class SearchResultsComponent implements OnInit {
           }
         });
         break;
-        case "distance":
+      case "distance":
+        this.RetrieveData(this.storageService.getAddress());
         this.Homes.sort((a, b) => {
           if (a.distance < b.distance) return -1;
           else if (a.distance > b.distance) return 1;
@@ -56,10 +61,10 @@ export class SearchResultsComponent implements OnInit {
               return 1;
             }
             else return 0;
-        };
+          };
         });
         break;
-        case "descending":
+      case "descending":
         this.Homes.sort((a, b) => {
           if (a.name > b.name) return -1;
           else if (a.name < b.name) return 1;
@@ -70,7 +75,7 @@ export class SearchResultsComponent implements OnInit {
           }
         });
         break;
-        case "ascending":
+      case "ascending":
         this.Homes.sort((a, b) => {
           if (b.name > a.name) return -1;
           else if (b.name < a.name) return 1;
@@ -110,6 +115,23 @@ export class SearchResultsComponent implements OnInit {
   }
   UpdateCriteria(option, county) {
     this.searchCriteria = [option, county];
+  }
+  RetrieveData(address) {
+    for (var i = 0; i < this.Homes.length; i++) {
+      this.GetData[i] = [];
+      this.GetData[i].push(this.Homes[i].lat);
+      this.GetData[i].push(this.Homes[i].long);
+      this.GetData[i].push(10);
+    }
+    this.GetData = myExtObject.RetrieveData(address, this.GetData);
+    for (var i = 0; i < this.Homes.length; i++) {
+      for (var j = 0; j < this.GetData.length; j++) {
+        if (this.GetData[j][0] == this.Homes[i].lat && this.GetData[j][1] == this.Homes[i].long) {
+          this.Homes[i].distance = this.GetData[j][2];
+        }
+      }
+    }
+    myExtObject.ClearData();
   }
   ngOnInit() {
   }

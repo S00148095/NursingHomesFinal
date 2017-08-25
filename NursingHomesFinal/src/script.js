@@ -29,6 +29,7 @@ var lat = null;
 var long = null;
 var storedaddress;
 var keycounter = 0;
+var isfinished;
 
 function rad(x) {
     return x * Math.PI / 180;
@@ -50,10 +51,11 @@ function compareLatLong(testaddress, testlat, testlong) {
     };
     localStorage.setItem(keycounter, JSON.stringify(testObject));
     keycounter++;
+    console.log("values set-js");
 }
 function getLatitudeLongitude(testaddress) {
     var promise = new Promise(function (resolve, reject) {
-        if (lat == null || long == null || storedaddress != testaddress) {
+            console.log("lat long updated");
             testaddress = testaddress || 'Dublin, Ireland';
             geocoder = new google.maps.Geocoder();
             if (geocoder) {
@@ -67,7 +69,6 @@ function getLatitudeLongitude(testaddress) {
                         resolve("success");
                     }
                 });
-            }
         }
     });
     return promise;
@@ -89,32 +90,36 @@ function GetLocalData(address, array) {
             }
         }
     }
+    console.log("values checked-js");
     return array;
 }
-function geocomplete() {   
-    if(!$('.map_canvas').is(':visible')){
-    $('.map_canvas').slideToggle(0);
+function geocomplete() {
+    if (!$('.map_canvas').is(':visible')) {
+        $('.map_canvas').slideToggle(0);
     }
     var options = {
         map: ".map_canvas",
         mapOptions:
         {
-             zoom: 10,
-             draggable:false,
-             fullscreenControl:false,
-             streetViewControl:false,
-             zoomControl:false,
-             mapTypeControl:false,
-             center:{lat: 53.3498, lng: -6.2603}
+            zoom: 10,
+            draggable: false,
+            fullscreenControl: false,
+            streetViewControl: false,
+            zoomControl: false,
+            mapTypeControl: false,
+            center: { lat: 53.3498, lng: -6.2603 }
         }
     };
-    $("#geocomplete").geocomplete(options); 
+    $("#geocomplete").geocomplete(options);
 }
 function Expand() {
     $('.contentexpanded').slideToggle('slow');
 }
 function Expand1() {
     $('.contentexpanded1').slideToggle('slow');
+    if ($('.map_canvas').is(':visible')) {
+        $('.map_canvas').slideToggle(0);
+    }
 }
 function Expand2() {
     $('.contentexpanded2').slideToggle('slow');
@@ -150,18 +155,31 @@ var myExtObject = (function () {
         RetrieveData: function (address, testarray) {
             return GetLocalData(address, testarray);
         },
+        checkFinished: function () {
+            return isfinished;
+        },
         CalculateDistance: function (address, lats, longs) {
-            keycounter = 0;          
+            keycounter = 0;
+            isfinished=false;
+            console.log("local storage contains: "+localStorage.length);
             getLatitudeLongitude(address)
-            .then(function()
-            {                
-            for (var i = 0; i < lats.length; i++) {
-                compareLatLong(address,lats[i],longs[i]);
-            }
-            })
-            .catch(function (error) {
-                alert(error.message);
-            });
+                .then(function () {
+                    console.log("compare latlong start then");
+                    var promise = new Promise(function (resolve, reject) {
+                        for (var i = 0; i < lats.length; i++) {
+                            compareLatLong(address, lats[i], longs[i]);
+                        }
+                        resolve("success");
+                    });
+                    return promise;
+                })
+                .then(function () {
+                    console.log("compare latlong finished then");
+                    isfinished=true;
+                })
+                .catch(function (error) {
+                    alert(error.message);
+                });
         },
         Clear: function () {
             $("textarea, select").val("");

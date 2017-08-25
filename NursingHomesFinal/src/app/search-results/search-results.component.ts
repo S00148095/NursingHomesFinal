@@ -36,6 +36,7 @@ export class SearchResultsComponent implements OnInit {
     this.UpdateCurrentHome(Home);
   }
   SortHomes(): void {
+    console.log("sort");
     switch (this.searchCriteria[0]) {
       case "reviews":
         this.Homes.sort((a, b) => {
@@ -49,7 +50,10 @@ export class SearchResultsComponent implements OnInit {
         });
         break;
       case "distance":
-        this.RetrieveData(this.storageService.getAddress());
+      console.log("sort");
+        if (this.storageService.getNeedsACheck()) {
+          this.RetrieveData(this.storageService.getAddress());
+        }
         this.Homes.sort((a, b) => {
           if (a.distance < b.distance) return -1;
           else if (a.distance > b.distance) return 1;
@@ -131,7 +135,10 @@ export class SearchResultsComponent implements OnInit {
         }
       }
     }
+    this.storageService.updateHomes(this.Homes);
     myExtObject.ClearData();
+    this.storageService.updateCheck(false);
+    console.log("values checked-ts");
   }
   ngOnInit() {
   }

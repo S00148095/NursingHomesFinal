@@ -149,6 +149,9 @@ function topFunction() {
 }
 var myExtObject = (function () {
     return {
+        InitTabs: function () {
+            $('.menu .item').tab();
+        },
         ClearData: function () {
             localStorage.clear();
         },

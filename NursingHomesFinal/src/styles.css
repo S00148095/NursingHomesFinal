@@ -15,6 +15,10 @@
 {
     margin:0px;
 }
+.ui.nopad.button
+{
+    margin:0px;
+}
 .inline
 {
     display: inline;
@@ -54,7 +58,7 @@
 }
 .small
 {
-    max-width: 15%;
+    max-width: 17%;
 }
 .image
 {
@@ -90,6 +94,14 @@
 {
     margin-left: 10px;
     margin-right: 10px;
+}
+.showuser
+{
+    padding-top: 15px;;
+    margin-left: 10px;
+    margin-right: 10px; 
+    margin-bottom: 0px;
+    line-height: 0px;
 }
 .ui.custombutton.button
 {   
@@ -226,14 +238,18 @@ td
 .smallpad
 {
     padding-right: 5px;
+    padding-left: 5px;
 }
 #ratingsbar
 {
-    padding-top: 5px;
+    padding-top: 10px;
+    width: 88.5%;
+    position: absolute;
+    align-self: center;
 }
 #ratingsbar div
 {
-    height: 4px;
+    height: 10px;
     float: left;
 }
 .contactdetails
@@ -260,4 +276,8 @@ td
 html, body
 {
     height:100%;
+}
+.ratings p
+{
+    margin: 0px;
 }

@@ -1,53 +1,65 @@
 <div class="ui raised vertical segment">
-  <h4 class="inline iconbutton">{{Review.user}}</h4>
-  <div class="ui inline mini green animated button" (click)="IncrementAgreed()">
-    <div class="hidden content">Agree</div>
-    <div class="visible content">
-      <i class="arrow circle up icon"></i>
+  <div class="ui top attached tabular menu">
+    <h4 class="showuser">{{Review.user}}</h4>
+    <div class="right menu">
+      <a class="active item" data-tab="first">Ratings</a>
+      <a class="item" data-tab="second">Comment</a>
     </div>
   </div>
-  <div class="ui inline mini red animated button" (click)="IncrementDisagreed()">
-    <div class="hidden content">Disagree</div>
-    <div class="visible content">
-      <i class="arrow circle down icon"></i>
-    </div>
-  </div>
-  <p class="inline smallpad nobottommargin other" *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
-  <div id="ratingsbar" style="overflow: hidden;">
-    <div style="background-color: green;" [style.width]="Agreed()"></div>
-    <div style="background-color: red;" [style.width]="Disagreed()"></div>
-  </div>
-  <div class="ui horizontal segments">
-    <div class="ui segment">
-      <p>Care: {{Review.care}}</p>
-      <p>Cleanliness: {{Review.cleanliness}}</p>
-      <p>Staff: {{Review.staff}}</p>
-      <p>Premises: {{Review.premises}}</p>
-    </div>
-    <div class="ui segment">
-      <p>Food: {{Review.food}}</p>
-      <p>Facilities: {{Review.facilities}}</p>
-      <p>Management: {{Review.management}}</p>
-      <p>Rooms: {{Review.rooms}}</p>
-    </div>
-    <div class="ui segment">
-      <p>Safety: {{Review.safety}}</p>
-      <p>Value: {{Review.value}}</p>
-      <p>Location: {{Review.location}}</p>
-      <p>Activities: {{Review.activities}}</p>
-    </div>
-    <div class="ui small segment">
-      <div class=rating>
-        <i [ngClass]="CheckRating(1)"></i>
-        <i [ngClass]="CheckRating(2)"></i>
-        <i [ngClass]="CheckRating(3)"></i>
-        <i [ngClass]="CheckRating(4)"></i>
-        <i [ngClass]="CheckRating(5)"></i>
+  <div class="ui bottom attached active tab segment" data-tab="first">
+    <div class="ui horizontal segments">
+      <div class="ui ratings segment">
+        <p>Care: {{Review.care}}</p>
+        <p>Cleanliness: {{Review.cleanliness}}</p>
+        <p>Staff: {{Review.staff}}</p>
+        <p>Premises: {{Review.premises}}</p>
       </div>
-      <h3>{{Review.overall}}/10</h3>
+      <div class="ui ratings segment">
+        <p>Food: {{Review.food}}</p>
+        <p>Facilities: {{Review.facilities}}</p>
+        <p>Management: {{Review.management}}</p>
+        <p>Rooms: {{Review.rooms}}</p>
+      </div>
+      <div class="ui ratings segment">
+        <p>Safety: {{Review.safety}}</p>
+        <p>Value: {{Review.value}}</p>
+        <p>Location: {{Review.location}}</p>
+        <p>Activities: {{Review.activities}}</p>
+      </div>
+      <div class="ui small segment">
+        <div class=rating>
+          <i [ngClass]="CheckRating(1)"></i>
+          <i [ngClass]="CheckRating(2)"></i>
+          <i [ngClass]="CheckRating(3)"></i>
+          <i [ngClass]="CheckRating(4)"></i>
+          <i [ngClass]="CheckRating(5)"></i>
+        </div>
+        <h3>{{Review.overall}}/10</h3>
+      </div>
     </div>
   </div>
-  <p class="padded">{{Review.comment}}</p>
+  <div class="ui bottom attached tab segment" data-tab="second">
+    <p>{{Review.comment}}</p>
+    <p *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
+  </div>
+  <div class="smallpad">
+    <div class="ui inline nopad mini green animated button" (click)="IncrementAgreed()">
+      <div class="hidden content">Agree</div>
+      <div class="visible content">
+        <i class="arrow circle up icon"></i>
+      </div>
+    </div>
+    <div class="inline" id="ratingsbar" style="overflow: hidden;">
+      <div style="background-color: #21ba45;" [style.width]="Agreed()"></div>
+      <div style="background-color: red;" [style.width]="Disagreed()"></div>
+    </div>
+    <div class="ui inline other nopad mini red animated button" (click)="IncrementDisagreed()">
+      <div class="hidden content">Disagree</div>
+      <div class="visible content">
+        <i class="arrow circle down icon"></i>
+      </div>
+    </div>
+  </div>
   <div class="padded" *ngIf="CheckValid()">
     <button class="ui custombutton  button" id="expand" onclick="Expand2()">Respond</button>
     <div class="contentexpanded2">

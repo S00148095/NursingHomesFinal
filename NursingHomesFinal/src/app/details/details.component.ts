@@ -65,6 +65,7 @@ export class DetailsComponent implements OnInit {
     if (this.currentHome != null || this.currentHome != undefined) {
       myExtObject.PopulateCare(this.currentHome.careTypes);
       myExtObject.Populate(this.currentHome.facilities);
+      myExtObject.InitTabs();
       return true;
     }
     else {
@@ -73,7 +74,7 @@ export class DetailsComponent implements OnInit {
     }
   }
   Redirect(): void {
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/webSide/home');
   }
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     this.GetUser();

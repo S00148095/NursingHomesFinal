@@ -36,7 +36,6 @@ export class SearchResultsComponent implements OnInit {
     this.UpdateCurrentHome(Home);
   }
   SortHomes(): void {
-    console.log("sort");
     switch (this.searchCriteria[0]) {
       case "reviews":
         this.Homes.sort((a, b) => {
@@ -50,7 +49,6 @@ export class SearchResultsComponent implements OnInit {
         });
         break;
       case "distance":
-      console.log("sort");
         if (this.storageService.getNeedsACheck()) {
           this.RetrieveData(this.storageService.getAddress());
         }

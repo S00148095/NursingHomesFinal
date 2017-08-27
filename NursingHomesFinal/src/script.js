@@ -55,20 +55,20 @@ function compareLatLong(testaddress, testlat, testlong) {
 }
 function getLatitudeLongitude(testaddress) {
     var promise = new Promise(function (resolve, reject) {
-            console.log("lat long updated");
-            testaddress = testaddress || 'Dublin, Ireland';
-            geocoder = new google.maps.Geocoder();
-            if (geocoder) {
-                geocoder.geocode({
-                    'address': testaddress
-                }, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        lat = results[0].geometry.location.lat();
-                        long = results[0].geometry.location.lng();
-                        storedaddress = testaddress;
-                        resolve("success");
-                    }
-                });
+        console.log("lat long updated");
+        testaddress = testaddress || 'Dublin, Ireland';
+        geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+            geocoder.geocode({
+                'address': testaddress
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    lat = results[0].geometry.location.lat();
+                    long = results[0].geometry.location.lng();
+                    storedaddress = testaddress;
+                    resolve("success");
+                }
+            });
         }
     });
     return promise;
@@ -163,8 +163,8 @@ var myExtObject = (function () {
         },
         CalculateDistance: function (address, lats, longs) {
             keycounter = 0;
-            isfinished=false;
-            console.log("local storage contains: "+localStorage.length);
+            isfinished = false;
+            console.log("local storage contains: " + localStorage.length);
             getLatitudeLongitude(address)
                 .then(function () {
                     console.log("compare latlong start then");
@@ -178,7 +178,7 @@ var myExtObject = (function () {
                 })
                 .then(function () {
                     console.log("compare latlong finished then");
-                    isfinished=true;
+                    isfinished = true;
                 })
                 .catch(function (error) {
                     alert(error.message);

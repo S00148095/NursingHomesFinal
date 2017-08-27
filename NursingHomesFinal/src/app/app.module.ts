@@ -43,6 +43,7 @@ import { CrmSideRouteComponent } from "./crm-side-route/crm-side-route.component
 
 import { AuthService } from './auth.service';
 import { CallbackComponent } from './callback/callback.component';
+import { PaymentsComponent } from './payments/payments.component';
 
 /*===============
 
@@ -84,6 +85,7 @@ const routes: Routes = [
       { path: 'forgot', component: ForgotComponent },
       { path: 'login', component: LoginComponent },
       { path: 'search-results', component: SearchResultsComponent },
+      { path: 'payments', component: PaymentsComponent },
       { path: '**', component: NotFoundComponent }
     ]
   },
@@ -141,7 +143,8 @@ const routes: Routes = [
     FinalColumnComponent,
     WebsiteSideRouteComponent,
     CrmSideRouteComponent,
-    CallbackComponent
+    CallbackComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserModule,

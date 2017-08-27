@@ -1,0 +1,155 @@
+<div class="padded scrollablecontent">
+  <table class="ui definition center aligned striped table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Tier 0</th>
+        <th>Tier 1</th>
+        <th>Tier 2</th>
+        <th>Tier 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Facilities</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Care Types</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Link to Website</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Bed:Staff Ratio</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Share Listing</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Reviews</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>Limited</td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Response Options</td>
+        <td>1</td>
+        <td>4</td>
+        <td>6</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>Photos</td>
+        <td>1</td>
+        <td>3</td>
+        <td>5</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>Review Notifications</td>
+        <td><i class="large red remove icon"></i></td>
+        <td>Email</td>
+        <td>Email</td>
+        <td>Email and CRM</td>
+      </tr>
+      <tr>
+        <td>Video</td>
+        <td><i class="large red remove icon"></i></td>
+        <td><i class="large red remove icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>CRM</td>
+        <td><i class="large red remove icon"></i></td>
+        <td><i class="large red remove icon"></i></td>
+        <td>Limited</td>
+        <td><i class="large green checkmark icon"></i></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>Free</td>
+        <td>€xx p/month</td>
+        <td>€xxx p/month</td>
+        <td>€xxx p/month</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let Home of Homes" >
+          <td>{{Home.name}}</td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" name={{Home.name}} checked>
+              <label></label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" name={{Home.name}} >
+              <label></label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" name={{Home.name}}>
+              <label></label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" name={{Home.name}}>
+              <label></label>
+            </div>
+          </td>
+        </tr>
+      <tr>
+          <td>Totals</td>
+          <td>€0</td>
+          <td>€xx p/month</td>
+          <td>€xxx p/month</td>
+          <td>€xxx p/month</td>
+        </tr>
+        <tr>
+          <td>Grand Total</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>€xxx p/month</td>
+        </tr>
+    </tbody>
+  </table>
+  <button class="ui fluid custombutton button">Pay</button>
+</div>

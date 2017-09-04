@@ -9,10 +9,7 @@ export class User {
         public email: string,
         public password: string,
         public phone: string,
-        public people: Person[],
         public homes: Home[]
         ) {
-
     }
-
 }

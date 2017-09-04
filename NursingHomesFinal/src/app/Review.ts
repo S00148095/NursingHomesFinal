@@ -5,7 +5,7 @@ export class Review {
         public care: number,
         public cleanliness: number,
         public staff: number,
-        public premises: number,
+        public dignity: number,
         public food:number,
         public facilities:number,
         public management: number,

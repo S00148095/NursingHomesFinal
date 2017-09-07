@@ -71,6 +71,10 @@ export class ReviewComponent implements OnInit {
   {
     return ((this.Review.disagreed/(this.Review.agreed+this.Review.disagreed))*100)+"%"
   }
+  GetTooltip():string
+  {
+    return "Agreed: "+this.Review.agreed+"\tDisagreed: "+this.Review.disagreed;
+  }
   ngOnInit() {
   }
 

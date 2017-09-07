@@ -1,16 +1,17 @@
+responsivness
+
 SEO
 Re-do front page
 ratio not reducing fully
 search by name
-feedback button
+database
+images
 icon on comment
 costs on payment page
 right align review
 limit reviews, agrees, comment length
-agree disagree on hover
 claim home button-move
-review comment minimum height
-back to search button
+response section css
 
 filter by facilities
 facilities/care types on results

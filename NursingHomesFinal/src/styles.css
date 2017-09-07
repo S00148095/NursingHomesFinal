@@ -294,3 +294,7 @@ html, body
     left: 0;
     border-radius: 0px;
 }
+.comment
+{
+    min-height: 150px;
+}

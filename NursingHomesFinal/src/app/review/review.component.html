@@ -39,10 +39,10 @@
     </div>
   </div>
   <div class="ui bottom attached tab segment" data-tab="second">
-    <p>{{Review.comment}}</p>
+    <p class="comment">{{Review.comment}}</p>
     <p *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
   </div>
-  <div class="smallpad">
+  <div class="smallpad" [attr.data-tooltip]="GetTooltip()" data-position="bottom center">
     <div class="ui inline nopad mini green animated button" (click)="IncrementAgreed()">
       <div class="hidden content">Agree</div>
       <div class="visible content">

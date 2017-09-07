@@ -82,7 +82,6 @@ function GetLocalData(address, array) {
                 var v = JSON.parse(localStorage.getItem(k));
             }
             catch (e) {
-                alert("Herp, v's type is " + typeof (v));
             }
             if (v.lat == temp[0] && v.long == temp[1] && v.address == address) {
                 temp[2] = v.distance;

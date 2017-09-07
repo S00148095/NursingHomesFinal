@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../storage.service";
 
 @Component({
   selector: 'app-website-side-route',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebsiteSideRouteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
+
+  
+  UpdateCurrentHome(): void {
+    this.storageService.setCurrentHome(null);
+  }
 
   ngOnInit() {
   }

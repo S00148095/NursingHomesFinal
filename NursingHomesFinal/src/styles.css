@@ -287,3 +287,10 @@ html, body
     bottom: 0;
     left: 0;
 }
+.ui.custombutton.topleft.animated.button
+{
+    position: fixed;
+    top: 10%;
+    left: 0;
+    border-radius: 0px;
+}

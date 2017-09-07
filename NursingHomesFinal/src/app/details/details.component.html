@@ -1,5 +1,11 @@
 <div class="padded scrollablecontent" *ngIf="CheckHome()">
   <br/>
+  <div class="ui nopad custombutton animated topleft button" [routerLink]="['../search-results']">
+    <div class="hidden content">Go Back</div>
+    <div class="visible content">
+      <i class="arrow circle left icon"></i>
+    </div>
+  </div>
   <h1>{{currentHome.name}}</h1>
   <div class="full">
       <img class="other display" src="/assets/home.jpg" />

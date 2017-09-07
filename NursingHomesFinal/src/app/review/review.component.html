@@ -66,16 +66,16 @@
       <div class="field">
         <label>Response:</label>
         <select class="ui dropdown" #option>
-    <option value="">Select Option</option>
-    <option value="seen">Seen</option>
-    <option *ngIf="CheckTier(1)" value="isolated incident">Isolated Incident</option>
-    <option *ngIf="CheckTier(1)" value="problem solved">Problem Solved</option>
-    <option *ngIf="CheckTier(1)" value="thanks">Thanks</option>
-    <option *ngIf="CheckTier(2)" value="investigating problem">Investigating Problem</option>
-    <option *ngIf="CheckTier(2)" value="apologies">Apologies</option>
-    <option *ngIf="CheckTier(3)" value="fake review">Fake Review</option>
-    <option *ngIf="CheckTier(3)" value="customer contacted">Customer Contacted</option>
-    </select>
+          <option value="">Select Option</option>
+          <option value="seen">Seen</option>
+          <option *ngIf="CheckTier(1)" value="isolated incident">Isolated Incident</option>
+          <option *ngIf="CheckTier(1)" value="problem solved">Problem Solved</option>
+          <option *ngIf="CheckTier(1)" value="thanks">Thanks</option>
+          <option *ngIf="CheckTier(2)" value="investigating problem">Investigating Problem</option>
+          <option *ngIf="CheckTier(2)" value="apologies">Apologies</option>
+          <option *ngIf="CheckTier(3)" value="fake review">Fake Review</option>
+          <option *ngIf="CheckTier(3)" value="customer contacted">Customer Contacted</option>
+        </select>
         <button class="ui custombutton button" (click)="LeaveReview(option.value)" onclick="Expand2()">Send</button>
       </div>
     </div>

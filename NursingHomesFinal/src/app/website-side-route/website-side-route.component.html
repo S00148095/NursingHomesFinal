@@ -3,4 +3,4 @@
 <app-top-bar></app-top-bar>
 </router-outlet>
 
-<a class="ui custombutton bottomleft button" [routerLink]="['/webSide/contact']">Feedback</a>
+<a class="ui custombutton bottomleft button" (click)="UpdateCurrentHome()" [routerLink]="['/webSide/contact']">Feedback</a>

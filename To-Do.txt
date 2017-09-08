@@ -6,7 +6,6 @@ ratio not reducing fully
 database
 images
 icon on comment
-costs on payment page
 limit reviews, agrees, comment length
 claim home button-move
 response section css

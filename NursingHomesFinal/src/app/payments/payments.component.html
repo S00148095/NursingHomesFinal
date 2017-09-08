@@ -1,4 +1,4 @@
-<div class="padded scrollablecontent">
+<div class="padded scrollablecontent" *ngIf="CheckHome()">
   <table class="ui definition center aligned striped table">
     <thead>
       <tr>
@@ -97,9 +97,9 @@
       <tr>
         <td>Price</td>
         <td>Free</td>
-        <td>€xx p/month</td>
-        <td>€xxx p/month</td>
-        <td>€xxx p/month</td>
+        <td>€10 p/month</td>
+        <td>€30 p/month</td>
+        <td>€100 p/month</td>
       </tr>
       <tr>
         <td></td>
@@ -112,25 +112,25 @@
           <td>{{Home.name}}</td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" name={{Home.name}} checked>
+              <input type="radio" name={{Home.name}} value="0" onclick="calcPaymentTotal()" checked>
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" name={{Home.name}} >
+              <input type="radio" value="1" name={{Home.name}} onclick="calcPaymentTotal()">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" name={{Home.name}}>
+              <input type="radio" value="2" name={{Home.name}} onclick="calcPaymentTotal()">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" name={{Home.name}}>
+              <input type="radio" value="3" name={{Home.name}} onclick="calcPaymentTotal()">
               <label></label>
             </div>
           </td>
@@ -138,16 +138,16 @@
       <tr>
           <td>Totals</td>
           <td>€0</td>
-          <td>€xx p/month</td>
-          <td>€xxx p/month</td>
-          <td>€xxx p/month</td>
+          <td id="tier1total">€0 p/month</td>
+          <td id="tier2total">€0 p/month</td>
+          <td id="tier3total">€0 p/month</td>
         </tr>
         <tr>
           <td>Grand Total</td>
           <td></td>
           <td></td>
           <td></td>
-          <td>€xxx p/month</td>
+          <td id="grandtotal">€0 p/month</td>
         </tr>
     </tbody>
   </table>

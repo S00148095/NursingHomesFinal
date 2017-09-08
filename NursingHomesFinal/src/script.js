@@ -30,7 +30,48 @@ var long = null;
 var storedaddress;
 var keycounter = 0;
 var isfinished;
+var tier0=0;
+var tier1=10;
+var tier2=30;
+var tier3=100;
 
+function calcPaymentTotal()
+{
+    var tier1total=0;
+    var tier2total=0;
+    var tier3total=0;
+    var grandtotal=0;
+    var boxes=$('input:radio:checked');
+    console.log("Array");
+    console.log(boxes);
+    for(var i=0;i<boxes.length;i++)
+    {
+        if(boxes[i].value==="1")
+        {
+            tier1total+=tier1;
+            grandtotal+=tier1;
+        }
+        else if(boxes[i].value==="2")
+        {
+            tier2total+=tier2;
+            grandtotal+=tier2;
+        }
+        else if(boxes[i].value==="3")
+        {
+            tier3total+=tier3;
+            grandtotal+=tier3;
+        }    
+    }
+    console.log("Totals");
+    console.log(tier1total);
+    console.log(tier2total);
+    console.log(tier3total);
+    console.log(grandtotal);
+    $('#tier1total').html("€"+tier1total+" p/month");
+    $('#tier2total').html("€"+tier2total+" p/month");
+    $('#tier3total').html("€"+tier3total+" p/month");
+    $('#grandtotal').html("€"+grandtotal+" p/month");
+}
 function rad(x) {
     return x * Math.PI / 180;
 }

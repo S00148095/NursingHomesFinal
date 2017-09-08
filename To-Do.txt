@@ -1,17 +1,18 @@
 responsivness
 
 SEO
-Re-do front page
+Re-do front page-search by name
 ratio not reducing fully
-search by name
 database
 images
 icon on comment
 costs on payment page
-right align review
 limit reviews, agrees, comment length
 claim home button-move
 response section css
+replace favicon
+toastr notifications
+switch to owner and user
 
 filter by facilities
 facilities/care types on results

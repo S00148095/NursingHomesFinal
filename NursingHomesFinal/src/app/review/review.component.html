@@ -9,22 +9,34 @@
   <div class="ui bottom attached active tab segment" data-tab="first">
     <div class="ui horizontal segments">
       <div class="ui ratings segment">
-        <p>Level of Care: {{Review.care}}</p>
-        <p>Cleanliness: {{Review.cleanliness}}</p>
-        <p>Staff: {{Review.staff}}</p>
-        <p>Treated with Dignity: {{Review.dignity}}</p>
+        <p class="other">{{Review.care}}/5</p>
+        <p>Level of Care:</p>
+        <p class="other">{{Review.cleanliness}}/5</p>
+        <p>Cleanliness:</p>
+        <p class="other">{{Review.staff}}/5</p>
+        <p>Staff:</p>
+        <p class="other">{{Review.dignity}}/5</p>
+        <p>Treated with Dignity:</p>
       </div>
       <div class="ui ratings segment">
-        <p>Food/Drink: {{Review.food}}</p>
-        <p>Facilities: {{Review.facilities}}</p>
-        <p>Management: {{Review.management}}</p>
-        <p>Rooms: {{Review.rooms}}</p>
+        <p class="other">{{Review.food}}/5</p>
+        <p>Food/Drink:</p>
+        <p class="other">{{Review.facilities}}/5</p>
+        <p>Facilities:</p>
+        <p class="other">{{Review.management}}/5</p>
+        <p>Management:</p>
+        <p class="other">{{Review.rooms}}/5</p>
+        <p>Rooms:</p>
       </div>
       <div class="ui ratings segment">
-        <p>Safety/Security: {{Review.safety}}</p>
-        <p>Value for Money: {{Review.value}}</p>
-        <p>Location: {{Review.location}}</p>
-        <p>Activities: {{Review.activities}}</p>
+        <p class="other">{{Review.safety}}/5</p>
+        <p>Safety/Security:</p>
+        <p class="other">{{Review.value}}/5</p>
+        <p>Value for Money:</p>
+        <p class="other">{{Review.location}}/5</p>
+        <p>Location:</p>
+        <p class="other">{{Review.activities}}/5</p>
+        <p>Activities:</p>
       </div>
       <div class="ui small segment">
         <div class=rating>
@@ -34,7 +46,7 @@
           <i [ngClass]="CheckRating(4)"></i>
           <i [ngClass]="CheckRating(5)"></i>
         </div>
-        <h3>{{Review.overall}}/10</h3>
+        <h3 class="ratingtext">{{Review.overall}}/10</h3>
       </div>
     </div>
   </div>

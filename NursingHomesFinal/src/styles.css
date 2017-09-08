@@ -58,7 +58,7 @@
 }
 .small
 {
-    max-width: 17%;
+    max-width: 15%;
 }
 .image
 {
@@ -79,6 +79,7 @@
 {
     padding-top: 15%;
     margin-bottom:5%;
+    font-size: .92857143rem;
 }
 .list
 {

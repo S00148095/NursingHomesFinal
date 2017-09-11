@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import 'script.js';
 import { Home } from "../Home";
 import { Review } from "../Review";
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 import { Router } from "@angular/router";
+import 'script.js';
 
 declare var myExtObject: any;
 

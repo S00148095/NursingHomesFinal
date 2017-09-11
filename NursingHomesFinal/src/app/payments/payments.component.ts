@@ -3,6 +3,9 @@ import { User } from "../User";
 import { StorageService } from "../storage.service";
 import { Home } from "../Home";
 import { Router } from '@angular/router';
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-payments',
@@ -12,8 +15,7 @@ import { Router } from '@angular/router';
 export class PaymentsComponent implements OnInit {
   counter: number;
   currentUser: User;
-  Homes:Home[];
-  hasBeenPopped:boolean;
+  Homes: Home[];
 
   constructor(private storageService: StorageService, private router: Router) {
     this.GetUser();
@@ -21,7 +23,8 @@ export class PaymentsComponent implements OnInit {
 
   CheckHome() {
     if (this.currentUser != null || this.currentUser != undefined) {
-      this.Homes=this.currentUser.homes;
+      this.Homes = this.currentUser.homes;
+        this.PopBoxes();
       return true;
     }
     else {
@@ -32,7 +35,14 @@ export class PaymentsComponent implements OnInit {
   GetUser(): void {
     this.currentUser = this.storageService.getUser();
   }
+  PopBoxes() {
+    for (var i = 0; i < this.Homes.length; i++) {
+      myExtObject.PopBoxes(this.Homes[i].name, this.Homes[i].tier);
+    }
+  }
+  CalcTotals() {
+    myExtObject.calcPaymentTotal();
+  }
   ngOnInit() {
   }
-
 }

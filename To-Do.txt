@@ -17,5 +17,6 @@ room types
 viewing times
 payments-get checkboxes to populate automatically
 
+remove logs
 filter by facilities
 facilities/care types on results

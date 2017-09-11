@@ -6,12 +6,16 @@ ratio not reducing fully
 database
 images
 icon on comment
-limit reviews, agrees, comment length
+limit reviews, agrees, comment length,description
 claim home button-move
 response section css
 replace favicon
 toastr notifications
 switch to owner and user
+sharing
+room types
+viewing times
+payments-get checkboxes to populate automatically
 
 filter by facilities
 facilities/care types on results

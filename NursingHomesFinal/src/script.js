@@ -30,10 +30,12 @@ var long = null;
 var storedaddress;
 var keycounter = 0;
 var isfinished;
-var tier0=0;
-var tier1=10;
-var tier2=30;
-var tier3=100;
+var tier1month=39;
+var tier2month=149;
+var tier3month=199;
+var tier1year=399;
+var tier2year=1499;
+var tier3year=1999;
 
 function calcPaymentTotal()
 {
@@ -41,9 +43,28 @@ function calcPaymentTotal()
     var tier2total=0;
     var tier3total=0;
     var grandtotal=0;
+    var tier1=0;
+    var tier2=0;
+    var tier3=0;
     var boxes=$('input:radio:checked');
-    console.log("Array");
-    console.log(boxes);
+    var payment=boxes[boxes.length-1];
+    var option=payment.value;
+    if(option=="month")
+    {
+        var tier1=tier1month;
+        var tier2=tier2month;
+        var tier3=tier3month;
+    }
+    else if(option=="year")
+    {
+        var tier1=tier1year;
+        var tier2=tier2year;
+        var tier3=tier3year;
+    }
+    else
+    {
+        console.log(option);
+    }
     for(var i=0;i<boxes.length;i++)
     {
         if(boxes[i].value==="1")
@@ -62,15 +83,10 @@ function calcPaymentTotal()
             grandtotal+=tier3;
         }    
     }
-    console.log("Totals");
-    console.log(tier1total);
-    console.log(tier2total);
-    console.log(tier3total);
-    console.log(grandtotal);
-    $('#tier1total').html("€"+tier1total+" p/month");
-    $('#tier2total').html("€"+tier2total+" p/month");
-    $('#tier3total').html("€"+tier3total+" p/month");
-    $('#grandtotal').html("€"+grandtotal+" p/month");
+    $('#tier1total').html("€"+tier1total+" p/"+option);
+    $('#tier2total').html("€"+tier2total+" p/"+option);
+    $('#tier3total').html("€"+tier3total+" p/"+option);
+    $('#grandtotal').html("€"+grandtotal+" p/"+option);
 }
 function rad(x) {
     return x * Math.PI / 180;

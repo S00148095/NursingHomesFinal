@@ -321,16 +321,11 @@
             <div id="content-pane" class="half">
                 <div id="inputs" class="ui form">
                     <div class="field">
-                        <label>Your Address</label>
-                        <input type="text" name="address" id="geocomplete" onclick="geocomplete()" placeholder="Dublin, Ireland" #address>
+                        <input type="text" name="address" id="geocomplete" onclick="geocomplete()" placeholder="Ballymun or Summerville Nursing Home, Sligo" #address>
                     </div>
                 </div>
                 <br/>
-                <div class="ui fluid custombutton buttons">
-                    <button class="ui custombutton button" id="expand" onclick="Switch()">Search by Criteria</button>
-                    <div class=or></div>
-                    <a class="ui custombutton button" (click)="Calculate(address.value)">Search</a>
-                </div>
+                    <a class="ui fluid custombutton button" (click)="Calculate(address.value)">Search</a>
             </div>
         </div>
         <div class="map_canvas"></div>

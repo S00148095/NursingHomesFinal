@@ -15,8 +15,18 @@ switch to owner and user
 sharing
 room types
 viewing times
-payments-get checkboxes to populate automatically
+seperate payment segments
+payment css?
+show bottom segment if logged in
+feedback autofill to us
+just search by distance on home
+km away css
+distance categories
+ratings/5
+Review heading(x total)
+agree/dis button width
+or z index
 
 remove logs
-filter by facilities
-facilities/care types on results
+filter by care types accordion
+care types on results

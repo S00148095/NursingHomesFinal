@@ -1,7 +1,6 @@
 responsivness
 
 SEO
-Re-do front page-search by name
 ratio not reducing fully
 database
 images
@@ -9,7 +8,6 @@ icon on comment
 limit reviews, agrees, comment length,description
 claim home button-move
 response section css
-replace favicon
 toastr notifications
 switch to owner and user
 sharing
@@ -19,13 +17,12 @@ seperate payment segments
 payment css?
 show bottom segment if logged in
 feedback autofill to us
-just search by distance on home
-km away css
-distance categories
+km away css-distance categories
 ratings/5
 Review heading(x total)
 agree/dis button width
 or z index
+front page image
 
 remove logs
 filter by care types accordion

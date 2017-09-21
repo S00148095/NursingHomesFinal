@@ -79,6 +79,25 @@ export class ResultComponent implements OnInit {
       return ""
     }
   }
+  getDistanceCategory()
+  {
+    if(this.Home.distance<10)
+    {
+      return "<10km away";
+    }
+    else if(this.Home.distance<20)
+    {
+      return "<20km away";
+    }
+    else if(this.Home.distance<50)
+    {
+      return "<50km away";
+    }
+    else
+    {
+      return ">50km away";
+    }
+  }
   ngOnInit() {
   }
 

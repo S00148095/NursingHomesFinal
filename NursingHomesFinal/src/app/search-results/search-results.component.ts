@@ -53,8 +53,8 @@ export class SearchResultsComponent implements OnInit {
           this.RetrieveData(this.storageService.getAddress());
         }
         this.Homes.sort((a, b) => {
-          if (a.distance < b.distance) return -1;
-          else if (a.distance > b.distance) return 1;
+          if (this.getCategory(a.distance) < this.getCategory(b.distance)) return -1;
+          else if (this.getCategory(a.distance) > this.getCategory(b.distance)) return 1;
           else {
             if (a.rating > b.rating) {
               return -1;
@@ -137,6 +137,25 @@ export class SearchResultsComponent implements OnInit {
     myExtObject.ClearData();
     this.storageService.updateCheck(false);
     console.log("values checked-ts");
+  }
+  getCategory(distance)
+  {
+    if(distance<10)
+    {
+      return 0;
+    }
+    else if(distance<20)
+    {
+      return 1;
+    }
+    else if(distance<50)
+    {
+      return 2;
+    }
+    else
+    {
+      return 3;
+    }
   }
   ngOnInit() {
   }

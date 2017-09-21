@@ -300,5 +300,4 @@ var myExtObject = (function () {
         }
     }
 
-})(myExtObject || {})
-
+})(myExtObject || {});

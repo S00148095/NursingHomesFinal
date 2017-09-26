@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Home } from "../Home";
 import { Review } from "../Review";
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 import { Router } from "@angular/router";
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import 'script.js';
 
 declare var myExtObject: any;
@@ -28,8 +29,9 @@ export class DetailsComponent implements OnInit {
     { id: 5, name: '5' }
   ];
 
-  constructor(private storageService: StorageService, private router: Router) {
+  constructor(private storageService: StorageService, private router: Router,public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.GetReviews();
+    this.toastr.setRootViewContainerRef(vcr);
   }
   GetHome(): void {
     this.currentHome = this.storageService.getCurrentHome();
@@ -83,6 +85,15 @@ export class DetailsComponent implements OnInit {
       this.storageService.UpdateReviews(this.newReview);
       this.GetReviews();
       myExtObject.Clear();
+      this.showSuccess();
+    }
+    else if(this.currentUser == null || this.currentUser == undefined )
+    {
+      this.showWarningLogIn();
+    }
+    else
+    {
+      this.showWarningContent();
     }
   }
   GetUser(): void {
@@ -98,6 +109,15 @@ export class DetailsComponent implements OnInit {
         });
         return Reviews
     }
+  }
+  showSuccess() {
+    this.toastr.success('Your review was left succesfully!', 'Thanks!');
+  }
+  showWarningLogIn() {
+    this.toastr.warning('You must be logged in to leave a review.', 'Sorry!');
+  }
+  showWarningContent() {
+    this.toastr.warning('You must fill out all of the fields.', 'Sorry!');
   }
   ngOnInit() {
   }

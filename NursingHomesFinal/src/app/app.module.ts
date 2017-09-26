@@ -45,6 +45,9 @@ import { AuthService } from './auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 /*===============
 
 Changing this in favour of nested routing, as a test at least
@@ -149,7 +152,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     DragulaModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
   ],
   providers: [StorageService, AuthService],
   bootstrap: [AppComponent]

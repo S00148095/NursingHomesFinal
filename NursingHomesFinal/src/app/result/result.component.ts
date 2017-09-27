@@ -67,8 +67,8 @@ export class ResultComponent implements OnInit {
     });
   }
   CheckRating(rating: number): string {
-    if (this.Home.rating / 2 >= rating) return "yellow star icon"
-    else if (this.Home.rating / 2 <= rating - 1) return "empty yellow star icon"
+    if (this.Home.rating >= rating) return "yellow star icon"
+    else if (this.Home.rating <= rating - 1) return "empty yellow star icon"
     else return "yellow star half empty icon"
   }
   SelectedStyle(): string {

@@ -8,7 +8,7 @@ icon on comment
 limit reviews, agrees, comment length,description
 claim home button-move
 response section css
-toastr notifications-done on details
+toastr notifications-done on details, maybe needed elswhere?
 switch to owner and user
 sharing
 room types
@@ -17,10 +17,8 @@ seperate payment segments
 payment css?
 show bottom segment if logged in
 feedback autofill to us
-ratings/5
 Review heading(x total)
-agree/dis button width
-or z index
+agree/disagree button width
 front page image
 
 remove logs

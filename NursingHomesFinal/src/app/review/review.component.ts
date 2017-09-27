@@ -20,8 +20,8 @@ export class ReviewComponent implements OnInit {
     this.GetUser();
   }
   CheckRating(rating: number): string {
-    if (this.Review.overall / 2.0 >= rating) return "yellow star icon"
-    else if (this.Review.overall / 2.0 <= rating - 1) return "empty yellow star icon"
+    if (this.Review.overall >= rating) return "yellow star icon"
+    else if (this.Review.overall <= rating - 1) return "empty yellow star icon"
     else return "yellow star half empty icon"
   }
   GetUser(): void {

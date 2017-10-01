@@ -1,9 +1,9 @@
 <div class="scrollablecontent">
-  <div class="ui equal width padded form">
-      <br/>
-      <div class="fields">
-          <div class="field">
-              <select class="ui dropdown">
+    <div class="ui equal width padded form">
+        <br/>
+        <div class="fields">
+            <div class="field">
+                <select class="ui dropdown">
         <option value="">Select Country</option>
         <option value="AF">Afghanistan</option>
         <option value="AX">Åland Islands</option>
@@ -255,9 +255,9 @@
         <option value="ZM">Zambia</option>
         <option value="ZW">Zimbabwe</option>
       </select>
-          </div>
-          <div class="field">
-              <select class="ui dropdown" #county>
+            </div>
+            <div class="field">
+                <select class="ui dropdown" #county>
       <option value="">Select County</option>
       <option value="Antrim">Antrim</option>
       <option value="Armagh">Armagh</option>
@@ -292,23 +292,23 @@
       <option value="Wexford">Wexford</option>
       <option value="Wicklow">Wicklow</option>
       </select>
-          </div>
-  
-          <div class="field">
-              <select class="ui dropdown" #option>
+            </div>
+
+            <div class="field">
+                <select class="ui dropdown" #option>
       <option value="">Select Option</option>
       <option value="rating">Rating</option>
       <option value="reviews">Number of Reviews</option>
       <option value="ascending">Alphabetical(A-Z)</option>
       <option value="descending">Alphabetical(Z-A)</option>
       </select>
-          </div>
-          <div class="field">
-              <a class="ui fluid custombutton button" (click)="UpdateCriteria(option.value,county.value)">Search</a>
-          </div>
-      </div>
-  </div>
-  <div class="ui vertical padded segments" *ngIf="CheckHomes()">
-      <app-result *ngFor="let Home of Homes" [Home]="Home" [County]="searchCriteria[1]" (notify)='onNotify($event)'></app-result>
-  </div>
-  </div>
+            </div>
+            <div class="field">
+                <a class="ui fluid custombutton button" (click)="UpdateCriteria(option.value,county.value)">Search</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui vertical padded segments" *ngIf="CheckHomes()">
+        <app-result *ngFor="let Home of Homes" [Home]="Home" [County]="searchCriteria[1]" (notify)='onNotify($event)'></app-result>
+    </div>
+</div>

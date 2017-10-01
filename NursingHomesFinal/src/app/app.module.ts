@@ -45,8 +45,9 @@ import { AuthService } from './auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastModule} from 'ng2-toastr/ng2-toastr';
+
 
 /*===============
 
@@ -67,9 +68,6 @@ const routes: Routes = [
 ];
 
 */
-
-
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'webSide', pathMatch: 'full' },
@@ -109,11 +107,6 @@ const routes: Routes = [
 
 
 ]
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -156,7 +149,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ToastModule.forRoot()
   ],
-  providers: [StorageService, AuthService],
+  providers: [ StorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

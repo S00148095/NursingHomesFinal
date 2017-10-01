@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 import { AuthService } from './../auth.service';
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-account',
@@ -41,6 +44,8 @@ export class AccountComponent implements OnInit {
       });
     }
     console.log(this.profile);
+    
+    myExtObject.initFullpage("not home");
   }
 
 }

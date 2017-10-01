@@ -3,6 +3,9 @@ import { Home } from "../Home";
 import { StorageService } from "../storage.service";
 import { Router } from "@angular/router";
 import { User } from "../User";
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-edit-details',
@@ -112,6 +115,7 @@ export class EditDetailsComponent implements OnInit {
     else return false
   }
   ngOnInit() {
+    myExtObject.initFullpage("not home");
   }
 
 }

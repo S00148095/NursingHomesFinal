@@ -8,7 +8,7 @@ icon on comment
 limit reviews, agrees, comment length,description
 claim home button-move
 response section css
-toastr notifications-done on details, maybe needed elswhere?
+toastr notifications-done on details, maybe needed elswhere? also close button, timout etc
 switch to owner and user
 sharing
 room types
@@ -19,7 +19,14 @@ show bottom segment if logged in
 feedback autofill to us
 Review heading(x total)
 agree/disagree button width
-front page image
+response categories
+remove auth-0
+home page multipage snap
+stripe
+extra distance categories
+sorting -> Distance, rating, tier, reviews
+creating account
+menu on first page
 
 remove logs
 filter by care types accordion

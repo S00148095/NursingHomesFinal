@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../storage.service";
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-login',
@@ -15,6 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    myExtObject.initFullpage("not home");
   }
 
 }

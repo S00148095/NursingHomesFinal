@@ -157,7 +157,8 @@ export class SearchResultsComponent implements OnInit {
       return 3;
     }
   }
-  ngOnInit() {
+  ngOnInit() {    
+    myExtObject.initFullpage("not home");
   }
 
 }

@@ -30,83 +30,82 @@ var long = null;
 var storedaddress;
 var keycounter = 0;
 var isfinished;
-var tier1month=39;
-var tier2month=149;
-var tier3month=199;
-var tier1year=399;
-var tier2year=1499;
-var tier3year=1999;
+var tier1month = 39;
+var tier2month = 149;
+var tier3month = 199;
+var tier1year = 399;
+var tier2year = 1499;
+var tier3year = 1999;
 
-function populateCheckboxes(name,tier)
-{
-    var boxes=$('input:radio');
-    for(var i=0;i<boxes.length;i++)
-    {
-        if(boxes[i].value==tier&&boxes[i].name==name)
-        {
+function initFullpage(value) {
+    if (typeof $.fn.fullpage.destroy == 'function') {
+        $.fn.fullpage.destroy('all');
+    }
+    if (value == "home") {
+        $('#fullpage').fullpage(
+            {
+                scrollOverflow: true
+            }
+        );
+    }
+}
+function populateCheckboxes(name, tier) {
+    var boxes = $('input:radio');
+    for (var i = 0; i < boxes.length; i++) {
+        if (boxes[i].value == tier && boxes[i].name == name) {
             boxes[i].setAttribute("checked", "true");
             break;
         }
     }
 }
-function calcPaymentTotal()
-{
-    try
-    {
-        var tier1total=0;
-        var tier2total=0;
-        var tier3total=0;
-        var grandtotal=0;
-        var tier1=0;
-        var tier2=0;
-        var tier3=0;
-        var boxes=$('input:radio:checked');
-        var payment=boxes[boxes.length-1];
-        var option=payment.value;
-        if(option=="month")
-        {
-            var tier1=tier1month;
-            var tier2=tier2month;
-            var tier3=tier3month;
+function calcPaymentTotal() {
+    try {
+        var tier1total = 0;
+        var tier2total = 0;
+        var tier3total = 0;
+        var grandtotal = 0;
+        var tier1 = 0;
+        var tier2 = 0;
+        var tier3 = 0;
+        var boxes = $('input:radio:checked');
+        var payment = boxes[boxes.length - 1];
+        var option = payment.value;
+        if (option == "month") {
+            var tier1 = tier1month;
+            var tier2 = tier2month;
+            var tier3 = tier3month;
         }
-        else if(option=="year")
-        {
-            var tier1=tier1year;
-            var tier2=tier2year;
-            var tier3=tier3year;
+        else if (option == "year") {
+            var tier1 = tier1year;
+            var tier2 = tier2year;
+            var tier3 = tier3year;
         }
-        else
-        {
+        else {
             console.log(option);
         }
-        for(var i=0;i<boxes.length;i++)
-        {
-            if(boxes[i].value==="1")
-            {
-                tier1total+=tier1;
-                grandtotal+=tier1;
+        for (var i = 0; i < boxes.length; i++) {
+            if (boxes[i].value === "1") {
+                tier1total += tier1;
+                grandtotal += tier1;
             }
-            else if(boxes[i].value==="2")
-            {
-                tier2total+=tier2;
-                grandtotal+=tier2;
+            else if (boxes[i].value === "2") {
+                tier2total += tier2;
+                grandtotal += tier2;
             }
-            else if(boxes[i].value==="3")
-            {
-                tier3total+=tier3;
-                grandtotal+=tier3;
-            }    
+            else if (boxes[i].value === "3") {
+                tier3total += tier3;
+                grandtotal += tier3;
+            }
         }
-        $('#tier1total').html("€"+tier1total+" p/"+option);
-        $('#tier2total').html("€"+tier2total+" p/"+option);
-        $('#tier3total').html("€"+tier3total+" p/"+option);
-        $('#grandtotal').html("€"+grandtotal+" p/"+option);
+        $('#tier1total').html("€" + tier1total + " p/" + option);
+        $('#tier2total').html("€" + tier2total + " p/" + option);
+        $('#tier3total').html("€" + tier3total + " p/" + option);
+        $('#grandtotal').html("€" + grandtotal + " p/" + option);
     }
-    catch(error)
-    {
+    catch (error) {
         console.log("something went wrong");
     }
-    finally{}
+    finally { }
 }
 function rad(x) {
     return x * Math.PI / 180;
@@ -169,6 +168,9 @@ function GetLocalData(address, array) {
     console.log("values checked-js");
     return array;
 }
+function moveUp() {
+    $.fn.fullpage.moveSectionUp();
+}
 function geocomplete() {
     if (!$('.map_canvas').is(':visible')) {
         $('.map_canvas').slideToggle(0);
@@ -224,13 +226,16 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 var myExtObject = (function () {
-    return {        
+    return {
+        initFullpage: function (value) {
+            initFullpage(value);
+        },
         calcPaymentTotal: function () {
             calcPaymentTotal();
-        },     
-        PopBoxes: function (name,tier) {
+        },
+        PopBoxes: function (name, tier) {
             console.log("called");
-            populateCheckboxes(name,tier);
+            populateCheckboxes(name, tier);
             calcPaymentTotal();
         },
         InitTabs: function () {

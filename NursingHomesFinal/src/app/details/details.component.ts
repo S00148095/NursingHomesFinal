@@ -120,6 +120,7 @@ export class DetailsComponent implements OnInit {
     this.toastr.warning('You must fill out all of the fields.', 'Sorry!');
   }
   ngOnInit() {
+    myExtObject.initFullpage("not home");
   }
 
 }

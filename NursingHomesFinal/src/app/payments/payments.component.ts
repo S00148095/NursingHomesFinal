@@ -44,5 +44,6 @@ export class PaymentsComponent implements OnInit {
     myExtObject.calcPaymentTotal();
   }
   ngOnInit() {
+    myExtObject.initFullpage("not home");
   }
 }

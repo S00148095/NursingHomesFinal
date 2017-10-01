@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Home } from "../Home";
 import { User } from "../User";
 import { StorageService } from "../storage.service";
+import 'script.js';
+
+declare var myExtObject: any;
 
 
 @Component({
@@ -43,6 +46,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    myExtObject.initFullpage("not home");
   }
 
 }

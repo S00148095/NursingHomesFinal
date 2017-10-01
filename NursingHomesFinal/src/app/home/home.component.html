@@ -1,18 +1,63 @@
-<div class="scrollablecontent home" id="home">
-    <div class="padded homecontainer">
-        <br/>
-        <h1 class="white">Find the care you deserve</h1>
-        <br/>
-        <div id="content-pane" class="half">
-            <div id="inputs" class="ui huge form">
+<div class="scrollablecontent home" id="fullpage">
+    <div class="padded homecontainer section">
+        <div id="content-pane" class="box">
+            <div id="inputs" class="ui massive form">
                 <div class="field">
-                    <input type="text" name="address" id="geocomplete" onclick="geocomplete()" placeholder="Eg. Ballymun or Summerville Nursing Home, Sligo"
+                    <input type="text" name="address" id="geocomplete" onclick="geocomplete()" placeholder="Eg. Galway, Ballymun or Summerville Nursing Home, Sligo"
                         #address>
                 </div>
             </div>
             <br/>
-            <a class="ui fluid custombutton button" (click)="Calculate(address.value)">Search</a>
+            <a class="ui fluid massive custombutton button" (click)="Calculate(address.value)">Search</a>
         </div>
         <div class="map_canvas"></div>
+    </div>
+    <div class="padded section">
+        <h1>Users</h1>
+        <p>Careze is the Trip Advisor for Nursing Homes, read & leave reviews form all the quality nursing homes in your area
+            to find the best care for your loved ones.</p>
+        <div class="ui three column centered grid">
+            <div class="column">
+                <i class="huge circular search icon"></i>
+                <h2>Read</h2>
+                <p>Find a Nursing Home that best suits the needs & requirements of loved ones</p>
+            </div>
+            <div class="column">
+                <i class="huge circular write icon"></i>
+                <h2>Review</h2>
+                <p>Get independent feedback & reviews from service users & their families</p>
+            </div>
+            <div class="column">
+                <i class="huge circular comments icon"></i>
+                <h2>Enquire</h2>
+                <p>Make direct enquiries to the Homes listed & keep record of your enquiries</p>
+            </div>
+        </div>
+        <br/>
+        <a class="ui fluid huge custombutton button" onclick="moveUp()">Get started</a>
+    </div>
+    <div class="padded section">
+        <h1>Homes</h1>
+        <p>Careze is more than just a directory listing, with user reviews; it’s a back-end enquiry management system which enables
+            nursing homes to respond to all their enquiries in a timely efficient manner</p>
+        <div class="ui three column centered grid">
+            <div class="column">
+                <i class="huge circular browser icon"></i>
+                <h2>List</h2>
+                <p>Get your listing in front of people looking to make informed decisions for their loved ones</p>
+            </div>
+            <div class="column">
+                <i class="huge circular talk icon"></i>
+                <h2>Feedback</h2>
+                <p>Get feedback from users of your home, to help you provide the best possible service</p>
+            </div>
+            <div class="column">
+                <i class="huge circular settings icon"></i>
+                <h2>Manage</h2>
+                <p>Manage all your enquires efficiently, through our unique enquiry management system</p>
+            </div>
+        </div>
+        <br/>
+        <a class="ui fluid huge custombutton button">Get started</a>
     </div>
 </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-not-found',
@@ -10,6 +13,7 @@ export class NotFoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    myExtObject.initFullpage("not home");
   }
 
 }

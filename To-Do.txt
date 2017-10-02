@@ -19,7 +19,7 @@ agree/disagree button width
 response categories-40 responses
 remove auth-0
 stripe
-extra distance categories
+extra distance categories-<5,<10,>100
 creating account
 menu on first page
 

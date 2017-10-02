@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
-import { AuthService } from './../auth.service';
 import 'script.js';
 
 declare var myExtObject: any;
@@ -14,7 +13,7 @@ declare var myExtObject: any;
 export class AccountComponent implements OnInit {
   profile: any;
   User: User;
-  constructor(private storageService: StorageService, public auth: AuthService) {
+  constructor(private storageService: StorageService) {
     this.GetUser();
   }
 
@@ -36,15 +35,6 @@ export class AccountComponent implements OnInit {
     else return false;
   }
   ngOnInit() {
-    if (this.auth.userProfile) {
-      this.profile = this.auth.userProfile;
-    } else {
-      this.auth.getProfile((err, profile) => {
-        this.profile = profile;
-      });
-    }
-    console.log(this.profile);
-    
     myExtObject.initFullpage("not home");
   }
 

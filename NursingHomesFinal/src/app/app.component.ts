@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private router: Router, public auth: AuthService) { }
+  constructor(private router: Router) { }
 
     ngOnInit() {
       this.router.events.subscribe((evt) => {
@@ -18,7 +17,6 @@ export class AppComponent {
           }
           window.scrollTo(0, 0)
       });
-      this.auth.handleAuthentication(); 
     }
 
 }

@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 
-
-
-import { AuthService } from '../auth.service';
-
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -13,10 +9,9 @@ import { AuthService } from '../auth.service';
 })
 export class TopBarComponent implements OnInit {
   User: User;
-  constructor(private storageService: StorageService, public auth: AuthService)
+  constructor(private storageService: StorageService)
   {
     this.GetUser();
-    auth.handleAuthentication();
   }
 
   Logout() {

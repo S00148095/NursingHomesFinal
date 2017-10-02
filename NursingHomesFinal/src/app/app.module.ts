@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { TopBarComponent } from "./top-bar/top-bar.component";
 import { AccountComponent } from "./account/account.component";
@@ -16,11 +15,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { ResultComponent } from "./result/result.component";
 import { ReviewComponent } from "./review/review.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
-
-
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
-
-
 import { ColumnComponent } from './column/column.component';
 import { DashHousingComponent } from './dash-housing/dash-housing.component';
 import { EmailActionsComponent } from './email-actions/email-actions.component';
@@ -35,16 +30,10 @@ import { TrashboxComponent } from './trashbox/trashbox.component';
 import { FinalColumnComponent } from './final-column/final-column.component';
 import { Routes, RouterModule } from "@angular/router";
 import { StorageService } from "./storage.service";
-
-
 import { WebsiteSideRouteComponent } from "./website-side-route/website-side-route.component";
 import { CrmSideRouteComponent } from "./crm-side-route/crm-side-route.component";
-
-
-import { AuthService } from './auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
-
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastModule} from 'ng2-toastr/ng2-toastr';
 
@@ -149,7 +138,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ToastModule.forRoot()
   ],
-  providers: [ StorageService, AuthService],
+  providers: [ StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

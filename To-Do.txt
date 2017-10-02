@@ -13,9 +13,6 @@ switch to owner and user
 sharing
 room types
 viewing times
-seperate payment segments
-payment css?
-show bottom segment if logged in
 feedback autofill to us
 Review heading(x total)
 agree/disagree button width
@@ -23,7 +20,6 @@ response categories-40 responses
 remove auth-0
 stripe
 extra distance categories
-sorting -> Distance, rating, tier, reviews
 creating account
 menu on first page
 

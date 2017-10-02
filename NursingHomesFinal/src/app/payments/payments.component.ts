@@ -17,7 +17,7 @@ export class PaymentsComponent implements OnInit {
   currentUser: User;
   Homes: Home[];
 
-  constructor(private storageService: StorageService, private router: Router) {
+  constructor(private storageService: StorageService) {
     this.GetUser();
   }
 
@@ -28,7 +28,6 @@ export class PaymentsComponent implements OnInit {
       return true;
     }
     else {
-      this.router.navigateByUrl('/webSide/home');
       return false;
     }
   }

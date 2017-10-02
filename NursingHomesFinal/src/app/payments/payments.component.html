@@ -1,12 +1,12 @@
-<div class="padded scrollablecontent" *ngIf="CheckHome()">
+<div class="padded scrollablecontent">
   <table class="ui definition center aligned striped table">
     <thead>
       <tr>
         <th></th>
-        <th>Bronze/th>
-          <th>Silver</th>
-          <th>Gold</th>
-          <th>Diamond</th>
+        <th>Bronze</th>
+        <th>Silver</th>
+        <th>Gold</th>
+        <th>Diamond</th>
       </tr>
     </thead>
     <tbody>
@@ -185,65 +185,65 @@
         <td>€1499 p/year</td>
         <td>€1999 p/year</td>
       </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let Home of Homes">
-        <td>{{Home.name}}</td>
-        <td>
-          <div class="ui radio checkbox">
-            <input type="radio" name={{Home.name}} value="0" onclick="calcPaymentTotal()">
-            <label></label>
-          </div>
-        </td>
-        <td>
-          <div class="ui radio checkbox">
-            <input type="radio" value="1" name={{Home.name}} onclick="calcPaymentTotal()">
-            <label></label>
-          </div>
-        </td>
-        <td>
-          <div class="ui radio checkbox">
-            <input type="radio" value="2" name={{Home.name}} onclick="calcPaymentTotal()">
-            <label></label>
-          </div>
-        </td>
-        <td>
-          <div class="ui radio checkbox">
-            <input type="radio" value="3" name={{Home.name}} onclick="calcPaymentTotal()">
-            <label></label>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>Totals</td>
-        <td>€0</td>
-        <td id="tier1total">€0 p/month</td>
-        <td id="tier2total">€0 p/month</td>
-        <td id="tier3total">€0 p/month</td>
-      </tr>
-      <tr>
-        <td>Grand Total</td>
-        <td>I wish to pay:</td>
-        <td>
-          <div class="ui radio checkbox">
-            <input type="radio" value="month" name="payment" onclick="calcPaymentTotal()" checked>
-            <label>Monthly</label>
-          </div>
-        </td>
-        <td>
-          <div class="ui radio checkbox">
-            <input type="radio" value="year" name="payment" onclick="calcPaymentTotal()">
-            <label>Yearly</label>
-          </div>
-        </td>
-        <td id="grandtotal">€0 p/month</td>
-      </tr>
     </tbody>
   </table>
-  <button class="ui fluid custombutton button">Pay</button>
+  <br/>
+  <div *ngIf="CheckHome()">
+    <table class="ui definition center aligned striped table">
+      <tbody>
+        <tr *ngFor="let Home of Homes">
+          <td>{{Home.name}}</td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" name={{Home.name}} value="0" onclick="calcPaymentTotal()">
+              <label></label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" value="1" name={{Home.name}} onclick="calcPaymentTotal()">
+              <label></label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" value="2" name={{Home.name}} onclick="calcPaymentTotal()">
+              <label></label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" value="3" name={{Home.name}} onclick="calcPaymentTotal()">
+              <label></label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Totals</td>
+          <td>€0</td>
+          <td id="tier1total">€0 p/month</td>
+          <td id="tier2total">€0 p/month</td>
+          <td id="tier3total">€0 p/month</td>
+        </tr>
+        <tr>
+          <td>Grand Total</td>
+          <td>I wish to pay:</td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" value="month" name="payment" onclick="calcPaymentTotal()" checked>
+              <label>Monthly</label>
+            </div>
+          </td>
+          <td>
+            <div class="ui radio checkbox">
+              <input type="radio" value="year" name="payment" onclick="calcPaymentTotal()">
+              <label>Yearly</label>
+            </div>
+          </td>
+          <td id="grandtotal">€0 p/month</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="ui fluid custombutton button">Pay</button>
+  </div>
 </div>

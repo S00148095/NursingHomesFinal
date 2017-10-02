@@ -42,8 +42,8 @@ export class SearchResultsComponent implements OnInit {
           if (a.reviews.length > b.reviews.length) return -1;
           else if (a.reviews.length < b.reviews.length) return 1;
           else {
-            if (a.tier == 3) return -1;
-            else if (b.tier == 3) return 1;
+            if (a.tier >b.tier) return -1;
+            else if (b.tier >a.tier) return 1;
             else return 0;
           }
         });
@@ -62,7 +62,17 @@ export class SearchResultsComponent implements OnInit {
             else if (a.rating < b.rating) {
               return 1;
             }
-            else return 0;
+            else 
+            {
+              if (a.tier>b.tier) return -1;
+              else if (b.tier>a.tier) return 1;
+              else 
+              {
+                if (a.reviews.length > b.reviews.length) return -1;
+                else if (a.reviews.length < b.reviews.length) return 1;
+                else return 0;
+              };
+            };
           };
         });
         break;
@@ -71,8 +81,8 @@ export class SearchResultsComponent implements OnInit {
           if (a.name > b.name) return -1;
           else if (a.name < b.name) return 1;
           else {
-            if (a.tier == 3) return -1;
-            else if (b.tier == 3) return 1;
+            if (a.tier>b.tier) return -1;
+            else if (b.tier >a.tier) return 1;
             else return 0;
           }
         });
@@ -82,8 +92,8 @@ export class SearchResultsComponent implements OnInit {
           if (b.name > a.name) return -1;
           else if (b.name < a.name) return 1;
           else {
-            if (a.tier == 3) return -1;
-            else if (b.tier == 3) return 1;
+            if (a.tier>b.tier) return -1;
+            else if (b.tier>a.tier) return 1;
             else return 0;
           }
         });
@@ -97,8 +107,8 @@ export class SearchResultsComponent implements OnInit {
             return 1;
           }
           else {
-            if (a.tier == 3) return -1;
-            else if (b.tier == 3) return 1;
+            if (a.tier>b.tier) return -1;
+            else if (b.tier>a.tier) return 1;
             else {
               if (a.reviews.length > b.reviews.length) return -1;
               else if (a.reviews.length < b.reviews.length) return 1;

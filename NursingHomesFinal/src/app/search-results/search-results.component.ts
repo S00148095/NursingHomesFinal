@@ -150,21 +150,29 @@ export class SearchResultsComponent implements OnInit {
   }
   getCategory(distance)
   {
-    if(distance<10)
+    if(distance<5)
     {
       return 0;
     }
-    else if(distance<20)
+    else if(distance<10)
     {
       return 1;
     }
-    else if(distance<50)
+    else if(distance<20)
     {
       return 2;
     }
-    else
+    else if(distance<50)
     {
       return 3;
+    }
+    else if(distance<100)
+    {
+      return 4;
+    }
+    else
+    {
+      return 5;
     }
   }
   ngOnInit() {    

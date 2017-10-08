@@ -166,32 +166,13 @@ function moveUp() {
     $.fn.fullpage.moveSectionUp();
 }
 function geocomplete() {
-    if (!$('.map_canvas').is(':visible')) {
-        $('.map_canvas').slideToggle(0);
-    }
-    var options = {
-        map: ".map_canvas",
-        mapOptions:
-        {
-            zoom: 10,
-            draggable: false,
-            fullscreenControl: false,
-            streetViewControl: false,
-            zoomControl: false,
-            mapTypeControl: false,
-            center: { lat: 53.3498, lng: -6.2603 }
-        }
-    };
-    $("#geocomplete").geocomplete(options);
+    $("#geocomplete").geocomplete();
 }
 function Expand() {
     $('.contentexpanded').slideToggle('slow');
 }
 function Expand1() {
     $('.contentexpanded1').slideToggle('slow');
-    if ($('.map_canvas').is(':visible')) {
-        $('.map_canvas').slideToggle(0);
-    }
 }
 function Expand2() {
     $('.contentexpanded2').slideToggle('slow');

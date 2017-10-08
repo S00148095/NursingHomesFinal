@@ -2,8 +2,6 @@ before release
 responsivness
 SEO
 
-DO WE NEED THE MAP
-
 should have
 ratio not reducing fully
 database
@@ -23,13 +21,10 @@ response categories-40 responses -use menu?
 stripe
 creating account
 menu on first page
-centre columns
 payments css
 number of views-on page and crm
-box around front page(if css works)
 
 could have
 toastr notifications-done on details, maybe needed elswhere? also close button, timout etc
-remove logs
 filter by care types accordion
 care types on results

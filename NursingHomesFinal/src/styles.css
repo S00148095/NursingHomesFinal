@@ -1,8 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-.big
-{
-    font-size: 40px;
-}
 .otherhalf
 {
     color: #2E9AC5;
@@ -158,14 +154,29 @@
 {
     margin: 65px auto;
 }
+h1
+{    
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
 .header h1
 {    
     margin:0px;
     line-height: 0.75em;
-    font-family: 'Acme', sans-serif;
-    font-size: 40px;
     cursor: pointer;
     vertical-align: center;
+    font-family: 'Courgette', cursive;
+    font-size: 40px;
+}
+.header h1:active
+{    
+    margin:0px;
+    line-height: 0.75em;
+    cursor: pointer;
+    vertical-align: center;
+    font-family: 'Courgette', cursive;
+    font-size: 40px;
 }
 p
 {

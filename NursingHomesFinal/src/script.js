@@ -80,9 +80,6 @@ function calcPaymentTotal() {
             var tier2 = tier2year;
             var tier3 = tier3year;
         }
-        else {
-            console.log(option);
-        }
         for (var i = 0; i < boxes.length; i++) {
             if (boxes[i].value === "1") {
                 tier1total += tier1;
@@ -127,11 +124,9 @@ function compareLatLong(testaddress, testlat, testlong) {
     };
     localStorage.setItem(keycounter, JSON.stringify(testObject));
     keycounter++;
-    console.log("values set-js");
 }
 function getLatitudeLongitude(testaddress) {
     var promise = new Promise(function (resolve, reject) {
-        console.log("lat long updated");
         testaddress = testaddress || 'Dublin, Ireland';
         geocoder = new google.maps.Geocoder();
         if (geocoder) {
@@ -165,7 +160,6 @@ function GetLocalData(address, array) {
             }
         }
     }
-    console.log("values checked-js");
     return array;
 }
 function moveUp() {
@@ -234,7 +228,6 @@ var myExtObject = (function () {
             calcPaymentTotal();
         },
         PopBoxes: function (name, tier) {
-            console.log("called");
             populateCheckboxes(name, tier);
             calcPaymentTotal();
         },
@@ -253,10 +246,8 @@ var myExtObject = (function () {
         CalculateDistance: function (address, lats, longs) {
             keycounter = 0;
             isfinished = false;
-            console.log("local storage contains: " + localStorage.length);
             getLatitudeLongitude(address)
                 .then(function () {
-                    console.log("compare latlong start then");
                     var promise = new Promise(function (resolve, reject) {
                         for (var i = 0; i < lats.length; i++) {
                             compareLatLong(address, lats[i], longs[i]);
@@ -266,7 +257,6 @@ var myExtObject = (function () {
                     return promise;
                 })
                 .then(function () {
-                    console.log("compare latlong finished then");
                     isfinished = true;
                 })
                 .catch(function (error) {

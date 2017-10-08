@@ -1,6 +1,10 @@
+before release
 responsivness
-
 SEO
+
+DO WE NEED THE MAP
+
+should have
 ratio not reducing fully
 database
 images
@@ -8,7 +12,6 @@ icon on comment
 limit reviews, agrees, comment length,description
 claim home button-move
 response section css
-toastr notifications-done on details, maybe needed elswhere? also close button, timout etc
 switch to owner and user
 sharing
 room types
@@ -16,12 +19,17 @@ viewing times
 feedback autofill to us
 Review heading(x total)
 agree/disagree button width
-response categories-40 responses
+response categories-40 responses -use menu?
 stripe
-extra distance categories-<5,<10,>100
 creating account
 menu on first page
+centre columns
+payments css
+number of views-on page and crm
+box around front page(if css works)
 
+could have
+toastr notifications-done on details, maybe needed elswhere? also close button, timout etc
 remove logs
 filter by care types accordion
 care types on results

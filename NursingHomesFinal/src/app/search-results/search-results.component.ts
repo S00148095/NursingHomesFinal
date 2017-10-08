@@ -146,7 +146,6 @@ export class SearchResultsComponent implements OnInit {
     this.storageService.updateHomes(this.Homes);
     myExtObject.ClearData();
     this.storageService.updateCheck(false);
-    console.log("values checked-ts");
   }
   getCategory(distance)
   {

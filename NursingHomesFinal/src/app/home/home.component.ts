@@ -57,7 +57,6 @@ export class HomeComponent implements OnInit {
       this.UpdateCriteria("distance", "");
       this.storageService.updateAddress(this.address);
       this.storageService.updateCheck(true);
-      console.log("values set-ts");
       this.router.navigateByUrl('/webSide/search-results');
       break;
     }

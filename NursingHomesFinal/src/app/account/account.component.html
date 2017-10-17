@@ -3,8 +3,8 @@
     <br/>
     <h1>Welcome {{User.fName}}</h1>
     <div class="inline other">
-      <div class="ui form">
-        <div class="contentexpanded">
+      <div class="ui form contentexpanded">
+        <div class="">
           <div class="field">
             <label>Password</label>
             <input type="text" name="password" placeholder="Password">
@@ -19,7 +19,7 @@
           </div>
           <button class="ui fluid custombutton button" id="changepassword">Change Password</button>
         </div>
-        <div class="contentexpanded">
+        <div>
           <div class="field">
             <label>New Email</label>
             <input type="text" name="newemail" placeholder="New Email">
@@ -30,17 +30,23 @@
           </div>
           <button class="ui fluid custombutton button" id="changeemail">Change Email</button>
         </div>
-        <button class="ui custombutton button" id="expand" onclick="Expand()">Change Password/Email</button>
+        <br/>
+        <div>
+          <button class="ui fluid red custombutton button" id="expand" onclick="Expand()">Cancel</button>
+        </div>
+      </div>
+      <div class="contentvisible">
+        <button class="ui fluid custombutton button" id="expand" onclick="Expand()">Change Password/Email</button>
       </div>
     </div>
     <div class="half inline">
       <h2 class="iconbutton">Homes</h2>
       <app-listing *ngFor="let Home of User.homes" [Display]="Home.name" [Link]="['../edit-details']"></app-listing>
-    </div>    
+    </div>
     <button [routerLink]="['../payments']">Payment</button>
   </div>
   <div class="centred" *ngIf="CheckUser()">
     <br/>
     <h1>Sorry! You don't appear to be logged in</h1>
   </div>
-  </div>
+</div>

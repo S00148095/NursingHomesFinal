@@ -5,15 +5,15 @@
       <input type="text" name="email" placeholder="Email">
     </div>
     <div class="contentexpanded">
-    <div class="field">
-      <label>Confirm Email Address</label>
-      <input type="text" name="confirmemail" placeholder="Email">
-    </div>
-    <div class="field">
-      <label>First Name</label>
-      <input type="text" name="fname" placeholder="First Name">
-    </div>
-    <div class="field">
+      <div class="field">
+        <label>Confirm Email Address</label>
+        <input type="text" name="confirmemail" placeholder="Email">
+      </div>
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" name="fname" placeholder="First Name">
+      </div>
+      <div class="field">
         <label>Surname</label>
         <input type="text" name="sname" placeholder="Surname">
       </div>
@@ -23,16 +23,20 @@
       <input type="text" name="password" placeholder="Password">
     </div>
     <div class="contentexpanded">
-        <div class="field">
-      <label>Confirm Password</label>
-      <input type="text" name="confirmpassword" placeholder="Password">
+      <div class="field">
+        <label>Confirm Password</label>
+        <input type="text" name="confirmpassword" placeholder="Password">
+      </div>
+      <div class="ui two fluid buttons">
+        <button class="ui custombutton button" id="expand" onclick="Expand()">Have an Account?</button>
+        <div class=or></div>
+        <a class="ui custombutton button">Create Account</a>
+      </div>
     </div>
-        <button class="ui fluid custombutton button" id="create">Create Account</button>
-    </div>
-    <div class="ui fluid buttons">
-    <button class="ui custombutton button" id="expand" onclick="Expand()">Sign Up</button>
-    <div class=or></div>
-    <a class="ui custombutton button" (click)="Login()" [routerLink]="['../account']">Log In</a>
+    <div class="ui two fluid buttons contentvisible">
+      <button class="ui custombutton button" id="expand" onclick="Expand()">Don't have an Account?</button>
+      <div class=or></div>
+      <a class="ui custombutton button" (click)="Login()" [routerLink]="['../account']">Log In</a>
     </div>
   </div>
   <br/>

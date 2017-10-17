@@ -169,20 +169,16 @@ function geocomplete() {
     $("#geocomplete").geocomplete();
 }
 function Expand() {
+    $( ".contentvisible" ).toggle();
     $('.contentexpanded').slideToggle('slow');
 }
 function Expand1() {
     $('.contentexpanded1').slideToggle('slow');
+    $( ".contentvisible1" ).toggle();
 }
 function Expand2() {
     $('.contentexpanded2').slideToggle('slow');
-}
-function Expand3() {
-    $('.contentexpanded3').slideToggle('slow');
-}
-function Switch() {
-    Expand1();
-    Expand3();
+    $( ".contentvisible2" ).toggle();
 }
 function Clear() {
     $("textarea, select").val("");

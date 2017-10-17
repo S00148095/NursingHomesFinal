@@ -74,7 +74,8 @@
     </div>
   </div>
   <div class="padded" *ngIf="CheckValid()">
-    <button class="ui custombutton  button" id="expand" onclick="Expand2()">Respond</button>
+    <br/>
+    <button class="ui custombutton button contentvisible2" id="expand" onclick="Expand2()">Respond</button>
     <div class="contentexpanded2">
       <div class="field">
         <label>Response:</label>        
@@ -89,7 +90,11 @@
           <option *ngIf="CheckTier(3)" value="fake review">Fake Review</option>
           <option *ngIf="CheckTier(3)" value="customer contacted">Customer Contacted</option>
         </select>
-        <button class="ui custombutton button" (click)="LeaveReview(option.value)" onclick="Expand2()">Send</button>
-      </div>
+        <div class="ui medium two buttons">
+          <button class="ui custombutton button" id="expand" onclick="Expand2()">Cancel</button>
+          <div class=or></div>
+          <button class="ui custombutton button" (click)="LeaveReview(option.value)" onclick="Expand2()">Send</button>    
+        </div>
+       </div>
     </div>
   </div>

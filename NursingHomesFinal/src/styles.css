@@ -54,9 +54,6 @@
     display: none;
     padding-bottom: 5px;
 }
-.contentexpanded3 {
-    padding-bottom: 5px;
-}
 .other
 {
     float: right;
@@ -328,4 +325,8 @@ html, body
 .white
 {
     color: white;
+}
+.paddedlikep
+{
+    margin-bottom: 18px;
 }

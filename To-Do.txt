@@ -3,6 +3,7 @@ responsivness
 SEO
 
 should have
+response left on first review
 ratio not reducing fully
 database
 images
@@ -15,16 +16,15 @@ sharing
 room types
 viewing times
 feedback autofill to us
-Review heading(x total)
-agree/disagree button width
-response categories-40 responses -use menu?
-stripe
-creating account
-menu on first page
-payments css
+Review heading(x total)*
+agree/disagree button width*
+response categories-40 responses -use menu?Pop up form?*
+stripe*
+creating account*
 number of views-on page and crm
 
 could have
+menu on first page
 toastr notifications-done on details, maybe needed elswhere? also close button, timout etc
 filter by care types accordion
 care types on results

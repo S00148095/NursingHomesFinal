@@ -1,6 +1,7 @@
 export class Review {
     constructor
         (
+        public reviewID:number,
         public user: string,
         public care: number,
         public cleanliness: number,

@@ -37,6 +37,12 @@ var tier1year = 399;
 var tier2year = 1499;
 var tier3year = 1999;
 
+function initPopup(id) {
+    $('#contactForm > #'+id).fadeToggle();
+}
+function closePopup(id) {
+    $('#contactForm > #'+id).fadeOut();
+}
 function initFullpage(value) {
     if (typeof $.fn.fullpage.destroy == 'function') {
         $.fn.fullpage.destroy('all');
@@ -169,16 +175,16 @@ function geocomplete() {
     $("#geocomplete").geocomplete();
 }
 function Expand() {
-    $( ".contentvisible" ).toggle();
+    $(".contentvisible").toggle();
     $('.contentexpanded').slideToggle('slow');
 }
 function Expand1() {
     $('.contentexpanded1').slideToggle('slow');
-    $( ".contentvisible1" ).toggle();
+    $(".contentvisible1").toggle();
 }
 function Expand2() {
     $('.contentexpanded2').slideToggle('slow');
-    $( ".contentvisible2" ).toggle();
+    $(".contentvisible2").toggle();
 }
 function Clear() {
     $("textarea, select").val("");
@@ -198,6 +204,12 @@ function topFunction() {
 }
 var myExtObject = (function () {
     return {
+        initPopup: function (value) {
+            initPopup(value);
+        },
+        closePopup: function (value) {
+            closePopup(value);
+        },
         initFullpage: function (value) {
             initFullpage(value);
         },

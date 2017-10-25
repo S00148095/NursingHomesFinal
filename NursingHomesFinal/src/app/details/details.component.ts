@@ -66,8 +66,8 @@ export class DetailsComponent implements OnInit {
     this.GetHome();
     if (this.currentHome != null || this.currentHome != undefined) {
       myExtObject.PopulateCare(this.currentHome.careTypes);
-      myExtObject.Populate(this.currentHome.facilities);
-      myExtObject.InitTabs();
+      myExtObject.Populate(this.currentHome.facilities);   
+      myExtObject.InitTabs(); 
       return true;
     }
     else {
@@ -81,7 +81,7 @@ export class DetailsComponent implements OnInit {
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     this.GetUser();
     if (this.currentUser != null && this.currentUser != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
-      this.newReview = new Review(this.currentUser.fName + " " + this.currentUser.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, 0, 0, "");
+      this.newReview = new Review(1,this.currentUser.fName + " " + this.currentUser.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, 0, 0, "");
       this.storageService.UpdateReviews(this.newReview);
       this.GetReviews();
       myExtObject.Clear();

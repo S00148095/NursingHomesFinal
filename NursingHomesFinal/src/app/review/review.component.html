@@ -1,5 +1,5 @@
 <div class="ui raised vertical segment">
-  
+
   <div class="ui top attached tabular menu">
     <h4 class="showuser">{{Review.user}}</h4>
     <div class="right menu">
@@ -75,26 +75,28 @@
   </div>
   <div class="padded" *ngIf="CheckValid()">
     <br/>
-    <button class="ui custombutton button contentvisible2" id="expand" onclick="Expand2()">Respond</button>
-    <div class="contentexpanded2">
-      <div class="field">
-        <label>Response:</label>        
-        <select class="ui dropdown" #option>
-          <option value="">Select Option</option>
-          <option value="seen">Seen</option>
-          <option *ngIf="CheckTier(1)" value="isolated incident">Isolated Incident</option>
-          <option *ngIf="CheckTier(1)" value="problem solved">Problem Solved</option>
-          <option *ngIf="CheckTier(1)" value="thanks">Thanks</option>
-          <option *ngIf="CheckTier(2)" value="investigating problem">Investigating Problem</option>
-          <option *ngIf="CheckTier(2)" value="apologies">Apologies</option>
-          <option *ngIf="CheckTier(3)" value="fake review">Fake Review</option>
-          <option *ngIf="CheckTier(3)" value="customer contacted">Customer Contacted</option>
-        </select>
-        <div class="ui medium two buttons">
-          <button class="ui custombutton button" id="expand" onclick="Expand2()">Cancel</button>
-          <div class=or></div>
-          <button class="ui custombutton button" (click)="LeaveReview(option.value)" onclick="Expand2()">Send</button>    
+    <button class="ui custombutton button" (click)="OpenPopup()">Respond</button>
+
+    <div id="contactForm" class="ui form">
+        <div [id]="ID" class="field">
+          <label>Response:</label>
+          <select class="ui dropdown" #option>
+            <option value="">Select Option</option>
+            <option value="seen">Seen</option>
+            <option *ngIf="CheckTier(1)" value="isolated incident">Isolated Incident</option>
+            <option *ngIf="CheckTier(1)" value="problem solved">Problem Solved</option>
+            <option *ngIf="CheckTier(1)" value="thanks">Thanks</option>
+            <option *ngIf="CheckTier(2)" value="investigating problem">Investigating Problem</option>
+            <option *ngIf="CheckTier(2)" value="apologies">Apologies</option>
+            <option *ngIf="CheckTier(3)" value="fake review">Fake Review</option>
+            <option *ngIf="CheckTier(3)" value="customer contacted">Customer Contacted</option>
+          </select>
+          <div class="ui medium two buttons">
+            <button class="ui custombutton button" (click)="ClosePopup()">Cancel</button>
+            <div class=or></div>
+            <button class="ui custombutton button" (click)="LeaveReview(option.value)">Send</button>
+          </div>
         </div>
-       </div>
     </div>
   </div>
+</div>

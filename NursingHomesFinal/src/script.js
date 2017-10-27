@@ -38,10 +38,10 @@ var tier2year = 1499;
 var tier3year = 1999;
 
 function initPopup(id) {
-    $('#contactForm > #'+id).fadeToggle();
+    $("#"+id).fadeToggle();
 }
 function closePopup(id) {
-    $('#contactForm > #'+id).fadeOut();
+    $("#"+id).fadeOut();
 }
 function initFullpage(value) {
     if (typeof $.fn.fullpage.destroy == 'function') {

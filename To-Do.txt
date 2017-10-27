@@ -3,6 +3,7 @@ responsivness
 SEO
 
 should have
+payments add new tier *******
 response left on first review
 ratio not reducing fully
 database
@@ -18,7 +19,7 @@ viewing times
 feedback autofill to us
 Review heading(x total)*
 agree/disagree button width*
-response categories-40 responses -use menu?Pop up form?*
+response categories-40 responses -use menu?Pop up form? test and adjust 
 stripe*
 creating account*
 number of views-on page and crm

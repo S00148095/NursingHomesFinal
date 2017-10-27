@@ -331,14 +331,14 @@ html, body
     margin-bottom: 18px;
 }
 * { box-sizing: border-box; }
-#contactForm { 
+.ui.form.contactForm{ 
   display: none;
   border: 6px solid teal; 
   padding: 2em;
   width: 400px;
   text-align: center;
   background: #fff;
-  position: fixed;
+  position: absolute;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);

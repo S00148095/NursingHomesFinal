@@ -31,11 +31,13 @@ var storedaddress;
 var keycounter = 0;
 var isfinished;
 var tier1month = 39;
-var tier2month = 149;
-var tier3month = 199;
+var tier2month = 69;
+var tier3month = 99;
+var tier4month = 149;
 var tier1year = 399;
-var tier2year = 1499;
-var tier3year = 1999;
+var tier2year = 699;
+var tier3year = 999;
+var tier4year = 1499;
 
 function initPopup(id) {
     $("#"+id).fadeToggle();
@@ -69,22 +71,26 @@ function calcPaymentTotal() {
         var tier1total = 0;
         var tier2total = 0;
         var tier3total = 0;
+        var tier4total = 0;
         var grandtotal = 0;
         var tier1 = 0;
         var tier2 = 0;
-        var tier3 = 0;
+        var tier3 = 0;        
+        var tier4 = 0;
         var boxes = $('input:radio:checked');
         var payment = boxes[boxes.length - 1];
         var option = payment.value;
         if (option == "month") {
-            var tier1 = tier1month;
-            var tier2 = tier2month;
-            var tier3 = tier3month;
+            tier1 = tier1month;
+            tier2 = tier2month;
+            tier3 = tier3month;            
+            tier4 = tier4month;
         }
         else if (option == "year") {
-            var tier1 = tier1year;
-            var tier2 = tier2year;
-            var tier3 = tier3year;
+            tier1 = tier1year;
+            tier2 = tier2year;
+            tier3 = tier3year;
+            tier4 = tier4year;
         }
         for (var i = 0; i < boxes.length; i++) {
             if (boxes[i].value === "1") {
@@ -99,10 +105,15 @@ function calcPaymentTotal() {
                 tier3total += tier3;
                 grandtotal += tier3;
             }
+            else if (boxes[i].value === "4") {
+                tier4total += tier4;
+                grandtotal += tier4;
+            }
         }
         $('#tier1total').html("€" + tier1total + " p/" + option);
         $('#tier2total').html("€" + tier2total + " p/" + option);
-        $('#tier3total').html("€" + tier3total + " p/" + option);
+        $('#tier3total').html("€" + tier3total + " p/" + option);        
+        $('#tier4total').html("€" + tier4total + " p/" + option);
         $('#grandtotal').html("€" + grandtotal + " p/" + option);
     }
     catch (error) {

@@ -1,3 +1,4 @@
+import { forEach } from '@angular/router/src/utils/collection';
 import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { Review } from "../Review";
@@ -19,13 +20,14 @@ export class ReviewComponent implements OnInit {
   Tier: number;
   Home: Home;
   ID: string;
-  responses : any[]=[
-    {id:0,name:"General",responses:[{text:"False Review",tier:0},{text:"Review Acknowledged",tier:0},{text:"Feedback Acknowledged",tier:0},{text:"One-off Incident",tier:0},{text:"Investigating Issue",tier:1},{text:"Issue Resolved",tier:1},{text:"Isolated Issue Resolved",tier:1},{text:"Fair Review",tier:1},{text:"Unfair Review",tier:1},{text:"Slightly Bias Review",tier:2},{text:"Issue Patient Specific",tier:2}]},
-    {id:1,name:"Possible Issue",responses:[{text:"Investigated Issue - Unfair Review",tier:2},{text:"Investigated Issue - Changes Made",tier:2},{text:"Investigated Issue - Fair Review",tier:2},{text:"Outside of Homes Control",tier:2},{text:"Unrealistic Patient Expectations",tier:3},{text:"Unrealistic Patient Demands",tier:3},{text:"Extreme Specialist Care Required",tier:3},{text:"Patient Never Raised Issue to be Resolved",tier:3},{text:"One-off Incident - Dealing with Client",tier:1},{text:"Fair Acceptable Review",tier:3}]},
-    {id:2,name:"Change in Circumstances",responses:[{text:"Change in Patient Needs",tier:1},{text:"Change of Procedure Made",tier:1},{text:"Change of Policies Made",tier:1},{text:"Change in Patient Care Needs",tier:2},{text:"Change in Patient Circumstance",tier:3},{text:"Change in Patients Health Conditions",tier:3},{text:"Not Disclosed on Admission",tier:2},{text:"Reviewing Our Procedures",tier:2},{text:"Management not notified of Issue",tier:3},{text:"Reviewing Our Policies",tier:2}]},
-    {id:3,name:"Patient Issue",responses:[{text:"Issue is with other Patients",tier:3},{text:"Possible Issue with all Staff",tier:3},{text:"Possible Issue with all Management",tier:3},{text:"Not Current Patient Review",tier:3},{text:"Unhappy with Funding",tier:3},{text:"Not Patient Review",tier:3},{text:"Not Family Member Review",tier:3},{text:"Issued Caused by Patient",tier:3},{text:"Issue Caused by Patient Family Actions",tier:3},{text:"Billing Issue",tier:3}]},
+  disabled: boolean;
+  responses: any[] = [
+    { id: 0, name: "General", responses: [{ text: "False Review", tier: 0 }, { text: "Review Acknowledged", tier: 0 }, { text: "Feedback Acknowledged", tier: 0 }, { text: "One-off Incident", tier: 0 }, { text: "Investigating Issue", tier: 1 }, { text: "Issue Resolved", tier: 1 }, { text: "Isolated Issue Resolved", tier: 1 }, { text: "Fair Review", tier: 1 }, { text: "Unfair Review", tier: 1 }, { text: "Slightly Bias Review", tier: 2 }, { text: "Issue Patient Specific", tier: 2 }] },
+    { id: 1, name: "Possible Issue", responses: [{ text: "Investigated Issue - Unfair Review", tier: 2 }, { text: "Investigated Issue - Changes Made", tier: 2 }, { text: "Investigated Issue - Fair Review", tier: 2 }, { text: "Outside of Homes Control", tier: 2 }, { text: "Unrealistic Patient Expectations", tier: 3 }, { text: "Unrealistic Patient Demands", tier: 3 }, { text: "Extreme Specialist Care Required", tier: 3 }, { text: "Patient Never Raised Issue to be Resolved", tier: 3 }, { text: "One-off Incident - Dealing with Client", tier: 1 }, { text: "Fair Acceptable Review", tier: 3 }] },
+    { id: 2, name: "Change in Circumstances", responses: [{ text: "Change in Patient Needs", tier: 1 }, { text: "Change of Procedure Made", tier: 1 }, { text: "Change of Policies Made", tier: 1 }, { text: "Change in Patient Care Needs", tier: 2 }, { text: "Change in Patient Circumstance", tier: 3 }, { text: "Change in Patients Health Conditions", tier: 3 }, { text: "Not Disclosed on Admission", tier: 2 }, { text: "Reviewing Our Procedures", tier: 2 }, { text: "Management not notified of Issue", tier: 3 }, { text: "Reviewing Our Policies", tier: 2 }] },
+    { id: 3, name: "Patient Issue", responses: [{ text: "Issue is with other Patients", tier: 3 }, { text: "Possible Issue with all Staff", tier: 3 }, { text: "Possible Issue with all Management", tier: 3 }, { text: "Not Current Patient Review", tier: 3 }, { text: "Unhappy with Funding", tier: 3 }, { text: "Not Patient Review", tier: 3 }, { text: "Not Family Member Review", tier: 3 }, { text: "Issued Caused by Patient", tier: 3 }, { text: "Issue Caused by Patient Family Actions", tier: 3 }, { text: "Billing Issue", tier: 3 }] },
   ]
-  selectedResponses:any[];
+  selectedResponses: any[];
   constructor(private storageService: StorageService) {
     this.GetUser();
   }
@@ -62,8 +64,8 @@ export class ReviewComponent implements OnInit {
     }
     else return false
   }
-  CheckTier(value): boolean {
-    if (this.Tier >= value) {
+  CheckTier(): boolean {
+    if (this.Tier >= 2) {
       return true;
     }
     else return false
@@ -84,24 +86,38 @@ export class ReviewComponent implements OnInit {
     return "Agreed: " + this.Review.agreed + "\tDisagreed: " + this.Review.disagreed;
   }
   OpenPopup() {
-    myExtObject.initPopup(this.ID); 
+    myExtObject.initPopup(this.ID);
   }
   ClosePopup() {
-    myExtObject.closePopup(this.ID); 
-   }
-   UpdateDrop(value:number)
-   {
-    this.selectedResponses=null;
-    if(value!=99)
-    {
-    this.selectedResponses=this.responses[value].responses;
-    console.log(this.selectedResponses);
-    this.selectedResponses=this.selectedResponses.filter(r => r.tier <= this.Home.tier);
-    console.log(this.selectedResponses);
+    myExtObject.closePopup(this.ID);
+  }
+  UpdateDrop(value: number) {
+    this.selectedResponses = [];
+    if (value != 99) {
+      this.disabled = false;
+      this.selectedResponses = this.responses[value].responses;
+      this.selectedResponses = this.selectedResponses.filter(r => r.tier <= this.Home.tier);
     }
-   }
+    else {
+      this.disabled = true;
+    }
+  }
   ngOnInit() {
-    this.ID = "id"+this.Review.reviewID;
+    this.ID = "id" + this.Review.reviewID;
+    this.selectedResponses = [];
+    if(!this.CheckTier()){
+      this.disabled=false;
+      this.responses.forEach(category => {        
+        category.responses.forEach(response => {
+          if(response.tier<=this.Home.tier)
+          this.selectedResponses.push(response);
+        });
+      });
+    }
+    else
+    {
+      this.disabled = true;
+    }
   }
 
 }

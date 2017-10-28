@@ -72,7 +72,7 @@ export class ResultComponent implements OnInit {
     else return "yellow star half empty icon"
   }
   SelectedStyle(): string {
-    if (this.Home.tier == 3) {
+    if (this.Home.tier >= 3) {
       return "3px solid #FFD700"
     }
     else {

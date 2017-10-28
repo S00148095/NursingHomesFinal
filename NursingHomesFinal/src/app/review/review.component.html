@@ -1,6 +1,6 @@
 <div class="ui raised vertical segment">
     <div class="ui form contactForm" [id]="ID">
-        <div class="field">
+        <div *ngIf="CheckTier()" class="field">
           <label>Response category:</label>
           <select class="ui dropdown" #cat (change)="UpdateDrop(cat.value)">
             <option value="99">Select Option</option>
@@ -9,12 +9,13 @@
         </div>
         <div class="field">
           <label>Response:</label>
-          <select class="ui dropdown" #option>
+          <select class="ui dropdown" [attr.disabled]="disabled?'':null" #option>
             <option value="">Select Option</option>
             <option *ngFor="let response of selectedResponses" [value]="response.text">{{response.text}}</option>
           </select>
+          <br/>
           <div class="ui medium two buttons">
-            <button class="ui custombutton button" (click)="ClosePopup()">Cancel</button>
+            <button class="ui red custombutton button" (click)="ClosePopup()">Cancel</button>
             <div class=or></div>
             <button class="ui custombutton button" (click)="LeaveReview(option.value)">Send</button>
           </div>

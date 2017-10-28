@@ -255,7 +255,7 @@ p
 }
 td
 {
-    width:20%;
+    width:16%;
 }
 .smallpad
 {
@@ -333,7 +333,7 @@ html, body
 * { box-sizing: border-box; }
 .ui.form.contactForm{ 
   display: none;
-  border: 6px solid teal; 
+  border: 6px solid #49D49D; 
   padding: 2em;
   width: 400px;
   text-align: center;

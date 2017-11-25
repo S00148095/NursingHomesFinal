@@ -50,13 +50,13 @@ export class EditDetailsComponent implements OnInit {
     this.GetCurrentUser();
   }
 
-  GetCurrentUser(): void {
+  GetCurrentUser(): void {//gets the current user
     this.currentUser = this.storageService.getUser();
   }
-  GetCurrentHome(): void {
+  GetCurrentHome(): void {//gets the current home
     this.currentHome = this.storageService.getCurrentHome();
   }
-  CheckHome(): boolean {
+  CheckHome(): boolean { //checks if the current home is null and either populates the checkboxes or redirects the user
     if (this.currentHome != null || this.currentHome != undefined) {
       this.PopulateFacilities();
       if (this.currentHome.userID == this.currentUser.email) return true;
@@ -66,7 +66,7 @@ export class EditDetailsComponent implements OnInit {
       return false;
     }
   }
-  PopulateFacilities(): void {
+  PopulateFacilities(): void {//populates the check boxes
     this.facilities.forEach(element => {
       element.value=this.currentHome.facilities[element.id];
     });
@@ -74,48 +74,48 @@ export class EditDetailsComponent implements OnInit {
       element.value=this.currentHome.careTypes[element.id];
     });
   }
-  Redirect(): void {
+  Redirect(): void {//redirects the user
     this.router.navigateByUrl('/home');
   }
-  GetName(): string {
+  GetName(): string {//autofills the name
     return this.currentHome.name;
   }
-  GetAddress(): string {
+  GetAddress(): string {//autofills the address
     return this.currentHome.address;
   }
-  GetCounty(): string {
+  GetCounty(): string {//autofills the county
     return this.currentHome.county;
   }
-  GetCountry(): string {
+  GetCountry(): string {//autofills the country
     return this.currentHome.country;
   }
-  GetPhone(): string {
+  GetPhone(): string {//autofills the phone
     return this.currentHome.phone;
   }
-  GetEmail(): string {
+  GetEmail(): string {//autofills the email
     return this.currentHome.email;
   }
-  GetContact(): string {
+  GetContact(): string {//autofills the contact
     return this.currentHome.contact;
   }
-  GetSite(): string {
+  GetSite(): string {//autofills the website
     return this.currentHome.site;
   }
-  GetBeds(): string {
+  GetBeds(): string {//autofills the beds
     return this.currentHome.beds;
   }
-  GetStaff(): string {
+  GetStaff(): string {//autofills the staff
     return this.currentHome.staff;
   }
-  GetDescription(): string {
+  GetDescription(): string {//autofills the description
     return this.currentHome.description;
   }
-  CheckID(test): boolean {
+  CheckID(test): boolean {//from what I can tell this does nothing, might be from an early attempt to align the checkboxes
     if (test%5==0&&test!=0) return true
     else return false
   }
   ngOnInit() {
-    myExtObject.initFullpage("not home");
+    myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 
 }

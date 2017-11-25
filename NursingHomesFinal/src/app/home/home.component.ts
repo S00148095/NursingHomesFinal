@@ -23,21 +23,21 @@ export class HomeComponent implements OnInit {
     this.GetHomes();
   }
 
-  GetHomes(): void {
+  GetHomes(): void {//gets the list of homes
     this.storageService.getHomes().then(homes => this.Homes = homes);
   }
-  GetCriteria(): void {
+  GetCriteria(): void {//hets the search criteria
     this.searchCriteria = this.storageService.getCriteria();
   }
-  SetCriteria(): void {
+  SetCriteria(): void {//sets the searh criteria
     this.storageService.setCriteria(this.searchCriteria);
     this.searchCriteria = [];
   }
-  UpdateCriteria(option, county) {
+  UpdateCriteria(option, county) {//gets the current search criteria and update the storage
     this.searchCriteria = [option, county];
     this.SetCriteria();
   }
-  Calculate(address) {
+  Calculate(address) {//calculates the distances to sort by ditance
     this.address = address || 'Dublin, Ireland';
     for (var i = 0; i < this.Homes.length; i++) {
       this.lats.push(this.Homes[i].lat);
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
       this.checkCheck();
       }, 400);
   }
-  checkCheck() {
+  checkCheck() {//checks if the external javascript is finished running
     switch(myExtObject.checkFinished()) {
       case false:
       break;
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     }
   }
   ngOnInit() {
-    myExtObject.initFullpage("home");
+    myExtObject.initFullpage("home");//tells the full page plugin to fire on this page
   }
 
 }

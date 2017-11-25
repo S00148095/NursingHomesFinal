@@ -21,7 +21,7 @@ export class PaymentsComponent implements OnInit {
     this.GetUser();
   }
 
-  CheckHome() {
+  CheckHome() {//checks if a user is logged in
     if (this.currentUser != null || this.currentUser != undefined) {
       this.Homes = this.currentUser.homes;
         this.PopBoxes();
@@ -31,18 +31,18 @@ export class PaymentsComponent implements OnInit {
       return false;
     }
   }
-  GetUser(): void {
+  GetUser(): void {//gets thecurrent user
     this.currentUser = this.storageService.getUser();
   }
-  PopBoxes() {
+  PopBoxes() {//populates the check boxes
     for (var i = 0; i < this.Homes.length; i++) {
       myExtObject.PopBoxes(this.Homes[i].name, this.Homes[i].tier);
     }
   }
-  CalcTotals() {
+  CalcTotals() {//calculates the totals
     myExtObject.calcPaymentTotal();
   }
   ngOnInit() {
-    myExtObject.initFullpage("not home");
+    myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 }

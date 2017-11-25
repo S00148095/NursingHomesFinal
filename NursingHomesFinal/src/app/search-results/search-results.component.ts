@@ -20,22 +20,22 @@ export class SearchResultsComponent implements OnInit {
     this.GetHomes();
     this.GetCriteria();
   }
-  GetHomes(): void {
+  GetHomes(): void {//gets the list of homes
     this.storageService.getHomes().then(homes => this.Homes = homes);
   }
-  UpdateCurrentHome(Home: Home): void {
+  UpdateCurrentHome(Home: Home): void {//sets the current home
     this.storageService.setCurrentHome(Home);
   }
-  GetCriteria(): void {
+  GetCriteria(): void {//gets the search criteria
     this.searchCriteria = this.storageService.getCriteria();
   }
-  SetCriteria(): void {
+  SetCriteria(): void {//sets the search criteria
     this.storageService.setCriteria(this.searchCriteria);
   }
-  onNotify(Home: Home): void {
+  onNotify(Home: Home): void {//updates the current home
     this.UpdateCurrentHome(Home);
   }
-  SortHomes(): void {
+  SortHomes(): void {//sorts the list of homes
     switch (this.searchCriteria[0]) {
       case "reviews":
         this.Homes.sort((a, b) => {
@@ -118,17 +118,17 @@ export class SearchResultsComponent implements OnInit {
         });
     }
   }
-  CheckHomes(): boolean {
+  CheckHomes(): boolean {//checks that the list of homes is not null, then sorts them
     if (this.Homes != null && this.Homes != undefined && this.searchCriteria != null && this.searchCriteria != undefined) {
       this.SortHomes();
       return true;
     }
     else return false;
   }
-  UpdateCriteria(option, county) {
+  UpdateCriteria(option, county) {//updates the search criteria
     this.searchCriteria = [option, county];
   }
-  RetrieveData(address) {
+  RetrieveData(address) {//retrieves the distance data from local storage
     for (var i = 0; i < this.Homes.length; i++) {
       this.GetData[i] = [];
       this.GetData[i].push(this.Homes[i].lat);
@@ -147,7 +147,7 @@ export class SearchResultsComponent implements OnInit {
     myExtObject.ClearData();
     this.storageService.updateCheck(false);
   }
-  getCategory(distance)
+  getCategory(distance)//checks how far the home is away
   {
     if(distance<5)
     {
@@ -175,7 +175,7 @@ export class SearchResultsComponent implements OnInit {
     }
   }
   ngOnInit() {    
-    myExtObject.initFullpage("not home");
+    myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 
 }

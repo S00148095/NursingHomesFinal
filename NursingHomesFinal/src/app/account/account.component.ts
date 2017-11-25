@@ -17,17 +17,17 @@ export class AccountComponent implements OnInit {
     this.GetUser();
   }
 
-  GetUser(): void {
+  GetUser(): void {//gets the current user from the service
     this.User = this.storageService.getUser();
   }
-  CheckUser() {
+  CheckUser() {//checks if no one is logged in and shows the not logged in message if so
     this.GetUser();
     if (this.User == null) {
       return true;
     }
     else return false;
   }
-  CheckUserNegative() {
+  CheckUserNegative() {//checks if there is anyone logged in and shows the page if there is
     this.GetUser();
     if (this.User != null) {
       return true;
@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
     else return false;
   }
   ngOnInit() {
-    myExtObject.initFullpage("not home");
+    myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 
 }

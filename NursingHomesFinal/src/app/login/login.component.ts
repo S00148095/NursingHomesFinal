@@ -13,12 +13,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private storageService: StorageService) { }
 
-  Login() {
+  Login() {//logs the user in
     this.storageService.LogIn();
   }
 
   ngOnInit() {
-    myExtObject.initFullpage("not home");
+    myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 
 }

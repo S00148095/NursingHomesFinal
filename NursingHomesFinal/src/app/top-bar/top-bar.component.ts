@@ -14,14 +14,14 @@ export class TopBarComponent implements OnInit {
     this.GetUser();
   }
 
-  Logout() {
+  Logout() {//logs the user out
     this.storageService.Logout();
     this.GetUser();
   }
-  GetUser(): void {
+  GetUser(): void {//gets the current user
     this.User=this.storageService.getUser();
   }
-  CheckUser()
+  CheckUser()//checks if login buton should be shown
   {
     this.GetUser();
     if(this.User==null)
@@ -31,7 +31,7 @@ export class TopBarComponent implements OnInit {
     else return false;
   }
 
-  CheckUserNegative()
+  CheckUserNegative()//checks if logout buton should be shown
   {
     this.GetUser();
     if(this.User!=null)
@@ -43,9 +43,5 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
-
 
 }

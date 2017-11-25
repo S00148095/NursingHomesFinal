@@ -18,60 +18,60 @@ export class ResultComponent implements OnInit {
 
   constructor(private storageService: StorageService) {
   }
-  checkHomeReviews() {
+  checkHomeReviews() {//checks the home isn't null
     if (this.Home != null) {
       this.UpdateNumReviews();
       return true
     }
     else return false
   }
-  UpdateNumReviews() {
+  UpdateNumReviews() {//updates the number of reviews
     if (this.Home.reviews.length > 1 || this.Home.reviews.length == 0)
       this.NumReviews = this.Home.reviews.length + " Reviews";
     else this.NumReviews = this.Home.reviews.length + " Review";
   }
-  UpdateCurrentHome() {
+  UpdateCurrentHome() {//updates the current home when one is clicked on
     this.notify.emit(this.Home);
   }
-  CheckCounty() {
+  CheckCounty() {//checks the county
     if (this.County == this.Home.county || this.County == "") {
       return true;
     }
     else return false;
   }
-  CheckPremium() {
+  CheckPremium() {//checks premium
     if (this.CheckCounty()) {
-      if (this.Home.tier == 3) {
+      if (this.Home.tier == 5) {
         return true;
       }
       else return false
     }
     else return false
   }
-  CheckTier() {
+  CheckTier() {//shows the number of revies on paid versions
     if (this.Home.tier > 1) {
       this.UpdateReviews();
       return true
     }
     else return false
   }
-  UpdateReviews() {
+  UpdateReviews() {//sorts reviews and shows the top one
     this.SortReviews();
     this.topReview=this.Home.reviews[0];
   }
-  SortReviews() {
+  SortReviews() {//sorts reviews
     this.Home.reviews.sort((a, b) => {
       if (a.overall > b.overall) return -1;
       else if (a.overall < b.overall) return 1;
       else return 0;
     });
   }
-  CheckRating(rating: number): string {
+  CheckRating(rating: number): string {//displays stars
     if (this.Home.rating >= rating) return "yellow star icon"
     else if (this.Home.rating <= rating - 1) return "empty yellow star icon"
     else return "yellow star half empty icon"
   }
-  SelectedStyle(): string {
+  SelectedStyle(): string {//if a home is top three tier show gold border
     if (this.Home.tier >= 3) {
       return "3px solid #FFD700"
     }
@@ -79,7 +79,7 @@ export class ResultComponent implements OnInit {
       return ""
     }
   }
-  getDistanceCategory()
+  getDistanceCategory()//shows how far away a home is
   {
     if(this.Home.distance<5)
     {

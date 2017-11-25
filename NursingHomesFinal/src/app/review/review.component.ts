@@ -31,21 +31,21 @@ export class ReviewComponent implements OnInit {
   constructor(private storageService: StorageService) {
     this.GetUser();
   }
-  CheckRating(rating: number): string {
+  CheckRating(rating: number): string {//shows stars
     if (this.Review.overall >= rating) return "yellow star icon"
     else if (this.Review.overall <= rating - 1) return "empty yellow star icon"
     else return "yellow star half empty icon"
   }
-  GetUser(): void {
+  GetUser(): void {//gets current user
     this.User = this.storageService.getUser();
   }
-  IncrementAgreed() {
+  IncrementAgreed() {//increments number who agree
     this.Review.agreed++;
   }
-  IncrementDisagreed() {
+  IncrementDisagreed() {//increments number who disagree
     this.Review.disagreed++;
   }
-  CheckValid(): boolean {
+  CheckValid(): boolean {//checks if user can respond to review
     if (this.User != null) {
       if (this.TestHomes()) {
         return true;
@@ -54,44 +54,44 @@ export class ReviewComponent implements OnInit {
     }
     else return false;
   }
-  LeaveReview(value): void {
+  LeaveReview(value): void {//sets the response of the home
     this.Review.response = value;
     this.ClosePopup();
   }
-  CheckResponse(): boolean {
+  CheckResponse(): boolean {//shows response if there is one
     if (this.Review.response != "") {
       return true
     }
     else return false
   }
-  CheckTier(): boolean {
-    if (this.Tier >= 2) {
+  CheckTier(): boolean {//checks tier
+    if (this.Tier >= 3) {
       return true;
     }
     else return false
   }
-  TestHomes(): boolean {
+  TestHomes(): boolean {//sees if the user is affilliated with the home
     if (this.Home.userID == this.User.email) {
       return true;
     }
     else return false;
   }
-  Agreed(): string {
+  Agreed(): string {//calculates agreed
     return ((this.Review.agreed / (this.Review.agreed + this.Review.disagreed)) * 100) + "%"
   }
-  Disagreed(): string {
+  Disagreed(): string {//calculates disagreed
     return ((this.Review.disagreed / (this.Review.agreed + this.Review.disagreed)) * 100) + "%"
   }
-  GetTooltip(): string {
+  GetTooltip(): string {//shows tooltip
     return "Agreed: " + this.Review.agreed + "\tDisagreed: " + this.Review.disagreed;
   }
-  OpenPopup() {
+  OpenPopup() {//opens opopup for response
     myExtObject.initPopup(this.ID);
   }
-  ClosePopup() {
+  ClosePopup() {//closes popup
     myExtObject.closePopup(this.ID);
   }
-  UpdateDrop(value: number) {
+  UpdateDrop(value: number) {//sets the esponses the user will see
     this.selectedResponses = [];
     if (value != 99) {
       this.disabled = false;
@@ -102,7 +102,7 @@ export class ReviewComponent implements OnInit {
       this.disabled = true;
     }
   }
-  ngOnInit() {
+  ngOnInit() {// on init if the home is of a low tier change the way the pop up works, to not have a cascading dropdown
     this.ID = "id" + this.Review.reviewID;
     this.selectedResponses = [];
     if(!this.CheckTier()){

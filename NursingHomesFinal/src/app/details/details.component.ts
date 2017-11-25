@@ -29,14 +29,14 @@ export class DetailsComponent implements OnInit {
     { id: 5, name: '5' }
   ];
 
-  constructor(private storageService: StorageService, private router: Router,public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private storageService: StorageService, private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.GetReviews();
-    this.toastr.setRootViewContainerRef(vcr);
+    this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
   }
-  GetHome(): void {
+  GetHome(): void {//gets current home
     this.currentHome = this.storageService.getCurrentHome();
   }
-  GetReviews(): void {
+  GetReviews(): void {//gets the reviews associated with the current home
     this.Reviews = [];
     this.GetHome();
     if (this.currentHome != null) {
@@ -46,11 +46,11 @@ export class DetailsComponent implements OnInit {
       this.currentHome.reviews = this.SortReviews(this.currentHome.reviews);
     }
   }
-  calculateRatio(): void {
+  calculateRatio(): void {//calculates the bed:staff ratio 
     this.gcd = this.GCD(parseFloat(this.currentHome.beds), parseFloat(this.currentHome.staff));
     this.ratio = parseFloat(this.currentHome.beds) / this.gcd + ":" + parseFloat(this.currentHome.staff)
   }
-  GCD(a, b): number {
+  GCD(a, b): number {//calculates the greatest common denominator
     while (a != 0 && b != 0) {
       if (a > b)
         a %= b;
@@ -62,44 +62,43 @@ export class DetailsComponent implements OnInit {
     else
       return a;
   }
-  CheckHome() {
+  CheckHome() {//if the current home is not null it calls javascript to populate care ypes, facilities and initialise semantic ui tabs
     this.GetHome();
     if (this.currentHome != null || this.currentHome != undefined) {
       myExtObject.PopulateCare(this.currentHome.careTypes);
-      myExtObject.Populate(this.currentHome.facilities);   
-      myExtObject.InitTabs(); 
+      myExtObject.Populate(this.currentHome.facilities);
+      myExtObject.InitTabs();
       return true;
     }
-    else {
+    else {//if the hime is for some reason null it redirects back to the home page
       this.Redirect();
       return false;
     }
   }
-  Redirect(): void {
+  Redirect(): void {//redirects to the home page
     this.router.navigateByUrl('/webSide/home');
   }
+  //leaves a review, refreshes the list of reviews and informs the user that their review was left successfully 
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     this.GetUser();
     if (this.currentUser != null && this.currentUser != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
-      this.newReview = new Review(1,this.currentUser.fName + " " + this.currentUser.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, 0, 0, "");
+      this.newReview = new Review(1, this.currentUser.fName + " " + this.currentUser.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, 0, 0, "");
       this.storageService.UpdateReviews(this.newReview);
       this.GetReviews();
       myExtObject.Clear();
       this.showSuccess();
     }
-    else if(this.currentUser == null || this.currentUser == undefined )
-    {
+    else if (this.currentUser == null || this.currentUser == undefined) {//shows a toast asking the user to log in
       this.showWarningLogIn();
     }
-    else
-    {
+    else {//shows a toast informing the user that they need to fill out the fields
       this.showWarningContent();
     }
   }
-  GetUser(): void {
+  GetUser(): void {//gets current user
     this.currentUser = this.storageService.getUser();
   }
-  SortReviews(Reviews: Review[]): Review[] {
+  SortReviews(Reviews: Review[]): Review[] {//sorts the reviews by agreed
     switch (Reviews) {
       default:
         Reviews.sort((a, b) => {
@@ -110,17 +109,17 @@ export class DetailsComponent implements OnInit {
         return Reviews
     }
   }
-  showSuccess() {
+  showSuccess() {//shows a toast
     this.toastr.success('Your review was left succesfully!', 'Thanks!');
   }
-  showWarningLogIn() {
+  showWarningLogIn() {//shows a toast
     this.toastr.warning('You must be logged in to leave a review.', 'Sorry!');
   }
-  showWarningContent() {
+  showWarningContent() {//shows a toast
     this.toastr.warning('You must fill out all of the fields.', 'Sorry!');
   }
   ngOnInit() {
-    myExtObject.initFullpage("not home");
+    myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 
 }

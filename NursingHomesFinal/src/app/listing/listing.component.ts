@@ -19,14 +19,14 @@ export class ListingComponent implements OnInit {
     this.GetHomes();
     }
  
-  getLink(): string {
+  getLink(): string {//gets the current link ie her the button points to
     return this.Link;
   }
-  UpdateCurrentHome(): void {
+  UpdateCurrentHome(): void {//updates the current home
     this.Home=this.CompareHomes();
     this.storageService.setCurrentHome(this.Home);
   }
-  CompareHomes(): Home {
+  CompareHomes(): Home {//gets the home from the list of homes that fits the correct name
     for (var i = 0; i < this.Homes.length; i++) { 
       if (this.Homes[i].name == this.Display) {
         return this.Homes[i];
@@ -34,7 +34,7 @@ export class ListingComponent implements OnInit {
     }
     return null;
   }
-  GetHomes(): void {
+  GetHomes(): void {//gets the list of homes
     this.storageService.getHomes().then(homes => this.Homes = homes);
   }
 

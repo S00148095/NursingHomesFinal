@@ -20,18 +20,18 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-		"../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
         "../semantic/dist/semantic.min.css",
-		"../node_modules/fullpage.js/dist/jquery.fullPage.css",
+        "../node_modules/fullpage.js/dist/jquery.fullPage.css",
         "../node_modules/dragula/dist/dragula.css"
       ],
       "scripts": [
         "jquery-3.2.0.js",
         "../semantic/dist/semantic.min.js",
         "script.js",
-		"../geocomplete/jquery.geocomplete.js",
-		"../node_modules/fullpage.js/vendors/scrolloverflow.min.js",
-		"../node_modules/fullpage.js/dist/jquery.fullPage.js"
+        "../geocomplete/jquery.geocomplete.js",
+        "../node_modules/fullpage.js/vendors/scrolloverflow.min.js",
+        "../node_modules/fullpage.js/dist/jquery.fullPage.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

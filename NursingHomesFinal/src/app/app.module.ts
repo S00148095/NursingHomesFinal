@@ -36,6 +36,9 @@ import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 /*===============
@@ -136,7 +139,10 @@ const routes: Routes = [
     DragulaModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    HttpClientModule,
+    HttpClientJsonpModule,
+    ShareButtonsModule.forRoot()
   ],
   providers: [ StorageService],
   bootstrap: [AppComponent]

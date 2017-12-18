@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+@import "../node_modules/@ngx-share/button/styles/share-buttons.css";
+@import "../node_modules/@ngx-share/button/styles/themes/modern/modern-dark-theme.css";
 .otherhalf
 {
     color: #2E9AC5;
@@ -175,7 +178,7 @@ h1
     font-family: 'Courgette', cursive;
     font-size: 40px;
 }
-p
+p,label
 {
     font-size: 18px;
 }

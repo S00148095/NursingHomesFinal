@@ -1,6 +1,8 @@
 before release
 responsivness
 SEO
+update stripe key to live
+different currencies
 
 should have
 ratio not reducing fully
@@ -11,7 +13,6 @@ limit reviews, agrees, comment length,description
 claim home button-move
 response section css
 switch to owner and user
-sharing
 room types
 viewing times
 feedback autofill to us

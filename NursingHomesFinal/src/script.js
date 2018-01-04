@@ -38,6 +38,7 @@ var tier1year = 399;
 var tier2year = 699;
 var tier3year = 999;
 var tier4year = 1499;
+var grandtotal = 0;
 
 function initPopup(id) {
     $("#"+id).fadeToggle();
@@ -72,7 +73,7 @@ function calcPaymentTotal() {
         var tier2total = 0;
         var tier3total = 0;
         var tier4total = 0;
-        var grandtotal = 0;
+        grandtotal = 0;
         var tier1 = 0;
         var tier2 = 0;
         var tier3 = 0;        
@@ -215,6 +216,10 @@ function topFunction() {
 }
 var myExtObject = (function () {
     return {
+        calcPaymentTotal: function () {
+            calcPaymentTotal();
+            return grandtotal;
+        },
         initPopup: function (value) {
             initPopup(value);
         },
@@ -223,9 +228,6 @@ var myExtObject = (function () {
         },
         initFullpage: function (value) {
             initFullpage(value);
-        },
-        calcPaymentTotal: function () {
-            calcPaymentTotal();
         },
         PopBoxes: function (name, tier) {
             populateCheckboxes(name, tier);

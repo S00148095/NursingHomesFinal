@@ -2,7 +2,7 @@
   <div class="ui form">
     <div class="field">
       <label>Email Address</label>
-      <input type="text" name="email" placeholder="Email">
+      <input type="text" name="email" placeholder="Email" [(ngModel)]="email">
     </div>
     <div class="contentexpanded">
       <div class="field">
@@ -20,7 +20,7 @@
     </div>
     <div class="field">
       <label>Password</label>
-      <input type="text" name="password" placeholder="Password">
+      <input type="text" name="password" placeholder="Password" [(ngModel)]="password">
     </div>
     <div class="contentexpanded">
       <div class="field">
@@ -36,7 +36,7 @@
     <div class="ui two fluid buttons contentvisible">
       <button class="ui custombutton button" id="expand" onclick="Expand()">Don't have an Account?</button>
       <div class=or></div>
-      <a class="ui custombutton button" (click)="Login()" [routerLink]="['../account']">Log In</a>
+      <a class="ui custombutton button" (click)="Login()" >Log In</a>
     </div>
   </div>
   <br/>

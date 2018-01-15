@@ -38,10 +38,16 @@ import { WebsiteSideRouteComponent } from "./website-side-route/website-side-rou
 import { CrmSideRouteComponent } from "./crm-side-route/crm-side-route.component";
 import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { environment } from '../environments/environment';
+import { PaymentService } from './payment.service';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from './auth.service';
 
 
 /*===============
@@ -148,9 +154,10 @@ const routes: Routes = [
     HttpClientModule,
     HttpClientJsonpModule,
     ShareButtonsModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [StorageService],
+  providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

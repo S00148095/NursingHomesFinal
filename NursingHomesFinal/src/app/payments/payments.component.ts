@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 import { Home } from "../Home";
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { PaymentService } from '../payment.service';
 import 'script.js';
+import { environment } from '../../environments/environment';
 
 declare var myExtObject: any;
 
@@ -17,14 +18,12 @@ export class PaymentsComponent implements OnInit {
   counter: number;
   currentUser: User;
   Homes: Home[];
-  @ViewChild('cardInfo') cardInfo: ElementRef;
-  card: any;
-  cardHandler = this.onChange.bind(this);
-  error: string;
-  Total:number;
+  Total: number;
+  handler: any;
+  amount = 500;
 
-  constructor(private storageService: StorageService, private cd: ChangeDetectorRef) {
-    this.Total=0;
+  constructor(private storageService: StorageService,private paymentSvc: PaymentService) {
+    this.Total = 0;
     this.GetUser();
   }
 
@@ -46,42 +45,31 @@ export class PaymentsComponent implements OnInit {
       myExtObject.PopBoxes(this.Homes[i].name, this.Homes[i].tier);
     }
   }
-  onChange({ error }) {
-    if (error) {
-      this.error = error.message;
-    } else {
-      this.error = null;
-    }
-    this.cd.detectChanges();
-  }
-  async onSubmit(form: NgForm) {
-    const { token, error } = await stripe.createToken(this.card);
-
-    if (error) {
-      console.log('Something is wrong:', error);
-    } else {
-      console.log('Success!', token);
-      // ...send the token to the your backend to process the charge
-    }
-  }
-  calcPaymentTotal()
-  {
+  calcPaymentTotal() {
     this.Total = myExtObject.calcPaymentTotal();
   }
+  handlePayment() {
+    this.handler.open({
+      name: 'FireStarter',
+      excerpt: 'Deposit Funds to Account',
+      amount: this.amount
+    });
+  }
+  @HostListener('window:popstate')
+    onPopstate() {
+      this.handler.close()
+    }
+
   ngOnInit() {
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
-  }
-  ngAfterViewInit() {
-    if (this.currentUser != null || this.currentUser != undefined) {
-    this.card = elements.create('card');
-    this.card.mount(this.cardInfo.nativeElement);
 
-    this.card.addEventListener('change', this.cardHandler);
-  }
-  }
-  ngOnDestroy() {
-    if (this.currentUser != null || this.currentUser != undefined) {
-    this.card.removeEventListener('change', this.cardHandler);
-    this.card.destroy();}
+    this.handler = StripeCheckout.configure({
+      key: environment.stripeKey,
+      image: 'http://www.clker.com/cliparts/k/O/n/2/Z/d/house-logo-teal-th.png',
+      locale: 'auto',
+      token: token => {
+        this.paymentSvc.processPayment(token, this.amount)
+      }
+    });
   }
 }

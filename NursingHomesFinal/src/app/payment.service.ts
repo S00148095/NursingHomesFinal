@@ -9,8 +9,8 @@ export class PaymentService {
       if (auth) this.userId = auth.uid
     });
   }
-   processPayment(token: any, amount: number) {
-     const payment = { token, amount }
+   processPayment(token: any, array: any) {
+     const payment = { token:token, houses: array }
      return this.db.list(`/payments/${this.userId}`).push(payment)
    }
 }

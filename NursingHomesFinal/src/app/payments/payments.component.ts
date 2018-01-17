@@ -21,8 +21,12 @@ export class PaymentsComponent implements OnInit {
   Total: number;
   handler: any;
   amount = 500;
+  output = [{
+    id: "",
+    tier: 0
+  }]
 
-  constructor(private storageService: StorageService,private paymentSvc: PaymentService) {
+  constructor(private storageService: StorageService, private paymentSvc: PaymentService) {
     this.Total = 0;
     this.GetUser();
   }
@@ -31,6 +35,14 @@ export class PaymentsComponent implements OnInit {
     if (this.currentUser != null || this.currentUser != undefined) {
       this.Homes = this.currentUser.homes;
       this.PopBoxes();
+      if (this.output[0].id.length==0) {
+        for (var i = 0; i < this.Homes.length; i++) {
+          this.output[i] = {
+            id: this.Homes[i].ID,
+            tier: this.Homes[i].tier
+          };
+        }
+      }
       return true;
     }
     else {
@@ -45,7 +57,15 @@ export class PaymentsComponent implements OnInit {
       myExtObject.PopBoxes(this.Homes[i].name, this.Homes[i].tier);
     }
   }
-  calcPaymentTotal() {
+  calcPaymentTotal(id, tier) {
+    console.log(id + " " + tier);
+    for (var i = 0; i < this.output.length; i++) {
+      if (this.output[i].id == id)
+        this.output[i] = {
+          id: id,
+          tier: tier
+        }
+    }
     this.Total = myExtObject.calcPaymentTotal();
   }
   handlePayment() {
@@ -56,9 +76,9 @@ export class PaymentsComponent implements OnInit {
     });
   }
   @HostListener('window:popstate')
-    onPopstate() {
-      this.handler.close()
-    }
+  onPopstate() {
+    this.handler.close()
+  }
 
   ngOnInit() {
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
@@ -68,7 +88,7 @@ export class PaymentsComponent implements OnInit {
       image: 'http://www.clker.com/cliparts/k/O/n/2/Z/d/house-logo-teal-th.png',
       locale: 'auto',
       token: token => {
-        this.paymentSvc.processPayment(token, this.amount)
+        this.paymentSvc.processPayment(token, this.output)
       }
     });
   }

@@ -3,6 +3,7 @@ import { Review } from "./Review";
 export class Home {
     constructor
         (
+        public ID: string,
         public userID: string,
         public name: string,
         public address: string,

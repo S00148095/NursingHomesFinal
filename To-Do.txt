@@ -22,6 +22,7 @@ stripe*
 creating account*
 number of views-on page and crm
 test extra search paramaters-search results
+password not hidden
 
 could have
 menu on first page

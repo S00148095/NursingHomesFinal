@@ -417,31 +417,31 @@
           <td>{{Home.name}}</td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" name={{Home.name}} value="0" (click)="calcPaymentTotal()">
+              <input type="radio" name={{Home.name}} value="0" (click)="calcPaymentTotal(Home.ID,0)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="1" name={{Home.name}} (click)="calcPaymentTotal()">
+              <input type="radio" value="1" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,1)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="2" name={{Home.name}} (click)="calcPaymentTotal()">
+              <input type="radio" value="2" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,2)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="3" name={{Home.name}} (click)="calcPaymentTotal()">
+              <input type="radio" value="3" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,3)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="4" name={{Home.name}} (click)="calcPaymentTotal()">
+              <input type="radio" value="4" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,4)">
               <label></label>
             </div>
           </td>

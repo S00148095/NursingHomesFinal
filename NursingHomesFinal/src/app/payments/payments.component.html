@@ -462,13 +462,13 @@
           <td>I wish to pay:</td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="month" id="monthPay" name="payment" (click)="calcPaymentTotal()" checked>
+              <input type="radio" value="Month" #monthPay name="payment" (click)="updatePaymentTotal(monthPay.value)" checked>
               <label for="monthPay">Monthly</label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="year" id="yearPay" name="payment" (click)="calcPaymentTotal()">
+              <input type="radio" value="Year" #yearPay name="payment" (click)="updatePaymentTotal(yearPay.value)">
               <label for="yearPay">Yearly</label>
             </div>
           </td>

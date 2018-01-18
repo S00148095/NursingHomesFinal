@@ -118,7 +118,7 @@ function calcPaymentTotal() {
         $('#grandtotal').html("€" + grandtotal + " p/" + option);
     }
     catch (error) {
-        console.log("something went wrong");
+        console.log(error);
     }
     finally { }
 }

@@ -25,14 +25,17 @@ export class PaymentsComponent implements OnInit {
     id: "",
     tier: 0
   }]
+  term:string;
 
   constructor(private storageService: StorageService, private paymentSvc: PaymentService) {
     this.Total = 0;
+    this.term="Month";
     this.GetUser();
   }
 
   CheckHome() {//checks if a user is logged in
     if (this.currentUser != null || this.currentUser != undefined) {
+      console.log("pop");
       this.Homes = this.currentUser.homes;
       this.PopBoxes();
       if (this.output[0].id.length==0) {
@@ -68,6 +71,11 @@ export class PaymentsComponent implements OnInit {
     }
     this.Total = myExtObject.calcPaymentTotal();
   }
+  updatePaymentTotal(term)
+  {
+    this.term=term;
+    this.Total = myExtObject.calcPaymentTotal();
+  }
   handlePayment() {
     this.handler.open({
       name: 'FireStarter',
@@ -88,7 +96,7 @@ export class PaymentsComponent implements OnInit {
       image: 'http://www.clker.com/cliparts/k/O/n/2/Z/d/house-logo-teal-th.png',
       locale: 'auto',
       token: token => {
-        this.paymentSvc.processPayment(token, this.output)
+        this.paymentSvc.processPayment(token, this.output,this.term,"cus_BzVYqP5U6Fowua")
       }
     });
   }

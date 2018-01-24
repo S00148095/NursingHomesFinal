@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../User";
 import { StorageService } from "../storage.service";
 import 'script.js';
+import { Home } from '../Home';
 
 declare var myExtObject: any;
 
@@ -13,28 +14,33 @@ declare var myExtObject: any;
 export class AccountComponent implements OnInit {
   profile: any;
   User: User;
+  UserHomes:Home[]=[];
+
   constructor(private storageService: StorageService) {
-    this.GetUser();
   }
 
   GetUser(): void {//gets the current user from the service
-    this.User = this.storageService.getUser();
+    this.storageService.getUser().subscribe(user => { 
+      this.User=user;
+      for (var k in user.homes) {
+        this.UserHomes.push(user.homes[k]);
+      }
+    });
   }
   CheckUser() {//checks if no one is logged in and shows the not logged in message if so
-    this.GetUser();
     if (this.User == null) {
       return true;
     }
     else return false;
   }
   CheckUserNegative() {//checks if there is anyone logged in and shows the page if there is
-    this.GetUser();
     if (this.User != null) {
       return true;
     }
     else return false;
   }
   ngOnInit() {
+    this.GetUser();
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 

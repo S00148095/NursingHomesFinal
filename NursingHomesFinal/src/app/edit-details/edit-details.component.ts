@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Home } from "../Home";
 import { StorageService } from "../storage.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../User";
 import 'script.js';
 
@@ -14,7 +14,7 @@ declare var myExtObject: any;
 })
 export class EditDetailsComponent implements OnInit {
   currentHome: Home;
-  currentUser: User;
+  User: User;
   facilities: any[] = [
     { "id": 0, "name": "Live-In Carers", "value": false },
     { "id": 1, "name": "Chiropody", "value": false },
@@ -45,22 +45,34 @@ export class EditDetailsComponent implements OnInit {
     { "id": 9, "name": "Physiotherapy", "value": false }
   ];
 
-  constructor(private storageService: StorageService, private router: Router) {
-    this.GetCurrentHome();
-    this.GetCurrentUser();
+  constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) {
+
   }
 
   GetCurrentUser(): void {//gets the current user
-    this.currentUser = this.storageService.getUser();
+    this.storageService.getUser().subscribe(user => {
+      this.User = user;
+      this.populateCheck()
+    });
   }
-  GetCurrentHome(): void {//gets the current home
-    this.currentHome = this.storageService.getCurrentHome();
+  GetHome(id): void {//gets the current home
+    this.storageService.getCurrentHome(id).subscribe(home => {
+      this.currentHome = home;
+      this.populateCheck()
+    });
+  }
+  populateCheck()
+  {
+    if (this.currentHome != null && this.currentHome != undefined && this.User != null && this.User != undefined) {
+      if (this.currentHome.userID == this.User.email) {
+        this.PopulateFacilities();
+      }
+      else this.Redirect();
+    }
   }
   CheckHome(): boolean { //checks if the current home is null and either populates the checkboxes or redirects the user
-    if (this.currentHome != null || this.currentHome != undefined) {
-      this.PopulateFacilities();
-      if (this.currentHome.userID == this.currentUser.email) return true;
-      else this.Redirect();
+    if (this.currentHome != null && this.currentHome != undefined && this.User != null && this.User != undefined) {
+      return true;
     }
     else {
       return false;
@@ -68,14 +80,14 @@ export class EditDetailsComponent implements OnInit {
   }
   PopulateFacilities(): void {//populates the check boxes
     this.facilities.forEach(element => {
-      element.value=this.currentHome.facilities[element.id];
+      element.value = this.currentHome.facilities[element.id];
     });
     this.careTypes.forEach(element => {
-      element.value=this.currentHome.careTypes[element.id];
+      element.value = this.currentHome.careTypes[element.id];
     });
   }
   Redirect(): void {//redirects the user
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/');
   }
   GetName(): string {//autofills the name
     return this.currentHome.name;
@@ -110,11 +122,15 @@ export class EditDetailsComponent implements OnInit {
   GetDescription(): string {//autofills the description
     return this.currentHome.description;
   }
-  CheckID(test): boolean {//from what I can tell this does nothing, might be from an early attempt to align the checkboxes
-    if (test%5==0&&test!=0) return true
-    else return false
-  }
   ngOnInit() {
+    this.GetCurrentUser();
+    this.route.queryParams//gets the id of the current recipe from the queryParams
+      .filter(params => params.id)
+      .subscribe(params => {
+        if (params['id']) {
+          this.GetHome(params.id);//gets the recipe based on the id from the queryParam
+        }
+      });
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 

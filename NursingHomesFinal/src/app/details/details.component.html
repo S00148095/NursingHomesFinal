@@ -33,7 +33,7 @@
         <table class="full table" id="Facilities"></table>
         <div class="ui fluid custombutton buttons">
             <button class="ui custombutton button contentvisible1" id="expand" onclick="Expand1()">Leave a Review</button>
-            <a class="ui custombutton button" [routerLink]="['../contact']">Get in Contact</a>
+            <a class="ui custombutton button" (click)="UpdateCurrentHome()">Get in Contact</a>
         </div>
         <div class="contentexpanded1">
             <div class="ui form">

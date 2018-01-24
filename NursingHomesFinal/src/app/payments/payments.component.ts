@@ -16,8 +16,8 @@ declare var myExtObject: any;
 })
 export class PaymentsComponent implements OnInit {
   counter: number;
-  currentUser: User;
-  Homes: Home[];
+  User: User;
+  Homes: Home[] = [];
   Total: number;
   handler: any;
   amount = 500;
@@ -25,27 +25,15 @@ export class PaymentsComponent implements OnInit {
     id: "",
     tier: 0
   }]
-  term:string;
+  term: string;
 
   constructor(private storageService: StorageService, private paymentSvc: PaymentService) {
     this.Total = 0;
-    this.term="Month";
-    this.GetUser();
+    this.term = "Month";
   }
 
   CheckHome() {//checks if a user is logged in
-    if (this.currentUser != null || this.currentUser != undefined) {
-      console.log("pop");
-      this.Homes = this.currentUser.homes;
-      this.PopBoxes();
-      if (this.output[0].id.length==0) {
-        for (var i = 0; i < this.Homes.length; i++) {
-          this.output[i] = {
-            id: this.Homes[i].ID,
-            tier: this.Homes[i].tier
-          };
-        }
-      }
+    if (this.User != null || this.User != undefined) {
       return true;
     }
     else {
@@ -53,7 +41,23 @@ export class PaymentsComponent implements OnInit {
     }
   }
   GetUser(): void {//gets thecurrent user
-    this.currentUser = this.storageService.getUser();
+    this.storageService.getUser().subscribe(user => {
+      if (user != null) {
+        this.User = user;
+        for (var k in user.homes) {
+          this.Homes.push(user.homes[k]);
+        }
+        this.PopBoxes();
+        if (this.output[0].id.length == 0) {
+          for (var i = 0; i < this.Homes.length; i++) {
+            this.output[i] = {
+              id: this.Homes[i].ID,
+              tier: this.Homes[i].tier
+            };
+          }
+        }
+      }
+    });
   }
   PopBoxes() {//populates the check boxes
     for (var i = 0; i < this.Homes.length; i++) {
@@ -61,7 +65,6 @@ export class PaymentsComponent implements OnInit {
     }
   }
   calcPaymentTotal(id, tier) {
-    console.log(id + " " + tier);
     for (var i = 0; i < this.output.length; i++) {
       if (this.output[i].id == id)
         this.output[i] = {
@@ -71,9 +74,8 @@ export class PaymentsComponent implements OnInit {
     }
     this.Total = myExtObject.calcPaymentTotal();
   }
-  updatePaymentTotal(term)
-  {
-    this.term=term;
+  updatePaymentTotal(term) {
+    this.term = term;
     this.Total = myExtObject.calcPaymentTotal();
   }
   handlePayment() {
@@ -89,14 +91,14 @@ export class PaymentsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.GetUser();
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
 
     this.handler = StripeCheckout.configure({
       key: environment.stripeKey,
-      image: 'http://www.clker.com/cliparts/k/O/n/2/Z/d/house-logo-teal-th.png',
       locale: 'auto',
       token: token => {
-        this.paymentSvc.processPayment(token, this.output,this.term,"cus_BzVYqP5U6Fowua")
+        this.paymentSvc.processPayment(token, this.output, this.term, "cus_BzVYqP5U6Fowua")
       }
     });
   }

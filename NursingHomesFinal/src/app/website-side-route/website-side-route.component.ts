@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../storage.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-website-side-route',
@@ -8,11 +9,11 @@ import { StorageService } from "../storage.service";
 })
 export class WebsiteSideRouteComponent implements OnInit {
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   
   UpdateCurrentHome(): void {
-    this.storageService.setCurrentHome(null);
+    this.router.navigate(["/webSide/contact"], { queryParams: { id: "careze" } });
   }
 
   ngOnInit() {

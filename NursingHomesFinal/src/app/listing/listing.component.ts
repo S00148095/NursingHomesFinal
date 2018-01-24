@@ -1,43 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../storage.service";
 import { Home } from "../Home";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listing',
   templateUrl: './listing.component.html',
-  inputs: ["Display", "Link"],
+  inputs: ["Home"],
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
-  Homes: Home[];
-  Display: string;
-  Link: string;
   Home: Home;
 
-  constructor(private storageService: StorageService)
+  constructor(private storageService: StorageService,private router:Router)
    {
-    this.GetHomes();
     }
  
-  getLink(): string {//gets the current link ie her the button points to
-    return this.Link;
-  }
   UpdateCurrentHome(): void {//updates the current home
-    this.Home=this.CompareHomes();
-    this.storageService.setCurrentHome(this.Home);
+    this.router.navigate(["/webSide/edit-details"], { queryParams: { id: this.Home.ID } });//navigates to the details page and sets the queryParams
+ 
   }
-  CompareHomes(): Home {//gets the home from the list of homes that fits the correct name
-    for (var i = 0; i < this.Homes.length; i++) { 
-      if (this.Homes[i].name == this.Display) {
-        return this.Homes[i];
-      }
-    }
-    return null;
-  }
-  GetHomes(): void {//gets the list of homes
-    this.storageService.getHomes().then(homes => this.Homes = homes);
-  }
-
   ngOnInit() {
   }
 }

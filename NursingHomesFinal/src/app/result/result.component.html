@@ -1,5 +1,5 @@
 <div class="ui vertical nobottompadding segment" *ngIf="CheckCounty()">
-  <div class="ui horizontal nomargin nooverflow segments" [style.border]="SelectedStyle()" (click)="UpdateCurrentHome()" [routerLink]="['../details']">
+  <div class="ui horizontal nomargin nooverflow segments" [style.border]="SelectedStyle()" (click)="UpdateCurrentHome()">
     <div class="corner-ribbon top-right yellow" *ngIf="CheckPremium()">Premium</div>
     <div class="ui small segment">
       <img class="image" src="/assets/home.jpg" />

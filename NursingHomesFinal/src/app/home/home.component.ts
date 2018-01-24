@@ -12,7 +12,7 @@ declare var myExtObject: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  Homes: Home[];
+  Homes: Home[]=[];
   searchCriteria: string[];
   lats: number[] = [];
   longs: number[] = [];
@@ -24,7 +24,11 @@ export class HomeComponent implements OnInit {
   }
 
   GetHomes(): void {//gets the list of homes
-    this.storageService.getHomes().then(homes => this.Homes = homes);
+    this.storageService.getHomes().subscribe(homes => { 
+      for (var key in homes) {
+        this.Homes.push(homes[key]);
+      }
+  });
   }
   GetCriteria(): void {//hets the search criteria
     this.searchCriteria = this.storageService.getCriteria();

@@ -41,7 +41,7 @@
     </div>
     <div class="half inline">
       <h2 class="iconbutton">Homes</h2>
-      <app-listing *ngFor="let Home of User.homes" [Display]="Home.name" [Link]="['../edit-details']"></app-listing>
+      <app-listing *ngFor="let Home of UserHomes" [Home]="Home"></app-listing>
     </div>
     <button [routerLink]="['../payments']">Payment</button>
   </div>

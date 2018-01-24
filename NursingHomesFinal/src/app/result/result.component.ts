@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Home } from "../Home";
 import { Review } from "../Review";
 import { StorageService } from "../storage.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -11,12 +12,12 @@ import { StorageService } from "../storage.service";
 })
 export class ResultComponent implements OnInit {
   Home: Home;
-  topReview:Review;
+  topReview: Review;
   County: string;
   NumReviews: string;
   @Output() notify: EventEmitter<Home> = new EventEmitter<Home>();
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService,private router: Router) {
   }
   checkHomeReviews() {//checks the home isn't null
     if (this.Home != null) {
@@ -31,7 +32,7 @@ export class ResultComponent implements OnInit {
     else this.NumReviews = this.Home.reviews.length + " Review";
   }
   UpdateCurrentHome() {//updates the current home when one is clicked on
-    this.notify.emit(this.Home);
+    this.router.navigate(["/webSide/details"], { queryParams: { id: this.Home.ID } });//navigates to the details page and sets the queryParams
   }
   CheckCounty() {//checks the county
     if (this.County == this.Home.county || this.County == "") {
@@ -57,7 +58,7 @@ export class ResultComponent implements OnInit {
   }
   UpdateReviews() {//sorts reviews and shows the top one
     this.SortReviews();
-    this.topReview=this.Home.reviews[0];
+    this.topReview = this.Home.reviews[0];
   }
   SortReviews() {//sorts reviews
     this.Home.reviews.sort((a, b) => {
@@ -81,28 +82,22 @@ export class ResultComponent implements OnInit {
   }
   getDistanceCategory()//shows how far away a home is
   {
-    if(this.Home.distance<5)
-    {
+    if (this.Home.distance < 5) {
       return "<5km away";
     }
-    else if(this.Home.distance<10)
-    {
+    else if (this.Home.distance < 10) {
       return "<10km away";
     }
-    else if(this.Home.distance<20)
-    {
+    else if (this.Home.distance < 20) {
       return "<20km away";
     }
-    else if(this.Home.distance<50)
-    {
+    else if (this.Home.distance < 50) {
       return "<50km away";
     }
-    else if(this.Home.distance<100)
-    {
+    else if (this.Home.distance < 100) {
       return "<100km away";
     }
-    else
-    {
+    else {
       return ">100km away";
     }
   }

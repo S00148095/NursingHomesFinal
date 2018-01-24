@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   constructor(private storageService: StorageService,public authService: AuthService) { }
 
   Login() {//logs the user in    
-    this.storageService.LogIn();
     this.authService.emailLogin(this.email, this.password);
     this.email = this.password = '';
   }

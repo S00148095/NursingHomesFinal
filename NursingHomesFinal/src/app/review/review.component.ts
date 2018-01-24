@@ -37,7 +37,9 @@ export class ReviewComponent implements OnInit {
     else return "yellow star half empty icon"
   }
   GetUser(): void {//gets current user
-    this.User = this.storageService.getUser();
+    this.storageService.getUser().subscribe(user => { 
+      this.User=user
+    });
   }
   IncrementAgreed() {//increments number who agree
     this.Review.agreed++;

@@ -1,15 +1,9 @@
 <div>
-  <h3 class="inline iconbutton">{{Display}}</h3>
-  <div class="ui inline mini grey animated button" (click)="UpdateCurrentHome()" [routerLink]="getLink()">
+  <h3 class="inline iconbutton">{{Home.name}}</h3>
+  <div class="ui inline mini grey animated button" (click)="UpdateCurrentHome()">
     <div class="hidden content">Edit</div>
     <div class="visible content">
       <i class="write icon"></i>
-    </div>
-  </div>
-  <div class="ui inline mini red animated button">
-    <div class="hidden content">Delete</div>
-    <div class="visible content">
-      <i class="cancel icon"></i>
     </div>
   </div>
 </div>

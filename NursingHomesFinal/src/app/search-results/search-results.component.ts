@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Home } from "../Home";
 import { StorageService } from "../storage.service";
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import * as firebase from 'firebase';
 import 'script.js';
 
 declare var myExtObject: any;
@@ -16,12 +18,15 @@ export class SearchResultsComponent implements OnInit {
   searchCriteria: string[];
   GetData: any[] = [];
 
-  constructor(private storageService: StorageService) {
-    this.GetHomes();
-    this.GetCriteria();
+  constructor(private storageService: StorageService, private db: AngularFireDatabase) {
+    this.Homes = [];
   }
   GetHomes(): void {//gets the list of homes
-    this.storageService.getHomes().then(homes => this.Homes = homes);
+    this.storageService.getHomes().subscribe(homes => {
+      for (var k in homes) {
+        this.Homes.push(homes[k]);
+      }
+    });
   }
   UpdateCurrentHome(Home: Home): void {//sets the current home
     this.storageService.setCurrentHome(Home);
@@ -42,8 +47,8 @@ export class SearchResultsComponent implements OnInit {
           if (a.reviews.length > b.reviews.length) return -1;
           else if (a.reviews.length < b.reviews.length) return 1;
           else {
-            if (a.tier >b.tier) return -1;
-            else if (b.tier >a.tier) return 1;
+            if (a.tier > b.tier) return -1;
+            else if (b.tier > a.tier) return 1;
             else return 0;
           }
         });
@@ -62,12 +67,10 @@ export class SearchResultsComponent implements OnInit {
             else if (a.rating < b.rating) {
               return 1;
             }
-            else 
-            {
-              if (a.tier>b.tier) return -1;
-              else if (b.tier>a.tier) return 1;
-              else 
-              {
+            else {
+              if (a.tier > b.tier) return -1;
+              else if (b.tier > a.tier) return 1;
+              else {
                 if (a.reviews.length > b.reviews.length) return -1;
                 else if (a.reviews.length < b.reviews.length) return 1;
                 else return 0;
@@ -81,8 +84,8 @@ export class SearchResultsComponent implements OnInit {
           if (a.name > b.name) return -1;
           else if (a.name < b.name) return 1;
           else {
-            if (a.tier>b.tier) return -1;
-            else if (b.tier >a.tier) return 1;
+            if (a.tier > b.tier) return -1;
+            else if (b.tier > a.tier) return 1;
             else return 0;
           }
         });
@@ -92,8 +95,8 @@ export class SearchResultsComponent implements OnInit {
           if (b.name > a.name) return -1;
           else if (b.name < a.name) return 1;
           else {
-            if (a.tier>b.tier) return -1;
-            else if (b.tier>a.tier) return 1;
+            if (a.tier > b.tier) return -1;
+            else if (b.tier > a.tier) return 1;
             else return 0;
           }
         });
@@ -107,8 +110,8 @@ export class SearchResultsComponent implements OnInit {
             return 1;
           }
           else {
-            if (a.tier>b.tier) return -1;
-            else if (b.tier>a.tier) return 1;
+            if (a.tier > b.tier) return -1;
+            else if (b.tier > a.tier) return 1;
             else {
               if (a.reviews.length > b.reviews.length) return -1;
               else if (a.reviews.length < b.reviews.length) return 1;
@@ -119,7 +122,7 @@ export class SearchResultsComponent implements OnInit {
     }
   }
   CheckHomes(): boolean {//checks that the list of homes is not null, then sorts them
-    if (this.Homes != null && this.Homes != undefined && this.searchCriteria != null && this.searchCriteria != undefined) {
+    if (this.Homes != null && this.Homes != undefined && this.Homes.length != 0 && this.searchCriteria != null && this.searchCriteria != undefined) {
       this.SortHomes();
       return true;
     }
@@ -143,39 +146,34 @@ export class SearchResultsComponent implements OnInit {
         }
       }
     }
-    this.storageService.updateHomes(this.Homes);
     myExtObject.ClearData();
     this.storageService.updateCheck(false);
   }
   getCategory(distance)//checks how far the home is away
   {
-    if(distance<5)
-    {
+    if (distance < 5) {
       return 0;
     }
-    else if(distance<10)
-    {
+    else if (distance < 10) {
       return 1;
     }
-    else if(distance<20)
-    {
+    else if (distance < 20) {
       return 2;
     }
-    else if(distance<50)
-    {
+    else if (distance < 50) {
       return 3;
     }
-    else if(distance<100)
-    {
+    else if (distance < 100) {
       return 4;
     }
-    else
-    {
+    else {
       return 5;
     }
   }
-  ngOnInit() {    
+  ngOnInit() {
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
+    this.GetHomes();
+    this.GetCriteria();
   }
 
 }

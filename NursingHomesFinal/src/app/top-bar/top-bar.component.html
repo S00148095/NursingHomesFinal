@@ -1,7 +1,7 @@
 <div class="fixed padded header">
   <h1 class="inline" [routerLink]="['../webSide']">Care<span class="otherhalf">ze</span></h1>
-  <a class="ui inline blue right floated button" *ngIf="CheckUser()" [routerLink]="['login']">Log In</a>
-  <div class="inline" *ngIf="CheckUserNegative()">
+  <a class="ui inline blue right floated button" *ngIf="CheckLogin()" [routerLink]="['login']">Log In</a>
+  <div class="inline" *ngIf="CheckLogOut()">
     <div class="ui medium right floated buttons">
       <button class="ui left attached blue button" [routerLink]="['/webSide/account']">Account</button>
       <button class="ui  blue button" [routerLink]="['/webSide/dashboard']">Dashboard</button>

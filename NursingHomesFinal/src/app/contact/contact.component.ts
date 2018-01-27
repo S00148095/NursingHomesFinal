@@ -53,10 +53,6 @@ export class ContactComponent implements OnInit {
     if(this.User!=null) return this.User.email;
     else return "";
   }
-  CheckUserPhone(): string {//autofills phone if a user is logged in
-    if(this.User!=null) return this.User.phone;
-    else return "";
-  }
   CheckHomeEmail(): string {//autofills the home's email ig applicable
     if(this.currentHome!=null) return this.currentHome.email;
     else return "";

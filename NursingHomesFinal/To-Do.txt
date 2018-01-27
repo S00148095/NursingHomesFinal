@@ -12,7 +12,7 @@ creating account*
 contact page does something*
 Edit Home does something*
 limit reviews, agrees, disagrees comment length,description*
-contact phone undefined*
+toasts needed on login page*
 ratio not reducing fully
 icon on comment
 claim home button-move

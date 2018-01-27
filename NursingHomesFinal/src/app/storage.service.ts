@@ -7,6 +7,7 @@ import { Review } from "./Review";
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class StorageService {
@@ -16,11 +17,10 @@ export class StorageService {
     Criteria: string[] = ["rating", ""];
     address: string;
     needsACheck: boolean;
-    uid: any;
     firebaseURL: string = 'https://cmoo-a7730.firebaseio.com/';
 
-    constructor(private afa: AngularFireAuth, private http: HttpClient) {
-        
+    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router) {
+
     }
 
     getNeedsACheck() {
@@ -35,14 +35,42 @@ export class StorageService {
     getAddress() {
         return this.address;
     }
-    updateHomes(Homes) {
-        this.Homes = Homes;
+    updateHome(Home: Home) {
+        this.afa.authState.subscribe((resp) => {
+            if (resp != null) {
+                if (resp.uid) {
+                    this.http.patch(this.firebaseURL + "homes/" + Home.ID + ".json", this.Format(Home)).subscribe(params => {
+                        this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID + ".json", this.Format(Home)).subscribe(params => {
+                            this.router.navigateByUrl("/webSide/account");
+                        });
+                    });
+                }
+            }
+        });
+    }
+    Format(Home: Home) {
+        var postdata = {
+            "name": Home.name,
+            "address": Home.address,
+            "county": Home.county,
+            "country": Home.country,
+            "phone": Home.phone,
+            "email": Home.email,
+            "contact": Home.contact,
+            "site": Home.site,
+            "beds": Home.beds,
+            "staff": Home.staff,
+            "description": Home.description,
+            "careTypes": Home.careTypes,
+            "facilities": Home.facilities
+        }
+        return postdata
     }
     getHomes(): Observable<any> {
         return this.http.get(this.firebaseURL + "homes.json");
     }
     getCurrentHome(id): Observable<any> {
-        return this.http.get(this.firebaseURL + "homes/"+ id +".json");
+        return this.http.get(this.firebaseURL + "homes/" + id + ".json");
     }
     setCurrentHome(Home: Home): void {
         this.CurrentHome = Home;

@@ -153,7 +153,7 @@ const routes: Routes = [
     ToastModule.forRoot(),
     HttpClientModule,
     HttpClientJsonpModule,
-    ShareButtonsModule.forRoot(),
+    ShareButtonsModule.forRoot(),    
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],

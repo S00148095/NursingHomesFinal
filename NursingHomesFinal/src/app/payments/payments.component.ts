@@ -163,7 +163,7 @@ export class PaymentsComponent implements OnInit {
       key: environment.stripeKey,
       locale: 'auto',
       token: token => {
-        this.paymentSvc.processPayment(token, this.output, this.term, "cus_BzVYqP5U6Fowua")
+        this.paymentSvc.processPayment(token, this.output, this.term, this.User.StripeId)
       }
     });
   }

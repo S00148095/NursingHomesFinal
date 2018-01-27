@@ -22,6 +22,7 @@ exports.stripeCharge = functions.database
     const homes = payment.homes;
     const term = payment.term;
     const stripeID = payment.stripeID;
+    const token = payment.token.id;
     var items;
     var standardQuantity = 0, bronzeQuantity = 0, silverQuantity = 0, goldQuantity = 0, diamondQuantity = 0;
 
@@ -79,7 +80,8 @@ exports.stripeCharge = functions.database
               ]
               stripe.subscriptions.create({
                 customer: customer.id,
-                items: items
+                items: items,
+                source: token
               }, function (err, subscription) {
                 var updates = {};
                 updates = updateHomes(homes,userID);
@@ -144,7 +146,8 @@ exports.stripeCharge = functions.database
                 ]
 
                 return stripe.subscriptions.update(customer.subscriptions.data[0].id, {
-                  items: items
+                  items: items,
+                  source: token
                 }, function (err, subscription) {
                   var updates = {};
                   updates = updateHomes(homes,userId);

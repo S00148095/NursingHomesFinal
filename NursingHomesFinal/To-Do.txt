@@ -5,29 +5,26 @@ update stripe key to live
 different currencies
 
 should have
-ratio not reducing fully
+reviews, like/dislike pushed to db*
+Review heading(x total)*
 individual images*
+agree/disagree button width*
+creating account*
+payment on refresh is strange*
+contact page does something*
+Edit Home*
+limit reviews, agrees, comment length,description*
+ratio not reducing fully
 icon on comment
-limit reviews, agrees, comment length,description
 claim home button-move
 response section css
 switch to owner and user
 room types
 viewing times
 feedback autofill to us
-Review heading(x total)*
-agree/disagree button width*
-creating account*
 number of views-on page and crm
 test extra search paramaters-search results
-payment js broken*
-payment on refresh is strange
-auth*
-pass correct customer account to function*
-source in subscription*
-contact page does something*
 distance when not coming from home
-reviews etc pushed to db*
 
 could have
 menu on first page

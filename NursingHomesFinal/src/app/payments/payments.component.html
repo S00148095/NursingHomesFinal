@@ -417,42 +417,42 @@
           <td>{{Home.name}}</td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" name={{Home.name}} value="0" (click)="calcPaymentTotal(Home.ID,0)">
+              <input type="radio" name={{Home.name}} value="0" [checked]="checkIfChecked(Home.tier,0)" (click)="calcPaymentTotal(Home.ID,0)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="1" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,1)">
+              <input type="radio" value="1" name={{Home.name}} [checked]="checkIfChecked(Home.tier,1)" (click)="calcPaymentTotal(Home.ID,1)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="2" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,2)">
+              <input type="radio" value="2" name={{Home.name}} [checked]="checkIfChecked(Home.tier,2)" (click)="calcPaymentTotal(Home.ID,2)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="3" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,3)">
+              <input type="radio" value="3" name={{Home.name}} [checked]="checkIfChecked(Home.tier,3)" (click)="calcPaymentTotal(Home.ID,3)">
               <label></label>
             </div>
           </td>
           <td>
             <div class="ui radio checkbox">
-              <input type="radio" value="4" name={{Home.name}} (click)="calcPaymentTotal(Home.ID,4)">
-              <label></label>
+              <input type="radio" value="4" name={{Home.name}} [checked]="checkIfChecked(Home.tier,4)" (click)="calcPaymentTotal(Home.ID,4)">
+              <label onload="populateCheckboxes(Home.name,Home.tier)"></label>
             </div>
           </td>
         </tr>
         <tr>
           <td>Totals</td>
           <td>€0</td>
-          <td id="tier1total">€0 p/month</td>
-          <td id="tier2total">€0 p/month</td>
-          <td id="tier3total">€0 p/month</td>
-          <td id="tier4total">€0 p/month</td>
+          <td id="tier1total">€{{tier1}} p/{{term}}</td>
+          <td id="tier2total">€{{tier2}} p/{{term}}</td>
+          <td id="tier3total">€{{tier3}} p/{{term}}</td>
+          <td id="tier4total">€{{tier4}} p/{{term}}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -472,7 +472,7 @@
               <label for="yearPay">Yearly</label>
             </div>
           </td>
-          <td id="grandtotal">€0 p/month</td>
+          <td id="grandtotal">€{{Total}} p/{{term}}</td>
         </tr>
       </tfoot>
     </table>

@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { v4 as uuid } from 'uuid';
 
 declare var myExtObject: any;
 
@@ -32,6 +33,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(private afa: AngularFireAuth, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
+    this.Reviews = [];
   }
   GetHome(id): void {//gets current home
     this.storageService.getCurrentHome(id).subscribe(home => {
@@ -43,9 +45,9 @@ export class DetailsComponent implements OnInit {
     this.Reviews = [];
     if (this.currentHome != null) {
       this.calculateRatio();
-      this.Reviews = this.currentHome.reviews;
-      this.Reviews = this.SortReviews(this.Reviews);
-      this.currentHome.reviews = this.SortReviews(this.currentHome.reviews);
+      for (var k in this.currentHome.reviews) {
+        this.Reviews.push(this.currentHome.reviews[k]);
+      }
     }
   }
   calculateRatio(): void {//calculates the bed:staff ratio 
@@ -78,8 +80,8 @@ export class DetailsComponent implements OnInit {
   //leaves a review, refreshes the list of reviews and informs the user that their review was left successfully 
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     if (this.User != null && this.User != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
-      this.newReview = new Review(1, this.User.fName + " " + this.User.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, 0, 0, "");
-      this.storageService.UpdateReviews(this.newReview);
+      this.newReview = new Review(uuid(), this.User.email , criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, [], [], "");
+      this.storageService.UpdateReviews(this.currentHome,this.newReview);
       this.GetReviews();
       myExtObject.Clear();
       this.showSuccess();
@@ -102,12 +104,12 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
-  SortReviews(Reviews: Review[]): Review[] {//sorts the reviews by agreed
+  SortReviews(Reviews: Review[]): Review[] {//sorts the reviews by agreed-nees work
     switch (Reviews) {
       default:
         Reviews.sort((a, b) => {
-          if (a.agreed > b.agreed) return -1;
-          else if (a.agreed < b.agreed) return 1;
+          if (a.agreed.length > b.agreed.length) return -1;
+          else if (a.agreed.length < b.agreed.length) return 1;
           else return 0;
         });
         return Reviews

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Home } from "./Home";
-import { Homes } from "./mock-homes";
 import { User } from "./User";
 import { Person } from "./Person";
 import { Review } from "./Review";
@@ -66,6 +65,30 @@ export class StorageService {
         }
         return postdata
     }
+    FormatReview(Review: Review) {
+        var postdata = {            
+            "reviewID" : Review.reviewID,
+            "user" : Review.user,
+            "care" : Review.care,
+            "cleanliness" : Review.cleanliness,
+            "staff" : Review.staff,
+            "dignity" : Review.dignity,
+            "food" : Review.food,
+            "facilities" : Review.dignity,
+            "management" : Review.management,
+            "rooms" : Review.rooms,
+            "safety" : Review.safety,
+            "value" : Review.value,
+            "location" : Review.location,
+            "activities" : Review.activities,
+            "overall" : Review.overall,
+            "comment" : Review.comment,
+            "agreed" : Review.agreed,
+            "disagreed" : Review.disagreed,
+            "response": Review.response
+        }
+        return postdata
+    }
     getHomes(): Observable<any> {
         return this.http.get(this.firebaseURL + "homes.json");
     }
@@ -84,7 +107,18 @@ export class StorageService {
     getCriteria(): string[] {
         return this.Criteria;
     }
-    UpdateReviews(Review: Review): void {
-        this.CurrentHome.reviews.push(Review);
+    UpdateReviews(Home:Home,Review: Review): void {
+        this.afa.authState.subscribe((resp) => {
+            if (resp != null) {
+                if (resp.uid) {
+                    this.http.patch(this.firebaseURL + "homes/" + Home.ID + "/reviews/"+Review.reviewID+".json", this.FormatReview(Review)).subscribe(params => {
+                        console.log(params);
+                        this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID  + "/reviews/"+Review.reviewID+ ".json", this.FormatReview(Review)).subscribe(ret => {
+                        console.log(ret);
+                        });
+                    });
+                }
+            }
+        });
     }
 }

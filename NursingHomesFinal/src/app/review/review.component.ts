@@ -49,10 +49,34 @@ export class ReviewComponent implements OnInit {
     });
   }
   IncrementAgreed() {//increments number who agree
-    this.Review.agreed++;
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          if (!this.Review.agreed.includes(resp.uid)) {
+            this.Review.agreed.push(resp.uid);
+          }
+          if (this.Review.disagreed.includes(resp.uid)) {
+            this.Review.disagreed.splice(this.Review.agreed.indexOf(resp.uid), 1);
+          }
+        }
+      }
+      this.storageService.UpdateReviews(this.Home,this.Review);
+    });
   }
-  IncrementDisagreed() {//increments number who disagree
-    this.Review.disagreed++;
+  IncrementDisagreed() {//increments number who disagree  
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          if (!this.Review.disagreed.includes(resp.uid)) {
+            this.Review.disagreed.push(resp.uid);
+          }
+          if (this.Review.agreed.includes(resp.uid)) {
+            this.Review.agreed.splice(this.Review.agreed.indexOf(resp.uid), 1);
+          }
+        }
+      }
+      this.storageService.UpdateReviews(this.Home,this.Review);
+    });
   }
   CheckValid(): boolean {//checks if user can respond to review
     if (this.User != null) {
@@ -86,13 +110,13 @@ export class ReviewComponent implements OnInit {
     else return false;
   }
   Agreed(): string {//calculates agreed
-    return ((this.Review.agreed / (this.Review.agreed + this.Review.disagreed)) * 100) + "%"
+    return ((this.Review.agreed.length / (this.Review.agreed.length + this.Review.disagreed.length)) * 100) + "%"
   }
   Disagreed(): string {//calculates disagreed
-    return ((this.Review.disagreed / (this.Review.agreed + this.Review.disagreed)) * 100) + "%"
+    return ((this.Review.disagreed.length / (this.Review.agreed.length + this.Review.disagreed.length)) * 100) + "%"
   }
   GetTooltip(): string {//shows tooltip
-    return "Agreed: " + this.Review.agreed + "\tDisagreed: " + this.Review.disagreed;
+    return "Agreed: " + this.Review.agreed.length + "\tDisagreed: " + this.Review.disagreed.length;
   }
   OpenPopup() {//opens opopup for response
     myExtObject.initPopup(this.ID);
@@ -113,18 +137,23 @@ export class ReviewComponent implements OnInit {
   }
   ngOnInit() {// on init if the home is of a low tier change the way the pop up works, to not have a cascading dropdown
     this.ID = "id" + this.Review.reviewID;
+    if (this.Review.agreed == undefined) {
+      this.Review.agreed = [];
+    }
+    if (this.Review.disagreed == undefined) {
+      this.Review.disagreed = [];
+    }
     this.selectedResponses = [];
-    if(!this.CheckTier()){
-      this.disabled=false;
-      this.responses.forEach(category => {        
+    if (!this.CheckTier()) {
+      this.disabled = false;
+      this.responses.forEach(category => {
         category.responses.forEach(response => {
-          if(response.tier<=this.Home.tier)
-          this.selectedResponses.push(response);
+          if (response.tier <= this.Home.tier)
+            this.selectedResponses.push(response);
         });
       });
     }
-    else
-    {
+    else {
       this.disabled = true;
     }
   }

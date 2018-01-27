@@ -1,7 +1,7 @@
 export class Review {
     constructor
         (
-        public reviewID:number,
+        public reviewID:string,
         public user: string,
         public care: number,
         public cleanliness: number,
@@ -17,8 +17,8 @@ export class Review {
         public activities:number,
         public overall:number,
         public comment: string,
-        public agreed:number,
-        public disagreed:number,
+        public agreed:string[],
+        public disagreed:string[],
         public response: string
         ) {
 

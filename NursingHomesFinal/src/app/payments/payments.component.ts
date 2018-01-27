@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { PaymentService } from '../payment.service';
 import 'script.js';
 import { environment } from '../../environments/environment';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 declare var myExtObject: any;
 
@@ -31,13 +32,13 @@ export class PaymentsComponent implements OnInit {
   }]
   term: string;
 
-  constructor(private storageService: StorageService, private paymentSvc: PaymentService) {
+  constructor(private storageService: StorageService, private paymentSvc: PaymentService, private afa: AngularFireAuth) {
     this.Total = 0;
     this.term = "Month";
   }
 
   CheckHome() {//checks if a user is logged in
-    if (this.User != null || this.User != undefined) {
+    if (this.User != null && this.User != undefined) {
       return true;
     }
     else {
@@ -45,21 +46,27 @@ export class PaymentsComponent implements OnInit {
     }
   }
   GetUser(): void {//gets thecurrent user
-    this.storageService.getUser().subscribe(user => {
-      if (user != null) {
-        this.User = user;
-        for (var k in user.homes) {
-          this.Homes.push(user.homes[k]);
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.storageService.getUser(resp.uid).subscribe(user => {
+            if (user != null) {  
+              this.User = user;
+              for (var k in user.homes) {
+                this.Homes.push(user.homes[k]);
+              }
+              if (this.output[0].id.length == 0) {
+                for (var i = 0; i < this.Homes.length; i++) {
+                  this.output[i] = {
+                    id: this.Homes[i].ID,
+                    tier: this.Homes[i].tier
+                  };
+                }
+              }
+              this.calcTotals();
+            }
+          });
         }
-        if (this.output[0].id.length == 0) {
-          for (var i = 0; i < this.Homes.length; i++) {
-            this.output[i] = {
-              id: this.Homes[i].ID,
-              tier: this.Homes[i].tier
-            };
-          }
-        }
-        this.calcTotals();
       }
     });
   }

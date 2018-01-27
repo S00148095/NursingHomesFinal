@@ -4,6 +4,7 @@ import { StorageService } from "../storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../User";
 import 'script.js';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 declare var myExtObject: any;
 
@@ -45,14 +46,20 @@ export class EditDetailsComponent implements OnInit {
     { "id": 9, "name": "Physiotherapy", "value": false }
   ];
 
-  constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) {
+  constructor(private afa: AngularFireAuth,private storageService: StorageService, private router: Router, private route: ActivatedRoute) {
 
   }
 
   GetCurrentUser(): void {//gets the current user
-    this.storageService.getUser().subscribe(user => {
-      this.User = user;
-      this.populateCheck()
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.storageService.getUser(resp.uid).subscribe(user => {
+            this.User = user;
+            this.populateCheck();
+          });
+        }
+      }
     });
   }
   GetHome(id): void {//gets the current home
@@ -124,11 +131,11 @@ export class EditDetailsComponent implements OnInit {
   }
   ngOnInit() {
     this.GetCurrentUser();
-    this.route.queryParams//gets the id of the current recipe from the queryParams
+    this.route.queryParams//gets the id of the current home from the queryParams
       .filter(params => params.id)
       .subscribe(params => {
         if (params['id']) {
-          this.GetHome(params.id);//gets the recipe based on the id from the queryParam
+          this.GetHome(params.id);//gets the home based on the id from the queryParam
         }
       });
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page

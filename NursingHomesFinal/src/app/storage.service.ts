@@ -20,13 +20,7 @@ export class StorageService {
     firebaseURL: string = 'https://cmoo-a7730.firebaseio.com/';
 
     constructor(private afa: AngularFireAuth, private http: HttpClient) {
-        this.afa.authState.subscribe((resp) => {
-            if (resp != null) {
-                if (resp.uid) {
-                    this.uid = resp.uid;
-                }
-            }
-        });
+        
     }
 
     getNeedsACheck() {
@@ -53,8 +47,8 @@ export class StorageService {
     setCurrentHome(Home: Home): void {
         this.CurrentHome = Home;
     }
-    getUser(): Observable<any> {
-        return this.http.get(this.firebaseURL + "users/" + this.uid + ".json");
+    getUser(uid): Observable<any> {
+        return this.http.get(this.firebaseURL + "users/" + uid + ".json");
     }
     setCriteria(criteria: string[]): void {
         this.Criteria = criteria;

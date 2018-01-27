@@ -29,7 +29,7 @@ export class AuthService {
   }
   canActivate(): Observable<boolean> {//guards the routes, directing the user to the login page if not logged in
     return this.afAuth.authState.map(authState => {
-      if (!authState) this.router.navigate(['/login']);
+      if (!authState) this.router.navigate(['/webSide/login']);
       return !!authState;
     });
   }

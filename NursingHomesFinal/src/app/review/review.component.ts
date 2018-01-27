@@ -5,6 +5,7 @@ import { Review } from "../Review";
 import { Home } from "../Home";
 import { StorageService } from "../storage.service";
 import 'script.js';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 declare var myExtObject: any;
 
@@ -28,7 +29,7 @@ export class ReviewComponent implements OnInit {
     { id: 3, name: "Patient Issue", responses: [{ text: "Issue is with other Patients", tier: 3 }, { text: "Possible Issue with all Staff", tier: 3 }, { text: "Possible Issue with all Management", tier: 3 }, { text: "Not Current Patient Review", tier: 3 }, { text: "Unhappy with Funding", tier: 3 }, { text: "Not Patient Review", tier: 3 }, { text: "Not Family Member Review", tier: 3 }, { text: "Issued Caused by Patient", tier: 3 }, { text: "Issue Caused by Patient Family Actions", tier: 3 }, { text: "Billing Issue", tier: 3 }] },
   ]
   selectedResponses: any[];
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService, private afa: AngularFireAuth) {
     this.GetUser();
   }
   CheckRating(rating: number): string {//shows stars
@@ -37,8 +38,14 @@ export class ReviewComponent implements OnInit {
     else return "yellow star half empty icon"
   }
   GetUser(): void {//gets current user
-    this.storageService.getUser().subscribe(user => { 
-      this.User=user
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.storageService.getUser(resp.uid).subscribe(user => {
+            this.User = user;
+          });
+        }
+      }
     });
   }
   IncrementAgreed() {//increments number who agree

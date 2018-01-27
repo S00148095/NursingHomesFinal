@@ -6,14 +6,13 @@ different currencies
 
 should have
 reviews, like/dislike pushed to db*
-Review heading(x total)*
 individual images*
 agree/disagree button width*
 creating account*
-payment on refresh is strange*
 contact page does something*
-Edit Home*
-limit reviews, agrees, comment length,description*
+Edit Home does something*
+limit reviews, agrees, disagrees comment length,description*
+contact phone undefined*
 ratio not reducing fully
 icon on comment
 claim home button-move
@@ -25,6 +24,7 @@ feedback autofill to us
 number of views-on page and crm
 test extra search paramaters-search results
 distance when not coming from home
+something sometimes logs out user for no reason
 
 could have
 menu on first page

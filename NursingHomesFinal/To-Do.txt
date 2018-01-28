@@ -7,9 +7,8 @@ different currencies
 check database rules
 
 should have
-generate stripe customer when a user who has homes is created*
 make the account screen less ugly*
-site to check on submissions for homes*
+site to check on submissions for homes-update home user*
 response updates review*
 limit reviews, comment length, description*
 agree/disagree button width*

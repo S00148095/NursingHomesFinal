@@ -6,13 +6,13 @@ different currencies
 check database rules
 
 should have
+response updates review*
 limit reviews, comment length, description*
 agree/disagree button width*
 creating account*
 contact page does something*
 toasts needed on login page and agree/disagree*
 individual images*
-reviews affect rating*
 ratio not reducing fully
 icon on comment
 claim home button-move

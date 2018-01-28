@@ -40,7 +40,6 @@ export class StorageService {
                 if (resp.uid) {
                     this.http.patch(this.firebaseURL + "homes/" + Home.ID + ".json", this.Format(Home)).subscribe(params => {
                         this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID + ".json", this.Format(Home)).subscribe(params => {
-                            this.router.navigateByUrl("/webSide/account");
                         });
                     });
                 }
@@ -61,7 +60,8 @@ export class StorageService {
             "staff": Home.staff,
             "description": Home.description,
             "careTypes": Home.careTypes,
-            "facilities": Home.facilities
+            "facilities": Home.facilities,
+            "rating": Home.rating
         }
         return postdata
     }
@@ -112,9 +112,17 @@ export class StorageService {
             if (resp != null) {
                 if (resp.uid) {
                     this.http.patch(this.firebaseURL + "homes/" + Home.ID + "/reviews/"+Review.reviewID+".json", this.FormatReview(Review)).subscribe(params => {
-                        console.log(params);
                         this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID  + "/reviews/"+Review.reviewID+ ".json", this.FormatReview(Review)).subscribe(ret => {
-                        console.log(ret);
+                            var total=0;
+                            var reviews=[];
+                            for (var k in Home.reviews) {
+                                reviews.push(Home.reviews[k]);
+                              }
+                            reviews.forEach(element => {
+                                total+=element.overall;
+                            });
+                            Home.rating=total/reviews.length;
+                            this.updateHome(Home);
                         });
                     });
                 }

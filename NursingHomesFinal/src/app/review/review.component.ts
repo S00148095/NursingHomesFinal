@@ -22,6 +22,7 @@ export class ReviewComponent implements OnInit {
   Home: Home;
   ID: string;
   disabled: boolean;
+  uid:string;
   responses: any[] = [
     { id: 0, name: "General", responses: [{ text: "False Review", tier: 0 }, { text: "Review Acknowledged", tier: 0 }, { text: "Feedback Acknowledged", tier: 0 }, { text: "One-off Incident", tier: 0 }, { text: "Investigating Issue", tier: 1 }, { text: "Issue Resolved", tier: 1 }, { text: "Isolated Issue Resolved", tier: 1 }, { text: "Fair Review", tier: 1 }, { text: "Unfair Review", tier: 1 }, { text: "Slightly Bias Review", tier: 2 }, { text: "Issue Patient Specific", tier: 2 }] },
     { id: 1, name: "Possible Issue", responses: [{ text: "Investigated Issue - Unfair Review", tier: 2 }, { text: "Investigated Issue - Changes Made", tier: 2 }, { text: "Investigated Issue - Fair Review", tier: 2 }, { text: "Outside of Homes Control", tier: 2 }, { text: "Unrealistic Patient Expectations", tier: 3 }, { text: "Unrealistic Patient Demands", tier: 3 }, { text: "Extreme Specialist Care Required", tier: 3 }, { text: "Patient Never Raised Issue to be Resolved", tier: 3 }, { text: "One-off Incident - Dealing with Client", tier: 1 }, { text: "Fair Acceptable Review", tier: 3 }] },
@@ -38,11 +39,13 @@ export class ReviewComponent implements OnInit {
     else return "yellow star half empty icon"
   }
   GetUser(): void {//gets current user
+    this.uid=null;
     this.afa.authState.subscribe((resp) => {
       if (resp != null) {
         if (resp.uid) {
           this.storageService.getUser(resp.uid).subscribe(user => {
             this.User = user;
+            this.uid=resp.uid;
           });
         }
       }
@@ -89,6 +92,7 @@ export class ReviewComponent implements OnInit {
   }
   LeaveReview(value): void {//sets the response of the home
     this.Review.response = value;
+    this.storageService.UpdateReviews(this.Home,this.Review);
     this.ClosePopup();
   }
   CheckResponse(): boolean {//shows response if there is one
@@ -104,7 +108,7 @@ export class ReviewComponent implements OnInit {
     else return false
   }
   TestHomes(): boolean {//sees if the user is affilliated with the home
-    if (this.Home.userID == this.User.email) {
+    if (this.Home.userID == this.uid) {
       return true;
     }
     else return false;

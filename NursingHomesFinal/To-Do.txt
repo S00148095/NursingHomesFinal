@@ -5,11 +5,12 @@ SEO
 update stripe key to live
 different currencies
 check database rules
+add live home data
 
 should have
+loading screens*
 make the account screen less ugly*
 site to check on submissions for homes-update home user*
-response updates review*
 limit reviews, comment length, description*
 agree/disagree button width*
 contact page does something*

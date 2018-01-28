@@ -18,10 +18,19 @@ export class StorageService {
     needsACheck: boolean;
     firebaseURL: string = 'https://cmoo-a7730.firebaseio.com/';
 
-    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router) {
+    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router) { }
 
+    submitHomes(Homes: Home[]) {
+        this.afa.authState.subscribe((resp) => {
+            if (resp != null) {
+                if (resp.uid) {
+                    this.http.post(this.firebaseURL + "submissions/" + resp.uid +".json", this.FormatSubmission(Homes, resp.uid)).subscribe(params => {
+                    this.router.navigateByUrl("/webSide/account");
+                    });
+                }
+            }
+        });
     }
-
     getNeedsACheck() {
         return this.needsACheck;
     }
@@ -46,6 +55,13 @@ export class StorageService {
             }
         });
     }
+    FormatSubmission(Homes: Home[], uid: string) {
+        var postdata = {
+            "uid": uid,
+            "homes": Homes
+        }
+        return postdata
+    }
     Format(Home: Home) {
         var postdata = {
             "name": Home.name,
@@ -66,25 +82,25 @@ export class StorageService {
         return postdata
     }
     FormatReview(Review: Review) {
-        var postdata = {            
-            "reviewID" : Review.reviewID,
-            "user" : Review.user,
-            "care" : Review.care,
-            "cleanliness" : Review.cleanliness,
-            "staff" : Review.staff,
-            "dignity" : Review.dignity,
-            "food" : Review.food,
-            "facilities" : Review.dignity,
-            "management" : Review.management,
-            "rooms" : Review.rooms,
-            "safety" : Review.safety,
-            "value" : Review.value,
-            "location" : Review.location,
-            "activities" : Review.activities,
-            "overall" : Review.overall,
-            "comment" : Review.comment,
-            "agreed" : Review.agreed,
-            "disagreed" : Review.disagreed,
+        var postdata = {
+            "reviewID": Review.reviewID,
+            "user": Review.user,
+            "care": Review.care,
+            "cleanliness": Review.cleanliness,
+            "staff": Review.staff,
+            "dignity": Review.dignity,
+            "food": Review.food,
+            "facilities": Review.dignity,
+            "management": Review.management,
+            "rooms": Review.rooms,
+            "safety": Review.safety,
+            "value": Review.value,
+            "location": Review.location,
+            "activities": Review.activities,
+            "overall": Review.overall,
+            "comment": Review.comment,
+            "agreed": Review.agreed,
+            "disagreed": Review.disagreed,
             "response": Review.response
         }
         return postdata
@@ -107,21 +123,21 @@ export class StorageService {
     getCriteria(): string[] {
         return this.Criteria;
     }
-    UpdateReviews(Home:Home,Review: Review): void {
+    UpdateReviews(Home: Home, Review: Review): void {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
                 if (resp.uid) {
-                    this.http.patch(this.firebaseURL + "homes/" + Home.ID + "/reviews/"+Review.reviewID+".json", this.FormatReview(Review)).subscribe(params => {
-                        this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID  + "/reviews/"+Review.reviewID+ ".json", this.FormatReview(Review)).subscribe(ret => {
-                            var total=0;
-                            var reviews=[];
+                    this.http.patch(this.firebaseURL + "homes/" + Home.ID + "/reviews/" + Review.reviewID + ".json", this.FormatReview(Review)).subscribe(params => {
+                        this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID + "/reviews/" + Review.reviewID + ".json", this.FormatReview(Review)).subscribe(ret => {
+                            var total = 0;
+                            var reviews = [];
                             for (var k in Home.reviews) {
                                 reviews.push(Home.reviews[k]);
-                              }
+                            }
                             reviews.forEach(element => {
-                                total+=element.overall;
+                                total += element.overall;
                             });
-                            Home.rating=total/reviews.length;
+                            Home.rating = total / reviews.length;
                             this.updateHome(Home);
                         });
                     });

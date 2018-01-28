@@ -48,6 +48,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
+import { HomeSignupComponent } from './home-signup/home-signup.component';
 
 
 /*===============
@@ -85,6 +86,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'details', component: DetailsComponent },
       { path: 'edit-details', component: EditDetailsComponent,canActivate: [AuthService] },
+      { path: 'home-signup', component: HomeSignupComponent,canActivate: [AuthService] },
       { path: 'forgot', component: ForgotComponent },
       { path: 'login', component: LoginComponent },
       { path: 'search-results', component: SearchResultsComponent },
@@ -143,7 +145,8 @@ const routes: Routes = [
     WebsiteSideRouteComponent,
     CrmSideRouteComponent,
     CallbackComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    HomeSignupComponent
   ],
   imports: [
     BrowserModule,

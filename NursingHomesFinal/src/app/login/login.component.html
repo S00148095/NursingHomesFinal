@@ -7,15 +7,15 @@
     <div class="contentexpanded">
       <div class="field">
         <label>Confirm Email Address</label>
-        <input type="text" name="confirmemail" placeholder="Email">
+        <input type="text" name="confirmemail" [(ngModel)]="confirmemail" placeholder="Email">
       </div>
       <div class="field">
         <label>First Name</label>
-        <input type="text" name="fname" placeholder="First Name">
+        <input type="text" name="fname" [(ngModel)]="firstName" placeholder="First Name">
       </div>
       <div class="field">
         <label>Surname</label>
-        <input type="text" name="sname" placeholder="Surname">
+        <input type="text" name="sname" [(ngModel)]="surname" placeholder="Surname">
       </div>
     </div>
     <div class="field">
@@ -25,12 +25,18 @@
     <div class="contentexpanded">
       <div class="field">
         <label>Confirm Password</label>
-        <input type="text" name="confirmpassword" placeholder="Password">
+        <input type="password" name="confirmpassword" [(ngModel)]="confirmpassword" placeholder="Password">
+      </div>
+      <div class="inline field">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" [(ngModel)]="isHome" tabindex="0" class="hidden">
+          <label><h4>I manage a home</h4></label>
+        </div>
       </div>
       <div class="ui two fluid buttons">
         <button class="ui custombutton button" id="expand" onclick="Expand()">Have an Account?</button>
         <div class=or></div>
-        <a class="ui custombutton button">Create Account</a>
+        <a class="ui custombutton button" (click)="SignUp()">Create Account</a>
       </div>
     </div>
     <div class="ui two fluid buttons contentvisible">

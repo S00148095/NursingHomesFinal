@@ -377,3 +377,12 @@ form.checkout {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+  .dropdown {
+    padding: 10px;
+    border: 1px lightgray solid;
+    box-shadow: 5px 5px 5px 5px lightgray;
+}
+.hoverable {
+    margin: 0;
+    padding: 1px;
+}

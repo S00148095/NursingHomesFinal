@@ -32,10 +32,10 @@ var keycounter = 0;
 var isfinished;
 
 function initPopup(id) {
-    $("#"+id).fadeToggle();
+    $("#" + id).fadeToggle();
 }
 function closePopup(id) {
-    $("#"+id).fadeOut();
+    $("#" + id).fadeOut();
 }
 function initFullpage(value) {
     if (typeof $.fn.fullpage.destroy == 'function') {
@@ -154,6 +154,9 @@ var myExtObject = (function () {
         },
         InitTabs: function () {
             $('.menu .item').tab();
+        },
+        InitCheckbox: function () {
+            $('.ui.checkbox').checkbox();
         },
         ClearData: function () {
             localStorage.clear();

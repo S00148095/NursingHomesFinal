@@ -1,23 +1,26 @@
 before release
-responsivness
+hosting
+responsiveness
 SEO
 update stripe key to live
 different currencies
 check database rules
 
 should have
+generate stripe customer when a user who has homes is created*
+make the account screen less ugly*
+site to check on submissions for homes*
 response updates review*
 limit reviews, comment length, description*
 agree/disagree button width*
-creating account*
 contact page does something*
-toasts needed on login page and agree/disagree*
+toasts needed on login page, submithomes and agree/disagree*
 individual images*
+create doesn't do name
 ratio not reducing fully
 icon on comment
-claim home button-move
+claim home button-move/remove
 response section css
-switch to owner and user
 room types
 viewing times
 number of views-on page and crm
@@ -28,6 +31,6 @@ sort reviews
 
 could have
 menu on first page
-toastr notifications-done on details, maybe needed elswhere? also close button, timout etc
+toastr notifications close button, timout etc
 filter by care types accordion
 care types on results

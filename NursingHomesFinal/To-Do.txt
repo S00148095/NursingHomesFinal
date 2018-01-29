@@ -1,17 +1,17 @@
 before release
+must have
 hosting
 responsiveness
 SEO
 update stripe key to live
-different currencies
 check database rules
 add live home data
 
 should have
 loading screens*
-make the account screen less ugly*
+make the account screen less ugly-hime homes etc if no homes*
 site to check on submissions for homes-update home user*
-limit reviews, comment length, description*
+limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*
 toasts needed on login page, submithomes and agree/disagree*
@@ -34,3 +34,4 @@ menu on first page
 toastr notifications close button, timout etc
 filter by care types accordion
 care types on results
+different currencies

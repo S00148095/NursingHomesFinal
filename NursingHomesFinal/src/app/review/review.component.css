@@ -4,4 +4,32 @@
     select{
         margin-top: 5px;
     }
+    .ui.bottom.attached.active.tab.segment, 
+    .ui.bottom.attached.tab.segment,
+    .ui.top.attached.tabular.menu,
+    .smallpad,
+    .ui.horizontal.segments{
+        display: none;
+    }
+    .rating, .ratingtext{
+        text-align: center;
+    }
+    .ratingtext{
+        margin-top: 0.5em;
+    }
+    .showuser{
+        font-size: 1.2em;
+    }
+    .comment{
+        border-bottom: 1px solid #49D49D;
+        padding-bottom: .7em;
+    }
+
 }/* end mobile */
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .mob-only{
+        display: none;
+    }
+}/* end desktop */

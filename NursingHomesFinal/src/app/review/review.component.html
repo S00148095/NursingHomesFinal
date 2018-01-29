@@ -1,5 +1,5 @@
 <div class="ui raised vertical segment">
-    <div class="ui form contactForm" [id]="ID">
+    <div *ngIf="CheckTier()" class="ui form contactForm" [id]="ID">
         <div *ngIf="CheckTier()" class="field">
           <label>Response category:</label>
           <select class="ui dropdown" #cat (change)="UpdateDrop(cat.value)">
@@ -71,11 +71,29 @@
         <h3 class="ratingtext">{{Review.overall}}/5</h3>
       </div>
     </div>
+    
   </div>
   <div class="ui bottom attached tab segment" data-tab="second">
     <p class="comment">{{Review.comment}}</p>
     <p *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
   </div>
+  <!-- MOBILE ONLY -->
+  <div class="mob-only">
+      <h4 class="showuser">{{Review.user}}</h4>
+      <div class=rating>
+        <i [ngClass]="CheckRating(1)"></i>
+        <i [ngClass]="CheckRating(2)"></i>
+        <i [ngClass]="CheckRating(3)"></i>
+        <i [ngClass]="CheckRating(4)"></i>
+        <i [ngClass]="CheckRating(5)"></i>
+      </div>
+      <h3 class="ratingtext">{{Review.overall}}/5</h3>
+    <div class="ui segment">
+      <p class="comment">"{{Review.comment}}"</p>
+      <p *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
+    </div>
+  </div>
+  <!-- end mobile only -->
   <div class="smallpad" [attr.data-tooltip]="GetTooltip()" data-position="bottom center">
     <div class="ui inline nopad mini green animated button" (click)="IncrementAgreed()">
       <div class="visible content">Agree</div>

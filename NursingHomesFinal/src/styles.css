@@ -2,6 +2,17 @@
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 @import "../node_modules/@ngx-share/button/styles/share-buttons.css";
 @import "../node_modules/@ngx-share/button/styles/themes/modern/modern-dark-theme.css";
+
+.contentexpanded {
+    display: none;
+    padding-bottom: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+.hamburger, .cross, .menu{
+    display: none;
+}
 .otherhalf
 {
     color: #2E9AC5;
@@ -118,6 +129,9 @@
     background-color: #49D49D;
     color: white;
     text-align: center;
+}
+.ui.custombutton.button.mobile-only{
+    display: none;
 }
 .ui.custombutton.button:active
 {      
@@ -377,3 +391,168 @@ form.checkout {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+}/*end desktop responsive 
+
+
+
+
+  /*
+  *****************************************************************************************************
+  *****************************************************************************************************
+  ********************************** RESPONSIVENESS STARTS HERE  **************************************
+  *****************************************************************************************************
+  *****************************************************************************************************
+  */
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    *{
+    }
+    /* topbar */
+    app-top-bar{
+        width: 100%;
+        overflow: visible;
+    }
+    .mob.fixed.padded.header{
+        background: #49D49D;
+        width: 100%;
+        height: 8%;
+        line-height: 8%;
+        position: fixed;
+        color: #fff;
+        z-index: 100;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .mob.fixed.padded.header>h1{
+        font-size: 3em;
+        padding: 3% 0 1%;
+        display: inline;
+    }
+    .mob.fixed.padded.header button:not(.mob-button), .mob.fixed.padded.header a:not(.mob-button){
+        display: none;
+    }
+    .mob-button{
+        display: inline;
+    }
+    .otherhalf{
+        color: #2E9AC5;
+    }
+    /* hamburger menu */
+    .hamburger{
+        background:none;
+        position:absolute;
+        top:0;
+        right:0;
+        padding:7px 15px 0px 15px;
+        line-height:45px;
+        color:#fff;
+        border:0;
+        font-size:1.4em;
+        font-weight:bold;
+        cursor:pointer;
+        outline:none;
+        z-index:10000000000000;
+    }
+    .cross{
+        background:none;
+        position:absolute;
+        top:0px;
+        right:0;
+        padding:7px 15px 0px 15px;
+        color:#000;
+        border:0;
+        font-size:3em;
+        line-height:65px;
+        font-weight:bold;
+        cursor:pointer;
+        outline:none;
+        z-index:10000000000000;
+    }
+    .menu{z-index:1000000; font-weight:bold; font-size:0.8em; width:100%; background:#f1f1f1;  position:absolute; top: 0; text-align:center; font-size:12px;}
+    .menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none;}
+    .menu li {display: block;   padding:15px 0 15px 0; border-bottom:#dddddd 1px solid;}
+    .menu li:hover{display: block;    background:#ffffff; padding:15px 0 15px 0; border-bottom:#dddddd 1px solid;}
+    .menu ul li a { text-decoration:none;  margin: 0px; color:#666;}
+    .menu ul li a:hover {  color: #666; text-decoration:none;}
+    .menu a{text-decoration:none; color:#666;}
+    .menu a:hover{text-decoration:none; color:#666;}
+    .glyphicon-home{
+        color:white; 
+        font-size:1.5em; 
+        margin-top:5px; 
+        margin:0 auto;
+    }
+    span:not(.otherhalf){
+        padding-left:20px;
+    }
+    a{
+        color:#336699;
+    }/* end of hamburger stuff */
+    /*end of topbar stuff*/
+    /*home component stuff*/
+    .scrollablecontent.home{
+        width:100%;
+    }
+    .padded.homecontainer.padded.section{
+        background: #fff;
+        background-image:
+            radial-gradient(#dcd0c0 20%, transparent 0), 
+            radial-gradient(#dcd0c0 20%, transparent 0);
+        background-size: 30px 30px;
+        background-position: 0 0, 15px 15px;
+        padding: 50% 0;
+    }
+    .mob-spacer{
+        height: 10vh;
+        width: 100%;
+    }
+    .padded.section{
+        max-width: 100%;
+        padding: 18% 2%;
+    }
+    #inputs, a.ui.custombutton.button.mobile-only{
+        max-width: 80%;
+        font-size: 1em;
+        margin: auto;
+        border-radius: 0px;
+    }
+    input[type=text]{
+        border-radius: 0px;
+    }
+    a.ui.custombutton.button.mobile-only{
+        text-transform: uppercase;
+    }
+    a.ui.custombutton:not(.mobile-only){
+        display: none;
+    }
+    .padded.section>p{
+        max-width: 90%;
+        margin: 5% auto;
+        color: rgba(0,0,0,0.8);
+    }
+    .padded.section>h1{
+        display: none;
+    }
+    .ui.three.column.centered.grid>.column{
+        display: none;
+    }
+    .padded.section:nth-of-type(2){
+        background: #49D49D;
+        font-weight: 300;
+    }
+    .padded.section:nth-of-type(2)>p{
+        color: #fff;
+    }
+    .padded.section:nth-of-type(6), .padded.section:nth-of-type(4), .padded.section:nth-of-type(5){
+        display: none;
+    }
+    /* end of home component */
+    /* all other component responsive styling stuff is in that component's css file */
+}/* end mobile phone responsive */
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+}/* end tablet responsive */

@@ -2,3 +2,39 @@
 {
     cursor: pointer;
 }
+.mobile-only{
+    display: none;
+}
+@media only screen and (max-width: 768px) {
+    /* for mobile phones */
+
+    .ui.horizontal.nomargin.nooverflow.segments{
+        display: none;
+    }
+    .mobile-only{
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(0,0,0,0.5);
+    }
+    .home-image{
+        width: 100%;
+        margin: 0;
+    }
+    .home-name{
+        text-align: center;
+        padding: 1%;
+        margin: 0;
+    }
+    .home-address{
+        display: inline;
+        float: left;
+        margin-right: 30%;
+    }
+    .rating-text{
+        display: inline;
+        float: right;
+        margin-left: 4em;
+    }
+
+}/* end mobile */

@@ -1,0 +1,24 @@
+@media only screen and (max-width: 768px) {
+    /* for mobile phones */
+
+    .centred.scrollablecontent{
+        max-width: 90%;
+        margin: auto;
+    }
+    a.ui.custombutton.button{
+        display: block;
+    }
+    button{
+        display: none;
+    }
+    .mob-heading{
+        text-align: center;
+    }
+    .ui.form .field{
+        margin: 9px auto;
+    }
+    .ui.form{
+        width: 100%;
+    }
+
+}/* end mobile responsiveness */

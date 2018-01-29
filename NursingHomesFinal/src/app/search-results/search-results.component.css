@@ -1,0 +1,23 @@
+
+@media only screen and (max-width: 768px) {
+    /* for mobile phones */
+
+    .scrollablecontent{
+        width: 100%;
+    }
+    .ui.equal.width.padded.form{
+        width: 100%;
+    }
+    .fields{
+        width: 100%;
+        margin: auto;
+    }
+    .field{
+        width: 90%;
+        margin: auto;
+    }
+    .field:first-of-type{
+        display: none;
+    }
+
+}/* end mobile */

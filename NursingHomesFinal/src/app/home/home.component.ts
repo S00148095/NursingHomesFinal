@@ -62,11 +62,13 @@ export class HomeComponent implements OnInit {
       this.storageService.updateAddress(this.address);
       this.storageService.updateCheck(true);
       this.router.navigateByUrl('/webSide/search-results');
-      break;
+      break; 
     }
   }
   ngOnInit() {
-    myExtObject.initFullpage("home");//tells the full page plugin to fire on this page
+    if(window.screen.width > 767){
+      myExtObject.initFullpage("home");//tells the full page plugin to fire on this page if on desktop/laptop
+    }
   }
 
 }

@@ -39,7 +39,7 @@ var tier2year = 699;
 var tier3year = 999;
 var tier4year = 1499;
 var grandtotal = 0;
-alert("demo");
+//alert("demo");
 function initPopup(id) {
     $("#"+id).fadeToggle();
 }

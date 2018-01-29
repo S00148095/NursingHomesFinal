@@ -1,4 +1,4 @@
-<div class="fixed padded header">
+<div class="mob fixed padded header">
   <h1 class="inline" [routerLink]="['../webSide']">Care<span class="otherhalf">ze</span></h1>
   <a class="ui inline blue right floated button" *ngIf="CheckLogin()" [routerLink]="['login']">Log In</a>
   <div class="inline" *ngIf="CheckLogOut()">
@@ -7,5 +7,15 @@
       <button class="ui  blue button" [routerLink]="['/webSide/dashboard']">Dashboard</button>
       <button class="ui right attached blue button" (click)="Logout()">Log Out</button>
     </div>
-  </div>
-</div>
+  </div> 
+  <button class="mob-button hamburger">&#9776;</button>
+  <button class="mob-button cross">&#735;</button>
+  <div class="menu">
+    <ul>
+      <a class="mob-button" *ngIf="CheckLogin()" [routerLink]="['login']"><li>Login</li></a>
+      <a class="mob-button" [routerLink]="['/webSide/account']"><li>Account</li></a>
+      <a class="mob-button" [routerLink]="['/webSide/dashboard']"><li>Dashboard</li></a>
+      <a class="mob-button" (click)="Logout()"><li>Logout</li></a>
+    </ul>
+  </div> 
+</div> 

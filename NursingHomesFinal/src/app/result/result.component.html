@@ -10,15 +10,22 @@
       <h3 class="nomargin">{{Home.address}}, {{Home.county}}</h3>
     </div>
     <div class="ui small segment" *ngIf="checkHomeReviews()">
-    <div class=rating>
+    <div class="rating">
       <i [ngClass]="CheckRating(1)"></i>
       <i [ngClass]="CheckRating(2)"></i>
       <i [ngClass]="CheckRating(3)"></i>
       <i [ngClass]="CheckRating(4)"></i>
       <i [ngClass]="CheckRating(5)"></i>
     </div>
-      <h3 class="ratingtext">{{Home.rating}}/5</h3>
+      <h3 class="ratingtext">{{Home.rating/2}}/5</h3>
       <p class="ratingtext">({{NumReviews}})</p>
     </div>
+  </div> 
+  <!-- mobile only -->
+  <div class="mobile-only" [style.border]="SelectedStyle()" (click)="UpdateCurrentHome()">
+      <img class="home-image" src="/assets/home.jpg" />
+      <h2 class="home-name">{{Home.name}}</h2>
+      <h3 class="home-address">{{Home.address}}, {{Home.county}}</h3>
+      <h3 class="ratingtext">{{Home.rating/2}}/5</h3>
   </div>
 </div>

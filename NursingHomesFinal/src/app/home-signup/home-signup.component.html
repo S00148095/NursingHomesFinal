@@ -1,0 +1,18 @@
+<div class="centred scrollablecontent">
+  <div class="ui form">
+    <div class="field">
+      <h2>Homes</h2>
+      <h4>So far:
+        <span *ngFor="let home of addedHomes">{{home.name}} </span>
+      </h4>
+      <input type="text" [(ngModel)]="test" (input)="getAutocomplete()" placeholder="Search homes...">
+      <div class="dropdown" *ngIf="checkLength()">
+        <div class="hoverable" *ngFor="let home of sortedHomes">
+          <a class="inline ui custombutton tiny right floated button" (click)="AddHome(home)">Add</a>
+          <p class="inline">{{home?.name}}</p>
+        </div>
+      </div>
+    </div>
+    <button class="ui custombutton fluid button" (click)="SubmitHomes()">Submit</button>
+  </div>
+</div>

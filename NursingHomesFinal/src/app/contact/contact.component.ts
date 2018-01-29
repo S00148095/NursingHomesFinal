@@ -4,6 +4,7 @@ import { User } from "../User";
 import { StorageService } from "../storage.service";
 import 'script.js';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 declare var myExtObject: any;
 
@@ -17,7 +18,7 @@ export class ContactComponent implements OnInit {
   currentHome: Home;
   User: User;
 
-  constructor(private storageService: StorageService, private route: ActivatedRoute) 
+  constructor(private storageService: StorageService, private route: ActivatedRoute, private afa: AngularFireAuth) 
   {
     this.GetUser();
   }
@@ -33,9 +34,15 @@ export class ContactComponent implements OnInit {
       this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@kudoshealth.com","Declan Trumble","","","","","",[],[],0,[],0,0,0);
     }
   }
-  GetUser(): void {//gets the current user to autofill their details
-    this.storageService.getUser().subscribe(user => { 
-      this.User=user
+  GetUser(): void {//gets the current user from the service
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.storageService.getUser(resp.uid).subscribe(user => {
+            this.User = user;
+          });
+        }
+      }
     });
   }
   CheckHome(): boolean {//shows the address etc of the current home if applicable
@@ -44,10 +51,6 @@ export class ContactComponent implements OnInit {
   }
   CheckUserEmail(): string {//autofills email if a user is logged in
     if(this.User!=null) return this.User.email;
-    else return "";
-  }
-  CheckUserPhone(): string {//autofills phone if a user is logged in
-    if(this.User!=null) return this.User.phone;
     else return "";
   }
   CheckHomeEmail(): string {//autofills the home's email ig applicable

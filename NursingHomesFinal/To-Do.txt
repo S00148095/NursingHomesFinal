@@ -1,0 +1,37 @@
+before release
+must have
+hosting
+responsiveness
+SEO
+update stripe key to live
+check database rules
+add live home data
+
+should have
+loading screens*
+make the account screen less ugly-hime homes etc if no homes*
+site to check on submissions for homes-update home user*
+limit reviews?, comment length, description*
+agree/disagree button width*
+contact page does something*
+toasts needed on login page, submithomes and agree/disagree*
+individual images*
+create doesn't do name
+ratio not reducing fully
+icon on comment
+claim home button-move/remove
+response section css
+room types
+viewing times
+number of views-on page and crm
+test extra search paramaters-search results
+distance when not coming from home is buggy
+something sometimes logs out user for no reason
+sort reviews
+
+could have
+menu on first page
+toastr notifications close button, timout etc
+filter by care types accordion
+care types on results
+different currencies

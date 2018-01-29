@@ -4,16 +4,44 @@ const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase);
 const stripe = require('stripe')('sk_test_LtS2n7Uh6j8VneCZxqeTGkDh');
 
-function updateHomes(homes,userID) {
+function updateHomes(homes, userID) {
   var updates = {};
-  for (i = 0; i <homes.length; i++) {
-  updates['/homes/' + homes[i].id + '/tier'] = homes[i].tier;
-  updates['/users/'+userID+'/homes/' + homes[i].id + '/tier'] = homes[i].tier;
+  for (i = 0; i < homes.length; i++) {
+    updates['/homes/' + homes[i].id + '/tier'] = homes[i].tier;
+    updates['/users/' + userID + '/homes/' + homes[i].id + '/tier'] = homes[i].tier;
   }
-  console.log(updates);
   return updates;
 }
+function updateUser(userId,id)
+{
+  var updates={
+  };
+  updates['/users/' + userId + '/StripeId'] = id;
+  return updates;
+}
+exports.stripeCreate = functions.database
+  .ref('/submissions/{userId}')
+  .onWrite(event => {
+    const userId = event.params.userId;
 
+    return admin.database()
+      .ref(`/users/${userId}`)
+      .once('value')
+      .then(snapshot => {
+        return snapshot.val();
+      })
+      .then(val => {
+        var email=val.email;
+
+        stripe.customers.create({
+          email: email
+        }, function(err, customer) {
+          var updates={};
+          updates = updateUser(userId,customer.id);
+          return admin.database().ref().update(updates);
+        });
+      });
+  });
 exports.stripeCharge = functions.database
   .ref('/payments/{userId}/{paymentId}')
   .onWrite(event => {
@@ -22,6 +50,7 @@ exports.stripeCharge = functions.database
     const homes = payment.homes;
     const term = payment.term;
     const stripeID = payment.stripeID;
+    const token = payment.token.id;
     var items;
     var standardQuantity = 0, bronzeQuantity = 0, silverQuantity = 0, goldQuantity = 0, diamondQuantity = 0;
 
@@ -79,10 +108,11 @@ exports.stripeCharge = functions.database
               ]
               stripe.subscriptions.create({
                 customer: customer.id,
-                items: items
+                items: items,
+                source: token
               }, function (err, subscription) {
                 var updates = {};
-                updates = updateHomes(homes,userID);
+                updates = updateHomes(homes, userID);
 
                 return admin.database().ref().update(updates);
               });
@@ -144,10 +174,11 @@ exports.stripeCharge = functions.database
                 ]
 
                 return stripe.subscriptions.update(customer.subscriptions.data[0].id, {
-                  items: items
+                  items: items,
+                  source: token
                 }, function (err, subscription) {
                   var updates = {};
-                  updates = updateHomes(homes,userId);
+                  updates = updateHomes(homes, userId);
 
                   return admin.database().ref().update(updates);
                 });

@@ -29,7 +29,7 @@ export class AuthService {
   }
   canActivate(): Observable<boolean> {//guards the routes, directing the user to the login page if not logged in
     return this.afAuth.authState.map(authState => {
-      if (!authState) this.router.navigate(['/login']);
+      if (!authState) this.router.navigate(['/webSide/login']);
       return !!authState;
     });
   }
@@ -117,12 +117,12 @@ export class AuthService {
   }
 
   //// Email/Password Auth ////
-  emailSignUp(email: string, password: string, username: string) {
+  emailSignUp(email: string, password: string, firstname: string,surname) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
+        this.updateUserDisplayName(firstname+" "+surname)
         this.updateUserData()
-        this.updateUserDisplayName(username)
       })
       .catch(error => console.log(error));
   }

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class ResultComponent implements OnInit {
   Home: Home;
   topReview: Review;
+  reviews:Review[]=[];
   County: string;
   NumReviews: string;
   @Output() notify: EventEmitter<Home> = new EventEmitter<Home>();
@@ -27,9 +28,13 @@ export class ResultComponent implements OnInit {
     else return false
   }
   UpdateNumReviews() {//updates the number of reviews
-    if (this.Home.reviews.length > 1 || this.Home.reviews.length == 0)
-      this.NumReviews = this.Home.reviews.length + " Reviews";
-    else this.NumReviews = this.Home.reviews.length + " Review";
+    this.reviews=[];
+    for (var k in this.Home.reviews) {
+      this.reviews.push(this.Home.reviews[k]);
+    }
+    if (this.reviews.length > 1 || this.reviews.length == 0)
+      this.NumReviews = this.reviews.length + " Reviews";
+    else this.NumReviews = this.reviews.length + " Review";
   }
   UpdateCurrentHome() {//updates the current home when one is clicked on
     this.router.navigate(["/webSide/details"], { queryParams: { id: this.Home.ID } });//navigates to the details page and sets the queryParams

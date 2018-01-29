@@ -6,6 +6,8 @@ import { StorageService } from "../storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import 'script.js';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { v4 as uuid } from 'uuid';
 
 declare var myExtObject: any;
 
@@ -29,8 +31,9 @@ export class DetailsComponent implements OnInit {
     { id: 5, name: '5' }
   ];
 
-  constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private afa: AngularFireAuth, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
+    this.Reviews = [];
   }
   GetHome(id): void {//gets current home
     this.storageService.getCurrentHome(id).subscribe(home => {
@@ -42,9 +45,9 @@ export class DetailsComponent implements OnInit {
     this.Reviews = [];
     if (this.currentHome != null) {
       this.calculateRatio();
-      this.Reviews = this.currentHome.reviews;
-      this.Reviews = this.SortReviews(this.Reviews);
-      this.currentHome.reviews = this.SortReviews(this.currentHome.reviews);
+      for (var k in this.currentHome.reviews) {
+        this.Reviews.push(this.currentHome.reviews[k]);
+      }
     }
   }
   calculateRatio(): void {//calculates the bed:staff ratio 
@@ -70,16 +73,15 @@ export class DetailsComponent implements OnInit {
       myExtObject.InitTabs();
       return true;
     }
-    else {//if the hime is for some reason null it redirects back to the home page
+    else {//if the home is for some reason null it redirects back to the home page
       return false;
     }
   }
   //leaves a review, refreshes the list of reviews and informs the user that their review was left successfully 
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
-    this.GetUser();
     if (this.User != null && this.User != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
-      this.newReview = new Review(1, this.User.fName + " " + this.User.sName[0], criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, 0, 0, "");
-      this.storageService.UpdateReviews(this.newReview);
+      this.newReview = new Review(uuid(), this.User.email , criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, [], [], "");
+      this.storageService.UpdateReviews(this.currentHome,this.newReview);
       this.GetReviews();
       myExtObject.Clear();
       this.showSuccess();
@@ -92,16 +94,22 @@ export class DetailsComponent implements OnInit {
     }
   }
   GetUser(): void {//gets current user
-    this.storageService.getUser().subscribe(user => {
-      this.User = user
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.storageService.getUser(resp.uid).subscribe(user => {
+            this.User = user;
+          });
+        }
+      }
     });
   }
-  SortReviews(Reviews: Review[]): Review[] {//sorts the reviews by agreed
+  SortReviews(Reviews: Review[]): Review[] {//sorts the reviews by agreed-nees work
     switch (Reviews) {
       default:
         Reviews.sort((a, b) => {
-          if (a.agreed > b.agreed) return -1;
-          else if (a.agreed < b.agreed) return 1;
+          if (a.agreed.length > b.agreed.length) return -1;
+          else if (a.agreed.length < b.agreed.length) return 1;
           else return 0;
         });
         return Reviews
@@ -119,12 +127,13 @@ export class DetailsComponent implements OnInit {
   UpdateCurrentHome() {//updates the current home when one is clicked on
     this.router.navigate(["/webSide/contact"], { queryParams: { id: this.currentHome.ID } });//navigates to the details page and sets the queryParams
   }
-  ngOnInit() {
-    this.route.queryParams//gets the id of the current recipe from the queryParams
+  ngOnInit() { 
+    this.GetUser();
+    this.route.queryParams//gets the id of the current home from the queryParams
       .filter(params => params.id)
       .subscribe(params => {
         if (params['id']) {
-          this.GetHome(params.id);//gets the recipe based on the id from the queryParam
+          this.GetHome(params.id);//gets the home based on the id from the queryParam
         }
       });
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page

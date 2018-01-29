@@ -556,3 +556,12 @@ form.checkout {
 @media only screen and (min-width: 600px) {
     /* For tablets: */
 }/* end tablet responsive */
+  .dropdown {
+    padding: 10px;
+    border: 1px lightgray solid;
+    box-shadow: 5px 5px 5px 5px lightgray;
+}
+.hoverable {
+    margin: 0;
+    padding: 1px;
+}

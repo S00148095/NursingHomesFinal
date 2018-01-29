@@ -4,6 +4,7 @@ import { StorageService } from "../storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../User";
 import 'script.js';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 declare var myExtObject: any;
 
@@ -14,6 +15,7 @@ declare var myExtObject: any;
 })
 export class EditDetailsComponent implements OnInit {
   currentHome: Home;
+  outputHome: Home;
   User: User;
   facilities: any[] = [
     { "id": 0, "name": "Live-In Carers", "value": false },
@@ -45,29 +47,55 @@ export class EditDetailsComponent implements OnInit {
     { "id": 9, "name": "Physiotherapy", "value": false }
   ];
 
-  constructor(private storageService: StorageService, private router: Router, private route: ActivatedRoute) {
+  constructor(private afa: AngularFireAuth, private storageService: StorageService, private router: Router, private route: ActivatedRoute) {
 
   }
 
   GetCurrentUser(): void {//gets the current user
-    this.storageService.getUser().subscribe(user => {
-      this.User = user;
-      this.populateCheck()
+    this.afa.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.storageService.getUser(resp.uid).subscribe(user => {
+            this.User = user;
+            this.populateCheck();
+          });
+        }
+      }
     });
+  }
+  ToggleFacility(id) {
+    for (var i = 0; i < this.facilities.length; i++) {
+      if (id == this.facilities[i].id) {
+        this.facilities[i].value = !this.facilities[i].value;
+      }
+    }
+  }
+  ToggleCare(id) {
+    for (var i = 0; i < this.careTypes.length; i++) {
+      if (id == this.careTypes[i].id) {
+        this.careTypes[i].value = !this.careTypes[i].value;
+      }
+    }
   }
   GetHome(id): void {//gets the current home
     this.storageService.getCurrentHome(id).subscribe(home => {
       this.currentHome = home;
-      this.populateCheck()
+      this.outputHome = home;
+      this.populateCheck();
     });
   }
-  populateCheck()
-  {
+  populateCheck() {
     if (this.currentHome != null && this.currentHome != undefined && this.User != null && this.User != undefined) {
-      if (this.currentHome.userID == this.User.email) {
-        this.PopulateFacilities();
-      }
-      else this.Redirect();
+      this.afa.authState.subscribe((resp) => {
+        if (resp != null) {
+          if (resp.uid) {
+            if (this.currentHome.userID == resp.uid) {
+              this.PopulateFacilities();
+            }
+            else this.Redirect();
+          }
+        }
+      });
     }
   }
   CheckHome(): boolean { //checks if the current home is null and either populates the checkboxes or redirects the user
@@ -79,56 +107,25 @@ export class EditDetailsComponent implements OnInit {
     }
   }
   PopulateFacilities(): void {//populates the check boxes
-    this.facilities.forEach(element => {
-      element.value = this.currentHome.facilities[element.id];
-    });
-    this.careTypes.forEach(element => {
-      element.value = this.currentHome.careTypes[element.id];
-    });
+    this.facilities = this.outputHome.facilities;
+    this.careTypes = this.outputHome.careTypes;
   }
   Redirect(): void {//redirects the user
     this.router.navigateByUrl('/');
   }
-  GetName(): string {//autofills the name
-    return this.currentHome.name;
-  }
-  GetAddress(): string {//autofills the address
-    return this.currentHome.address;
-  }
-  GetCounty(): string {//autofills the county
-    return this.currentHome.county;
-  }
-  GetCountry(): string {//autofills the country
-    return this.currentHome.country;
-  }
-  GetPhone(): string {//autofills the phone
-    return this.currentHome.phone;
-  }
-  GetEmail(): string {//autofills the email
-    return this.currentHome.email;
-  }
-  GetContact(): string {//autofills the contact
-    return this.currentHome.contact;
-  }
-  GetSite(): string {//autofills the website
-    return this.currentHome.site;
-  }
-  GetBeds(): string {//autofills the beds
-    return this.currentHome.beds;
-  }
-  GetStaff(): string {//autofills the staff
-    return this.currentHome.staff;
-  }
-  GetDescription(): string {//autofills the description
-    return this.currentHome.description;
+  UpdateHome() {
+    this.outputHome.facilities = this.facilities;
+    this.outputHome.careTypes = this.careTypes;
+    this.currentHome = this.outputHome;
+    this.storageService.updateHome(this.currentHome);
   }
   ngOnInit() {
     this.GetCurrentUser();
-    this.route.queryParams//gets the id of the current recipe from the queryParams
+    this.route.queryParams//gets the id of the current home from the queryParams
       .filter(params => params.id)
       .subscribe(params => {
         if (params['id']) {
-          this.GetHome(params.id);//gets the recipe based on the id from the queryParam
+          this.GetHome(params.id);//gets the home based on the id from the queryParam
         }
       });
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page

@@ -2,71 +2,71 @@
   <div class="ui form">
     <div class="field">
       <label>Name</label>
-      <input type="text" [value]="GetName()" name="name" placeholder="Name">
+      <input type="text" [(ngModel)]="outputHome.name" name="name" placeholder="Name">
     </div>
     <div class="field">
       <label>Address</label>
-      <input type="text" [value]="GetAddress()" name="address" placeholder="Address">
+      <input type="text" [(ngModel)]="outputHome.address" name="address" placeholder="Address">
     </div>
     <div class="field">
       <label>County</label>
-      <input type="text" [value]="GetCounty()" name="county" placeholder="County">
+      <input type="text" [(ngModel)]="outputHome.county" name="county" placeholder="County">
     </div>
     <div class="field">
       <label>Country</label>
-      <input type="text" [value]="GetCountry()" name="country" placeholder="Country">
+      <input type="text" [(ngModel)]="outputHome.country" name="country" placeholder="Country">
     </div>
     <div class="field">
       <label>Phone</label>
-      <input type="text" [value]="GetPhone()" name="phone" placeholder="Phone">
+      <input type="text" [(ngModel)]="outputHome.phone" name="phone" placeholder="Phone">
     </div>
     <div class="field">
       <label>Email</label>
-      <input type="text" [value]="GetEmail()" name="email" placeholder="Email">
+      <input type="text" [(ngModel)]="outputHome.email" name="email" placeholder="Email">
     </div>
     <div class="field">
       <label>Contact Name</label>
-      <input type="text" [value]="GetContact()" name="contact" placeholder="Contact">
+      <input type="text" [(ngModel)]="outputHome.contact" name="contact" placeholder="Contact">
     </div>
     <div class="field">
       <label>Website</label>
-      <input type="text" [value]="GetSite()" name="website" placeholder="Website">
+      <input type="text" [(ngModel)]="outputHome.site" name="website" placeholder="Website">
     </div>
     <div class="field">
       <label>Number of Beds</label>
-      <input type="text" [value]="GetBeds()" name="beds" placeholder="Beds">
+      <input type="text" [(ngModel)]="outputHome.beds" name="beds" placeholder="Beds">
     </div>
     <div class="field">
       <label>Number of Staff</label>
-      <input type="text" [value]="GetStaff()" name="staff" placeholder="Staff">
+      <input type="text" [(ngModel)]="outputHome.staff" name="staff" placeholder="Staff">
     </div>
     <div class="field">
       <label>Description</label>
-      <textarea [value]="GetDescription()"></textarea>
+      <textarea [(ngModel)]="outputHome.description"></textarea>
     </div>
     <div class="field">
       <label>Facilites</label>
       <div class="full">
         <div class="inline field" *ngFor="let Facility of facilities">
           <div class="ui quarter checkbox">
-            <input type="checkbox" [attr.checked]="Facility.value == true ? 'checked' : null">
+            <input type="checkbox" (click)="ToggleFacility(Facility.id)" [attr.checked]="Facility.value == true ? 'checked' : null">
             <label>{{Facility.name}}</label>
           </div>
         </div>
       </div>
     </div>
     <div class="field">
-        <label>Care Types</label>
-        <div class="full">
-          <div class="inline field" *ngFor="let Facility of careTypes">
-            <div class="ui quarter checkbox">
-              <input type="checkbox" [attr.checked]="Facility.value == true ? 'checked' : null">
-              <label>{{Facility.name}}</label>
-            </div>
+      <label>Care Types</label>
+      <div class="full">
+        <div class="inline field" *ngFor="let Facility of careTypes">
+          <div class="ui quarter checkbox">
+            <input type="checkbox" (click)="ToggleCare(Facility.id)" [attr.checked]="Facility.value == true ? 'checked' : null">
+            <label>{{Facility.name}}</label>
           </div>
         </div>
       </div>
+    </div>
   </div>
   <br/>
-  <button class="ui fluid custombutton button">Update</button>
+  <button class="ui fluid custombutton button" (click)="UpdateHome()">Update</button>
 </div>

@@ -47,6 +47,7 @@ import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+//import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AuthService } from './auth.service';
 import { HomeSignupComponent } from './home-signup/home-signup.component';
 

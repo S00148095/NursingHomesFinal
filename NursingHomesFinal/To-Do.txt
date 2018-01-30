@@ -1,7 +1,6 @@
 before release
 must have
 hosting
-responsiveness
 SEO
 update stripe key to live
 check database rules
@@ -14,6 +13,7 @@ site to check on submissions for homes-update home user*
 limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*
+Adjust styling when a home has no reviews*
 toasts needed on login page, submithomes and agree/disagree*
 individual images*
 create doesn't do name

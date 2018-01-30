@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Home } from "../Home";
 import { Review } from "../Review";
+import { Image } from '../Image';
 import { StorageService } from "../storage.service";
 import { Router } from '@angular/router';
+import { FirebaseApp } from 'angularfire2';
 
 @Component({
   selector: 'app-result',
@@ -16,9 +18,11 @@ export class ResultComponent implements OnInit {
   reviews:Review[]=[];
   County: string;
   NumReviews: string;
+  image: string;
   @Output() notify: EventEmitter<Home> = new EventEmitter<Home>();
 
-  constructor(private storageService: StorageService,private router: Router) {
+  constructor(private storageService: StorageService, private router: Router, private firebaseApp: FirebaseApp) {
+    
   }
   checkHomeReviews() {//checks the home isn't null
     if (this.Home != null) {
@@ -26,6 +30,10 @@ export class ResultComponent implements OnInit {
       return true
     }
     else return false
+  }
+  getImage(){//get image from firebase storage, assign it to image variable
+    const storageRef = this.firebaseApp.storage().ref().child(this.Home.images.path);
+    storageRef.getDownloadURL().then(url => this.image = url);
   }
   UpdateNumReviews() {//updates the number of reviews
     this.reviews=[];
@@ -107,6 +115,8 @@ export class ResultComponent implements OnInit {
     }
   }
   ngOnInit() {
+    //console.log(this.Home.images.path);
+    this.getImage();
   }
 
 }

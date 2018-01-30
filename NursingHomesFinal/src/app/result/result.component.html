@@ -2,7 +2,7 @@
   <div class="ui horizontal nomargin nooverflow segments" [style.border]="SelectedStyle()" (click)="UpdateCurrentHome()">
     <div class="corner-ribbon top-right yellow" *ngIf="CheckPremium()">Premium</div>
     <div class="ui small segment">
-      <img class="image" src="/assets/home.jpg" />
+      <img class="image" src="{{image}}" />
     </div>
     <div class="ui segment">
       <p class="other inline">{{getDistanceCategory()}}</p>
@@ -17,7 +17,7 @@
       <i [ngClass]="CheckRating(4)"></i>
       <i [ngClass]="CheckRating(5)"></i>
     </div>
-      <h3 class="ratingtext">{{Home.rating/2}}/5</h3>
+      <h3 class="ratingtext">{{Home.rating}}/5</h3>
       <p class="ratingtext">({{NumReviews}})</p>
     </div>
   </div> 

@@ -2,12 +2,14 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Home } from "../Home";
 import { Review } from "../Review";
 import { User } from "../User";
+import { Image } from '../Image';
 import { StorageService } from "../storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { v4 as uuid } from 'uuid';
+import { FirebaseApp } from 'angularfire2';
 
 declare var myExtObject: any;
 
@@ -23,6 +25,7 @@ export class DetailsComponent implements OnInit {
   User: User;
   ratio: string;
   gcd: number;
+  image: string;
   values: any[] = [
     { id: 1, name: '1' },
     { id: 2, name: '2' },
@@ -31,15 +34,20 @@ export class DetailsComponent implements OnInit {
     { id: 5, name: '5' }
   ];
 
-  constructor(private afa: AngularFireAuth, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(private afa: AngularFireAuth, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
     this.Reviews = [];
   }
   GetHome(id): void {//gets current home
-    this.storageService.getCurrentHome(id).subscribe(home => {
+    this.storageService.getCurrentHome(id).subscribe(home => { 
       this.currentHome = home;
       this.GetReviews();
+      this.getImage();
     });
+  }
+  getImage(){//get image from firebase storage, assign it to image variable
+    const storageRef = this.firebaseApp.storage().ref().child(this.currentHome.images.path);
+    storageRef.getDownloadURL().then(url => this.image = url);
   }
   GetReviews(): void {//gets the reviews associated with the current home
     this.Reviews = [];

@@ -1,4 +1,5 @@
 import { Review } from "./Review";
+import{ Image } from './Image';
 
 export class Home {
     constructor
@@ -24,7 +25,8 @@ export class Home {
         public reviews: Review[],
         public lat:number,
         public long:number,
-        public distance: number
+        public distance: number,
+        public images: Image[]
         ) {
 
     }

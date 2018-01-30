@@ -3,6 +3,7 @@ import { Home } from "./Home";
 import { User } from "./User";
 import { Person } from "./Person";
 import { Review } from "./Review";
+import { Image } from './Image';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from 'angularfire2/auth';

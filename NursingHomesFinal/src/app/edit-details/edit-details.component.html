@@ -1,72 +1,88 @@
 <div class="centred scrollablecontent" *ngIf="CheckHome()">
-  <div class="ui form">
-    <div class="field">
-      <label>Name</label>
-      <input type="text" [(ngModel)]="outputHome.name" name="name" placeholder="Name">
-    </div>
-    <div class="field">
-      <label>Address</label>
-      <input type="text" [(ngModel)]="outputHome.address" name="address" placeholder="Address">
-    </div>
-    <div class="field">
-      <label>County</label>
-      <input type="text" [(ngModel)]="outputHome.county" name="county" placeholder="County">
-    </div>
-    <div class="field">
-      <label>Country</label>
-      <input type="text" [(ngModel)]="outputHome.country" name="country" placeholder="Country">
-    </div>
-    <div class="field">
-      <label>Phone</label>
-      <input type="text" [(ngModel)]="outputHome.phone" name="phone" placeholder="Phone">
-    </div>
-    <div class="field">
-      <label>Email</label>
-      <input type="text" [(ngModel)]="outputHome.email" name="email" placeholder="Email">
-    </div>
-    <div class="field">
-      <label>Contact Name</label>
-      <input type="text" [(ngModel)]="outputHome.contact" name="contact" placeholder="Contact">
-    </div>
-    <div class="field">
-      <label>Website</label>
-      <input type="text" [(ngModel)]="outputHome.site" name="website" placeholder="Website">
-    </div>
-    <div class="field">
-      <label>Number of Beds</label>
-      <input type="text" [(ngModel)]="outputHome.beds" name="beds" placeholder="Beds">
-    </div>
-    <div class="field">
-      <label>Number of Staff</label>
-      <input type="text" [(ngModel)]="outputHome.staff" name="staff" placeholder="Staff">
-    </div>
-    <div class="field">
-      <label>Description</label>
-      <textarea [(ngModel)]="outputHome.description"></textarea>
-    </div>
-    <div class="field">
-      <label>Facilites</label>
-      <div class="full">
-        <div class="inline field" *ngFor="let Facility of facilities">
-          <div class="ui quarter checkbox">
-            <input type="checkbox" (click)="ToggleFacility(Facility.id)" [attr.checked]="Facility.value == true ? 'checked' : null">
-            <label>{{Facility.name}}</label>
+  <div *ngIf="CheckHome()">
+    <div class="ui form">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="outputHome.name" name="name" placeholder="Name">
+      </div>
+      <div class="field">
+        <label>Address</label>
+        <input type="text" [(ngModel)]="outputHome.address" name="address" placeholder="Address">
+      </div>
+      <div class="field">
+        <label>County</label>
+        <input type="text" [(ngModel)]="outputHome.county" name="county" placeholder="County">
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <input type="text" [(ngModel)]="outputHome.country" name="country" placeholder="Country">
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <input type="text" [(ngModel)]="outputHome.phone" name="phone" placeholder="Phone">
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="text" [(ngModel)]="outputHome.email" name="email" placeholder="Email">
+      </div>
+      <div class="field">
+        <label>Contact Name</label>
+        <input type="text" [(ngModel)]="outputHome.contact" name="contact" placeholder="Contact">
+      </div>
+      <div class="field">
+        <label>Website</label>
+        <input type="text" [(ngModel)]="outputHome.site" name="website" placeholder="Website">
+      </div>
+      <div class="field">
+        <label>Number of Beds</label>
+        <input type="text" [(ngModel)]="outputHome.beds" name="beds" placeholder="Beds">
+      </div>
+      <div class="field">
+        <label>Number of Staff</label>
+        <input type="text" [(ngModel)]="outputHome.staff" name="staff" placeholder="Staff">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea [(ngModel)]="outputHome.description"></textarea>
+      </div>
+      <div class="field">
+        <label>Facilites</label>
+        <div class="full">
+          <div class="inline field" *ngFor="let Facility of facilities">
+            <div class="ui quarter checkbox">
+              <input type="checkbox" (click)="ToggleFacility(Facility.id)" [attr.checked]="Facility.value == true ? 'checked' : null">
+              <label>{{Facility.name}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Care Types</label>
+        <div class="full">
+          <div class="inline field" *ngFor="let Facility of careTypes">
+            <div class="ui quarter checkbox">
+              <input type="checkbox" (click)="ToggleCare(Facility.id)" [attr.checked]="Facility.value == true ? 'checked' : null">
+              <label>{{Facility.name}}</label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="field">
-      <label>Care Types</label>
-      <div class="full">
-        <div class="inline field" *ngFor="let Facility of careTypes">
-          <div class="ui quarter checkbox">
-            <input type="checkbox" (click)="ToggleCare(Facility.id)" [attr.checked]="Facility.value == true ? 'checked' : null">
-            <label>{{Facility.name}}</label>
-          </div>
-        </div>
-      </div>
-    </div>
+    <br/>
+    <button class="ui fluid custombutton button" (click)="UpdateHome()">Update</button>
   </div>
-  <br/>
-  <button class="ui fluid custombutton button" (click)="UpdateHome()">Update</button>
+  <div class="sk-circle" *ngIf="!CheckHome()">
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
 </div>

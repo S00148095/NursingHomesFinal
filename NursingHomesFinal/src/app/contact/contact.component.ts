@@ -31,7 +31,7 @@ export class ContactComponent implements OnInit {
       });
     }
     else{
-      this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@kudoshealth.com","Declan Trumble","","","","","",[],[],0,[],0,0,0);
+      this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@kudoshealth.com","Declan Trumble","","","","","",[],[],0,[],0,0,0,[]);
     }
   }
   GetUser(): void {//gets the current user from the service

@@ -43,7 +43,8 @@
       <h2 class="iconbutton">Homes</h2>
       <app-listing *ngFor="let Home of UserHomes" [Home]="Home"></app-listing>
     </div>
-    <button [routerLink]="['../payments']">Payment</button>
+    <button class="ui custombutton button" [routerLink]="['../payments']">Payment</button>
+    <button class="ui custombutton button" [routerLink]="['../home-signup']">Claim Home</button>
   </div>
   <div class="centred" *ngIf="CheckUser()">
     <br/>

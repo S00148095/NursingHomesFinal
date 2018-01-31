@@ -46,7 +46,7 @@ export class DetailsComponent implements OnInit {
     });
   }
   getImage(){//get image from firebase storage, assign it to image variable
-    const storageRef = this.firebaseApp.storage().ref().child(this.currentHome.images.path);
+    const storageRef = this.firebaseApp.storage().ref().child(this.currentHome.images[0].path);
     storageRef.getDownloadURL().then(url => this.image = url);
   }
   GetReviews(): void {//gets the reviews associated with the current home

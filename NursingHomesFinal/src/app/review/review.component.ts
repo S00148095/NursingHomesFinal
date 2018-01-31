@@ -6,6 +6,7 @@ import { Home } from "../Home";
 import { StorageService } from "../storage.service";
 import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ToastsManager } from 'ng2-toastr';
 
 declare var myExtObject: any;
 
@@ -30,7 +31,7 @@ export class ReviewComponent implements OnInit {
     { id: 3, name: "Patient Issue", responses: [{ text: "Issue is with other Patients", tier: 3 }, { text: "Possible Issue with all Staff", tier: 3 }, { text: "Possible Issue with all Management", tier: 3 }, { text: "Not Current Patient Review", tier: 3 }, { text: "Unhappy with Funding", tier: 3 }, { text: "Not Patient Review", tier: 3 }, { text: "Not Family Member Review", tier: 3 }, { text: "Issued Caused by Patient", tier: 3 }, { text: "Issue Caused by Patient Family Actions", tier: 3 }, { text: "Billing Issue", tier: 3 }] },
   ]
   selectedResponses: any[];
-  constructor(private storageService: StorageService, private afa: AngularFireAuth) {
+  constructor(private storageService: StorageService, private afa: AngularFireAuth, public toastr: ToastsManager) {
     this.GetUser();
   }
   CheckRating(rating: number): string {//shows stars
@@ -61,9 +62,11 @@ export class ReviewComponent implements OnInit {
           if (this.Review.disagreed.includes(resp.uid)) {
             this.Review.disagreed.splice(this.Review.agreed.indexOf(resp.uid), 1);
           }
+          this.storageService.UpdateReviews(this.Home,this.Review);
         }
+        else{ this.showWarningLogIn()}
       }
-      this.storageService.UpdateReviews(this.Home,this.Review);
+      else{ this.showWarningLogIn()}
     });
   }
   IncrementDisagreed() {//increments number who disagree  
@@ -76,9 +79,11 @@ export class ReviewComponent implements OnInit {
           if (this.Review.agreed.includes(resp.uid)) {
             this.Review.agreed.splice(this.Review.agreed.indexOf(resp.uid), 1);
           }
+          this.storageService.UpdateReviews(this.Home,this.Review);
         }
+        else{ this.showWarningLogIn()}
       }
-      this.storageService.UpdateReviews(this.Home,this.Review);
+      else{ this.showWarningLogIn()}
     });
   }
   CheckValid(): boolean {//checks if user can respond to review
@@ -138,6 +143,9 @@ export class ReviewComponent implements OnInit {
     else {
       this.disabled = true;
     }
+  }
+  showWarningLogIn() {//shows a toast
+    this.toastr.warning('You must be logged in to judge a review.', 'Sorry!');
   }
   ngOnInit() {// on init if the home is of a low tier change the way the pop up works, to not have a cascading dropdown
     this.ID = "id" + this.Review.reviewID;

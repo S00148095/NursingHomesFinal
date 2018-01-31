@@ -13,7 +13,7 @@ site to check on submissions for homes-update home user*
 limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*
-Adjust styling when a home has no reviews*
+Adjust styling when a home has no reviews and limit rating to 2 places*
 toasts needed on agree/disagree*
 individual images*
 create doesn't do name

@@ -12,6 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { ToastsManager } from 'ng2-toastr';
 
 
 @Injectable()
@@ -21,7 +22,8 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
-    private router: Router) {
+    private router: Router,
+    public toastr: ToastsManager) {
 
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth
@@ -122,8 +124,11 @@ export class AuthService {
       .then((user) => {
         this.authState = user
         this.updateUserDisplayName(firstname+" "+surname)
+        this.showSuccess("Thanks for signing up");
       })
-      .catch(error => console.log(error));
+      .catch(error =>{
+        this.showWarning(error.message);
+      });
   }
 
   emailLogin(email: string, password: string) {
@@ -133,7 +138,8 @@ export class AuthService {
         this.updateUserData();
         this.router.navigate(['/webSide/account']);
       })
-      .catch(error => console.log(error));
+      .catch(error => 
+        this.showWarning(error.message));
   }
 
   // Sends email allowing user to reset password
@@ -179,6 +185,13 @@ export class AuthService {
   }
 
 
+  
+  showSuccess(message:string) {//shows a toast
+    this.toastr.success(message);
+  }
+  showWarning(message:string) {//shows a toast
+    this.toastr.warning(message);
+  }
 
 
 }

@@ -14,7 +14,7 @@ limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*
 Adjust styling when a home has no reviews*
-toasts needed on login page, submithomes and agree/disagree*
+toasts needed on submithomes and agree/disagree*
 individual images*
 create doesn't do name
 ratio not reducing fully

@@ -117,12 +117,11 @@ export class AuthService {
   }
 
   //// Email/Password Auth ////
-  emailSignUp(email: string, password: string, firstname: string,surname) {
+  emailSignUp(email: string, password: string, firstname: string,surname: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
         this.updateUserDisplayName(firstname+" "+surname)
-        this.updateUserData()
       })
       .catch(error => console.log(error));
   }
@@ -174,7 +173,9 @@ export class AuthService {
     firebase.auth().currentUser.updateProfile({
       displayName: username,
       photoURL: null
-    });
+    }).then(ret =>{
+      this.updateUserData()}
+    );
   }
 
 

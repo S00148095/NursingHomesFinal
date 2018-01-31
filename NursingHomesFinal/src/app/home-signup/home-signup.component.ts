@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Home } from '../Home';
 import { StorageService } from '../storage.service';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-home-signup',
@@ -12,7 +13,8 @@ export class HomeSignupComponent implements OnInit {
   sortedHomes: Home[] = [];
   homes: Home[] = [];
   test: string;
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr); }
 
   GetHomes(): void {
     this.storageService.getHomes().subscribe(homes => {
@@ -45,7 +47,7 @@ export class HomeSignupComponent implements OnInit {
     this.sortedHomes = [];
   }
   SubmitHomes()
-  {
+  { 
     this.storageService.submitHomes(this.addedHomes);
   }
   ngOnInit() {

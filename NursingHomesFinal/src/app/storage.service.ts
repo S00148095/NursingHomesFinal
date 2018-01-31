@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr';
 
 @Injectable()
 export class StorageService {
@@ -19,18 +20,23 @@ export class StorageService {
     needsACheck: boolean;
     firebaseURL: string = 'https://cmoo-a7730.firebaseio.com/';
 
-    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router) { }
+    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router,  public toastr: ToastsManager) {
+    
+     }
 
     submitHomes(Homes: Home[]) {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
                 if (resp.uid) {
                     this.http.post(this.firebaseURL + "submissions/" + resp.uid +".json", this.FormatSubmission(Homes, resp.uid)).subscribe(params => {
-                    this.router.navigateByUrl("/webSide/account");
+                    this.showSuccess("Application submitted, we will contact you within 24 hours");
                     });
                 }
             }
         });
+    }  
+    showSuccess(message:string) {
+      this.toastr.success(message);
     }
     getNeedsACheck() {
         return this.needsACheck;

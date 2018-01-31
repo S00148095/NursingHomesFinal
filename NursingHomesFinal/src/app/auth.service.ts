@@ -182,10 +182,7 @@ export class AuthService {
     }).then(ret =>{
       this.updateUserData()}
     );
-  }
-
-
-  
+  }  
   showSuccess(message:string) {//shows a toast
     this.toastr.success(message);
   }

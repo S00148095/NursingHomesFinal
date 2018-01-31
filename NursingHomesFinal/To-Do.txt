@@ -7,6 +7,7 @@ check database rules
 add live home data
 
 should have
+usernames not email on reviews*
 loading screens*
 make the account screen less ugly-hime homes etc if no homes*
 site to check on submissions for homes-update home user*

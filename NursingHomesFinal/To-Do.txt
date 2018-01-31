@@ -7,7 +7,8 @@ check database rules
 add live home data
 
 should have
-make the account screen less ugly-hime homes etc if no homes*
+make the account screen less ugly*
+Change password/email option*
 site to check on submissions for homes-update home user*
 limit reviews?, comment length, description*
 agree/disagree button width*

@@ -1,7 +1,7 @@
 <div class="scrollablecontent">
-  <div *ngIf="CheckUserNegative()" class="padded">
+  <div *ngIf="CheckUser()" class="padded">
     <br/>
-    <h1>Welcome {{User.fName}}</h1>
+    <h1>Welcome {{User.name}}</h1>
     <div class="inline other">
       <div class="ui form contentexpanded">
         <div class="">
@@ -39,14 +39,19 @@
         <button class="ui fluid custombutton button" id="expand" onclick="Expand()">Change Password/Email</button>
       </div>
     </div>
-    <div class="half inline">
+    <div class="half inline" *ngIf="CheckHouses()">
       <h2 class="iconbutton">Homes</h2>
       <app-listing *ngFor="let Home of UserHomes" [Home]="Home"></app-listing>
+      <button class="ui custombutton button" [routerLink]="['../home-signup']">Claim Home</button>
+      <button class="ui custombutton button" [routerLink]="['../payments']">Payment</button>
     </div>
-    <button class="ui custombutton button" [routerLink]="['../payments']">Payment</button>
-    <button class="ui custombutton button" [routerLink]="['../home-signup']">Claim Home</button>
+    <div class="half inline" *ngIf="!CheckHouses()">
+        <h2 class="iconbutton">Homes</h2>
+        <p  class="half">This feature is for the management of homes by their owners. Feel free to claim a home if you own/adminsiter one and we'll be happy to help.</p>
+        <button class="ui custombutton button" [routerLink]="['../home-signup']">Claim Home</button>
+      </div>
   </div>
-  <div class="centred" *ngIf="CheckUser()">
+  <div class="centred" *ngIf="!CheckUser()">
     <div class="sk-circle">
       <div class="sk-circle1 sk-child"></div>
       <div class="sk-circle2 sk-child"></div>

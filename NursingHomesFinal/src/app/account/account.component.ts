@@ -19,7 +19,14 @@ export class AccountComponent implements OnInit {
 
   constructor(private storageService: StorageService, private afa: AngularFireAuth) {
   }
-
+  CheckHouses()
+  {
+    if(this.UserHomes.length==0||this.UserHomes==null||this.UserHomes==undefined)
+    {
+      return false;
+    }
+    else return true;
+  }
   GetUser(): void {//gets the current user from the service
     this.afa.authState.subscribe((resp) => {
       if (resp != null) {
@@ -34,13 +41,7 @@ export class AccountComponent implements OnInit {
       }
     });
   }
-  CheckUser() {//checks if no one is logged in and shows the not logged in message if so
-    if (this.User == null) {
-      return true;
-    }
-    else return false;
-  }
-  CheckUserNegative() {//checks if there is anyone logged in and shows the page if there is
+  CheckUser() {//checks if there is anyone logged in and shows the page if there is
     if (this.User != null) {
       return true;
     }

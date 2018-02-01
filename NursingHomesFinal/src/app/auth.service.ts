@@ -147,7 +147,7 @@ export class AuthService {
     var auth = firebase.auth();
 
     return auth.sendPasswordResetEmail(email)
-      .then(() => console.log("email sent"))
+      .then(val => console.log("email sent"))
       .catch((error) => console.log(error))
   }
 
@@ -190,5 +190,12 @@ export class AuthService {
     this.toastr.warning(message);
   }
 
-
+  changePassword()
+  {
+    
+  }
+  changeEmail()
+  {
+    
+  }
 }

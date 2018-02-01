@@ -32,7 +32,7 @@ export class ResultComponent implements OnInit {
     else return false
   }
   getImage(){//get image from firebase storage, assign it to image variable
-    const storageRef = this.firebaseApp.storage().ref().child(this.Home.images[0].path);
+    const storageRef = this.firebaseApp.storage().ref().child(this.Home.images.path);
     storageRef.getDownloadURL().then(url => this.image = url);
   }
   UpdateNumReviews() {//updates the number of reviews

@@ -26,7 +26,7 @@ export class Home {
         public lat:number,
         public long:number,
         public distance: number,
-        public images: Image[]
+        public images: Image
         ) {
 
     }

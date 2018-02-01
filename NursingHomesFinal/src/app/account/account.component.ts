@@ -4,6 +4,7 @@ import { StorageService } from "../storage.service";
 import 'script.js';
 import { Home } from '../Home';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../auth.service';
 
 declare var myExtObject: any;
 
@@ -17,7 +18,7 @@ export class AccountComponent implements OnInit {
   User: User;
   UserHomes: Home[] = [];
 
-  constructor(private storageService: StorageService, private afa: AngularFireAuth) {
+  constructor(private storageService: StorageService, private afa: AngularFireAuth, private authService: AuthService) {
   }
   CheckHouses()
   {
@@ -33,8 +34,10 @@ export class AccountComponent implements OnInit {
         if (resp.uid) {
           this.storageService.getUser(resp.uid).subscribe(user => {
             this.User = user;
-            for (var k in user.homes) {
-              this.UserHomes.push(user.homes[k]);
+            if(user.homes!=null&&user.homes!=undefined){
+              for (var k in user.homes) {
+                this.UserHomes.push(user.homes[k]);
+              }
             }
           });
         }
@@ -46,6 +49,14 @@ export class AccountComponent implements OnInit {
       return true;
     }
     else return false;
+  }
+  changePassword()
+  {
+    this.authService.resetPassword(this.User.email);
+  }
+  changeEmail()
+  {
+    this.authService.changeEmail();
   }
   ngOnInit() {
     this.GetUser();

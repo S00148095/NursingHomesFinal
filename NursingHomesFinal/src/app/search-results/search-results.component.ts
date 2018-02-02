@@ -44,12 +44,14 @@ export class SearchResultsComponent implements OnInit {
     switch (this.searchCriteria[0]) {
       case "reviews":
         this.Homes.sort((a, b) => {
-          if (a.reviews.length > b.reviews.length) return -1;
-          else if (a.reviews.length < b.reviews.length) return 1;
-          else {
-            if (a.tier > b.tier) return -1;
-            else if (b.tier > a.tier) return 1;
-            else return 0;
+          if(a.reviews && b.reviews){
+            if (a.reviews.length > b.reviews.length) return -1;
+            else if (a.reviews.length < b.reviews.length) return 1;
+            else {
+              if (a.tier > b.tier) return -1;
+              else if (b.tier > a.tier) return 1;
+              else return 0;
+            }
           }
         });
         break;
@@ -71,9 +73,11 @@ export class SearchResultsComponent implements OnInit {
               if (a.tier > b.tier) return -1;
               else if (b.tier > a.tier) return 1;
               else {
-                if (a.reviews.length > b.reviews.length) return -1;
-                else if (a.reviews.length < b.reviews.length) return 1;
-                else return 0;
+                if(a.reviews && b.reviews){
+                  if (a.reviews.length > b.reviews.length) return -1;
+                  else if (a.reviews.length <= b.reviews.length) return 1;
+                  else return 0;
+                }
               };
             };
           };
@@ -113,9 +117,11 @@ export class SearchResultsComponent implements OnInit {
             if (a.tier > b.tier) return -1;
             else if (b.tier > a.tier) return 1;
             else {
-              if (a.reviews.length > b.reviews.length) return -1;
-              else if (a.reviews.length < b.reviews.length) return 1;
-              else return 0;
+              if(a.reviews && b.reviews){
+                if (a.reviews.length > b.reviews.length) return -1;
+                else if (a.reviews.length <= b.reviews.length) return 1;
+                else return 0;
+              }
             }
           }
         });

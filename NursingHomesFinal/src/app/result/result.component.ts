@@ -22,7 +22,6 @@ export class ResultComponent implements OnInit {
   @Output() notify: EventEmitter<Home> = new EventEmitter<Home>();
 
   constructor(private storageService: StorageService, private router: Router, private firebaseApp: FirebaseApp) {
-    
   }
   checkHomeReviews() {//checks the home isn't null
     if (this.Home != null) {
@@ -82,7 +81,7 @@ export class ResultComponent implements OnInit {
   }
   CheckRating(rating: number): string {//displays stars
     if (this.Home.rating >= rating) return "yellow star icon"
-    else if (this.Home.rating <= rating - 1) return "empty yellow star icon"
+    else if (this.Home.rating <= rating - 1 || this.Home.rating == null || this.Home.rating == undefined) return "empty yellow star icon"
     else return "yellow star half empty icon"
   }
   SelectedStyle(): string {//if a home is top three tier show gold border

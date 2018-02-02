@@ -5,6 +5,7 @@ import { StorageService } from "../storage.service";
 import 'script.js';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Image } from '../Image';
 
 declare var myExtObject: any;
 
@@ -31,7 +32,7 @@ export class ContactComponent implements OnInit {
       });
     }
     else{
-      this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@kudoshealth.com","Declan Trumble","","","","","",[],[],0,[],0,0,0,[]);
+      this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@kudoshealth.com","Declan Trumble","","","","","",[],[],0,[],0,0,0,new Image("",""));
     }
   }
   GetUser(): void {//gets the current user from the service

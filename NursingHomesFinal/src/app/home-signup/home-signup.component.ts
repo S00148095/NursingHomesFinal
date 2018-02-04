@@ -48,7 +48,7 @@ export class HomeSignupComponent implements OnInit {
   }
   SubmitHomes()
   { 
-    this.storageService.submitHomes(this.addedHomes);
+    this.storageService.submitHomes(this.addedHomes); 
   }
   ngOnInit() {
     this.GetHomes();

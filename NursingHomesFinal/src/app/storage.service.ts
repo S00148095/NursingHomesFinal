@@ -28,7 +28,7 @@ export class StorageService {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
                 if (resp.uid) {
-                    this.http.post(this.firebaseURL + "submissions/" + resp.uid +".json", this.FormatSubmission(Homes, resp.uid)).subscribe(params => {
+                    this.http.patch(this.firebaseURL + "submissions/" + resp.uid +".json", this.FormatForSubmission(Homes)).subscribe(params => {
                     this.showSuccess("Application submitted, we will contact you within 24 hours");
                     });
                 }
@@ -69,6 +69,19 @@ export class StorageService {
         }
         return postdata
     }
+    FormatForSubmission(homes: Home[]){
+        //hopefully a more efficient way to essentially do the above method
+        //returns a json obj of just the home's id: true
+        var postdata = {}
+
+        homes.forEach(function(home){
+            var x = home.ID;
+            postdata[x] = true;
+        });
+
+        return postdata;
+    }
+
     Format(Home: Home) {
         var postdata = {
             "name": Home.name,

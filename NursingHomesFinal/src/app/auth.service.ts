@@ -99,7 +99,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.authState = credential.user
-        this.updateUserData()
+        //this.updateUserData()
       })
       .catch(error => console.log(error));
   }
@@ -113,7 +113,7 @@ export class AuthService {
     return this.afAuth.auth.signInAnonymously()
       .then((user) => {
         this.authState = user
-        this.updateUserData()
+        this.updateUserData('anon')
       })
       .catch(error => console.log(error));
   }
@@ -135,7 +135,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user;
-        this.updateUserData();
+        this.updateUserData(this.authState.displayName);
         this.router.navigate(['/webSide/account']);
       })
       .catch(error => 
@@ -160,13 +160,13 @@ export class AuthService {
 
 
   //// Helpers ////
-  private updateUserData(): void {
+  private updateUserData(name: string): void {
     // Writes user name and email to realtime db
     // useful if your app displays information about users or for admin features
     let path = `users/${this.currentUserId}`; // Endpoint on firebase
     let data = {
       email: this.authState.email,
-      name: this.authState.displayName
+      name: name
     }
 
     this.db.object(path).update(data)
@@ -179,9 +179,12 @@ export class AuthService {
     firebase.auth().currentUser.updateProfile({
       displayName: username,
       photoURL: null
-    }).then(ret =>{
+    });
+    /*
+    .then(ret =>{
       this.updateUserData()}
     );
+    */
   }  
   showSuccess(message:string) {//shows a toast
     this.toastr.success(message);

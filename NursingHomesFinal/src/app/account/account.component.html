@@ -1,7 +1,90 @@
 <div class="scrollablecontent">
   <div *ngIf="CheckUser()" class="padded">
     <br/>
-    <h1>Welcome {{User.name}}</h1>
+    <h1 class="welcome">Hi {{User.name}}</h1>
+    <!--==== Personal Info ====-->
+    <div class="user-info-holder">
+      <div class="individual-info">
+        <p class="info-title">Your user name is <span class="heavy">{{displayName}}</span></p>
+        <p class="info-description">This is the name which is visible to other members of the community on any reviews you make</p>
+        <a class="info-edit">Change user name</a>
+      </div>
+      <div class="individual-info">
+        <p class="info-title">Your email is <span class="heavy">{{User.email}}</span></p>
+        <p class="info-description">This is the email address associated with this account</p>
+        <a class="info-edit">Change email address</a>
+      </div>
+      <div class="individual-info">
+        <p class="info-title">Your password</p>
+        <p class="info-description">You'll need to know your password in order to change it</p>
+        <a class="info-edit">Change password</a>
+      </div>
+    </div>
+    <!--==== Info for Home Owner ====-->
+    <div class="home-info-holder" *ngIf="!publicUser | async">
+      <div class="home-list">
+          <p class="info-title">Your homes</p>
+          <div class="list">
+            <p class="info-description" *ngFor="let home of UserHomes">{{home.name}}</p>
+          </div>
+          <button class="ui custombutton button" [routerLink]="['../home-signup']">Claim Home</button>
+      </div>
+      <div class="home-spacer"></div>
+      <div class="home-actions">
+          <p class="">These feature is for the management of homes by their owners. Feel free to claim a home if you own/adminsiter one and
+              we'll be happy to help.</p>
+          <div class="individual-info">
+            <p class="info-title">Tier Selection / Payments</p>
+            <p class="info-description">Review the pricing for each of your homes</p>
+            <a class="info-edit">Go to payments screen</a>
+          </div>
+          <div class="individual-info">
+            <p class="info-title">Claim a home</p>
+            <p class="info-description">Claim your homes to enable managing their listings</p>
+            <a class="info-edit">Go to claim home screen</a>
+          </div>
+      </div>
+    </div>
+
+
+  </div>   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- replaced
     <div class="inline other">
       <div class="ui form contentexpanded">
           <div class="">
@@ -35,17 +118,21 @@
           <button class="ui fluid red custombutton button" id="expand" onclick="Expand()">Cancel</button>
         </div>
       </div>
+    
+
       <div class="contentvisible">
         <button class="ui fluid custombutton button" id="expand" onclick="Expand()">Change Password/Email</button>
       </div>
     </div>
-    <div class="half inline" *ngIf="CheckHouses()">
+    -->
+    <!--
+    <div class="half inline" *ngIf="!verified | async">
       <h2 class="iconbutton">Homes</h2>
       <app-listing *ngFor="let Home of UserHomes" [Home]="Home"></app-listing>
       <button class="ui custombutton button" [routerLink]="['../home-signup']">Claim Home</button>
       <button class="ui custombutton button" [routerLink]="['../payments']">Payment</button>
     </div>
-    <div class="half inline" *ngIf="!CheckHouses()">
+    <div class="half inline" *ngIf="!verified | async">
       <h2 class="iconbutton">Homes</h2>
       <p class="half">This feature is for the management of homes by their owners. Feel free to claim a home if you own/adminsiter one and
         we'll be happy to help.</p>
@@ -69,3 +156,4 @@
     </div>
   </div>
 </div>
+-->

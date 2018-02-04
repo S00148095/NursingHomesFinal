@@ -5,6 +5,8 @@ import 'script.js';
 import { Home } from '../Home';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs/Observable';
+
 
 declare var myExtObject: any;
 
@@ -17,6 +19,9 @@ export class AccountComponent implements OnInit {
   profile: any;
   User: User;
   UserHomes: Home[] = [];
+
+  publicUser: Observable<boolean>;
+  displayName: string;
 
   constructor(private storageService: StorageService, private afa: AngularFireAuth, private authService: AuthService) {
   }
@@ -32,15 +37,19 @@ export class AccountComponent implements OnInit {
     this.afa.authState.subscribe((resp) => {
       if (resp != null) {
         if (resp.uid) {
+          this.displayName = resp.displayName;
           this.storageService.getUser(resp.uid).subscribe(user => {
             this.User = user;
+            console.log('##########################');
+            console.log(this.User.publicUser);
+            this.publicUser = Observable.of(this.User.publicUser);
             if(user.homes!=null&&user.homes!=undefined){
               for (var k in user.homes) {
                 this.UserHomes.push(user.homes[k]);
               }
             }
           });
-        }
+        } 
       }
     });
   }

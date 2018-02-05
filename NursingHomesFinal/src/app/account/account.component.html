@@ -7,17 +7,17 @@
       <div class="individual-info">
         <p class="info-title">Your user name is <span class="heavy">{{displayName}}</span></p>
         <p class="info-description">This is the name which is visible to other members of the community on any reviews you make</p>
-        <a class="info-edit">Change user name</a>
+        <a class="info-edit changeName" onclick="modalName()">Change user name</a>
       </div>
       <div class="individual-info">
-        <p class="info-title">Your email is <span class="heavy">{{User.email}}</span></p>
+        <p class="info-title">Your email is <span class="heavy">{{email}}</span></p>
         <p class="info-description">This is the email address associated with this account</p>
-        <a class="info-edit">Change email address</a>
+        <a class="info-edit" onclick="modalEmail()">Change email address</a>
       </div>
       <div class="individual-info">
         <p class="info-title">Your password</p>
-        <p class="info-description">You'll need to know your password in order to change it</p>
-        <a class="info-edit">Change password</a>
+        <p class="info-description">You'll need to know your current password in order to change it</p>
+        <a class="info-edit" onclick="modalPassword()">Change password</a>
       </div>
     </div>
     <!--==== Info for Home Owner ====-->
@@ -36,12 +36,12 @@
           <div class="individual-info">
             <p class="info-title">Tier Selection / Payments</p>
             <p class="info-description">Review the pricing for each of your homes</p>
-            <a class="info-edit">Go to payments screen</a>
+            <a class="info-edit" [routerLink]="['../payments']">Go to payments screen</a>
           </div>
           <div class="individual-info">
             <p class="info-title">Claim a home</p>
             <p class="info-description">Claim your homes to enable managing their listings</p>
-            <a class="info-edit">Go to claim home screen</a>
+            <a class="info-edit" [routerLink]="['../home-signup']">Go to claim home screen</a>
           </div>
       </div>
     </div>
@@ -50,11 +50,54 @@
   </div>   
 </div>
 
+<!--==== Modals for options above ====-->
+<div class="ui modal change-user-name">
+  <i class="close icon"></i>
+  <div class="header">
+    Change your user name
+  </div>
+  <p>Enter your new user name</p>
+  <div class="ui fluid input">
+    <input type="text" placeholder="User name..." [(ngModel)]="changeUserName">
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button" (click)="updateDisplayName()">OK</div>
+  </div>
+</div>
 
+<div class="ui modal change-email">
+  <i class="close icon"></i>
+  <div class="header">
+    Change your email
+  </div>
+  <p>Enter your new email</p>
+  <div class="ui fluid input">
+    <input type="text" placeholder="email..." [(ngModel)]="changeEmailMod">
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button" (click)="updateEmail()">OK</div>
+  </div>
+</div>
 
-
-
-
+<div class="ui modal change-password">
+    <i class="close icon"></i>
+    <div class="header">
+      Change your password
+    </div>
+    <p>Enter your new password</p>
+    <div class="ui fluid input">
+      <input type="text" placeholder="password..." [(ngModel)]="changePasswordMod">
+    </div>
+    <div class="ui fluid input">
+      <input type="text" placeholder="confirm password..." [(ngModel)]="changePasswordConfirm">
+    </div>
+    <div class="actions">
+      <div class="ui button">Cancel</div>
+      <div class="ui button" (click)="updatePassword()">OK</div>
+    </div>
+  </div>
 
 
 

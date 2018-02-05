@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
 
-
+declare var $:any;
 declare var myExtObject: any;
 
 @Component({
@@ -22,6 +22,12 @@ export class AccountComponent implements OnInit {
 
   publicUser: Observable<boolean>;
   displayName: string;
+  email: string;
+
+  changeUserName: string;
+  changeEmailMod: string;
+  changePasswordMod: string;
+  changePasswordConfirm: string;
 
   constructor(private storageService: StorageService, private afa: AngularFireAuth, private authService: AuthService) {
   }
@@ -38,6 +44,7 @@ export class AccountComponent implements OnInit {
       if (resp != null) {
         if (resp.uid) {
           this.displayName = resp.displayName;
+          this.email = resp.email;
           this.storageService.getUser(resp.uid).subscribe(user => {
             this.User = user;
             console.log('##########################');
@@ -65,11 +72,46 @@ export class AccountComponent implements OnInit {
   }
   changeEmail()
   {
-    this.authService.changeEmail();
+    //this.authService.changeEmail();
   }
   ngOnInit() {
     this.GetUser();
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
 
-}
+  public updateDisplayName(){
+    //update the user's displayName
+    if(this.changeUserName != null && this.changeUserName != '' && this.changeUserName != undefined){
+      this.authService.updateUserDisplayName(this.changeUserName);
+      $('.ui.modal.change-user-name')
+            .modal('hide')
+        ;
+    }
+  }
+
+  public updateEmail(){
+    //update user's email
+    if(this.changeEmailMod != null && this.changeEmailMod != '' && this.changeEmailMod != undefined){
+      this.authService.updateEmail(this.changeEmailMod);
+      $('.ui.modal.change-email')
+            .modal('hide')
+        ;
+    }
+  }
+
+  public updatePassword(){
+    if(this.changePasswordMod != null && this.changePasswordMod != '' && this.changePasswordMod != undefined){
+      if(this.changePasswordMod == this.changePasswordConfirm){
+        this.authService.updatePassword(this.changePasswordMod);
+        $('.ui.modal.change-password')
+            .modal('hide')
+        ;
+      }
+    }
+  }
+
+
+
+ }
+
+

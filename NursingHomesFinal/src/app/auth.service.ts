@@ -179,12 +179,7 @@ export class AuthService {
     firebase.auth().currentUser.updateProfile({
       displayName: username,
       photoURL: null
-    });
-    /*
-    .then(ret =>{
-      this.updateUserData()}
-    );
-    */
+    }).then(function(){console.log('display name updated: ' + username);});
   }  
   showSuccess(message:string) {//shows a toast
     this.toastr.success(message);
@@ -193,12 +188,24 @@ export class AuthService {
     this.toastr.warning(message);
   }
 
-  changePassword()
-  {
-    
+  //update a user's password
+  updatePassword(password){
+    firebase.auth().currentUser.updatePassword(password).then(function() {
+      // Update successful.
+      console.log('updated password')
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
   }
-  changeEmail()
-  {
-    
+  //update a user's email
+  updateEmail(email){
+    firebase.auth().currentUser.updateEmail(email).then(function() {
+      // Update successful.
+      console.log('email updated: ' + email);
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error);
+    });
   }
 }

@@ -20,23 +20,23 @@ export class StorageService {
     needsACheck: boolean;
     firebaseURL: string = 'https://cmoo-a7730.firebaseio.com/';
 
-    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router,  public toastr: ToastsManager) {
-    
-     }
+    constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router, public toastr: ToastsManager) {
+
+    }
 
     submitHomes(Homes: Home[]) {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
                 if (resp.uid) {
-                    this.http.patch(this.firebaseURL + "submissions/" + resp.uid +".json", this.FormatForSubmission(Homes)).subscribe(params => {
-                    this.showSuccess("Application submitted, we will contact you within 24 hours");
+                    this.http.patch(this.firebaseURL + "submissions/application-existing/" + resp.uid + ".json", this.FormatForSubmission(Homes)).subscribe(params => {
+                        this.showSuccess("Application submitted, we will contact you within 24 hours");
                     });
                 }
             }
         });
-    }  
-    showSuccess(message:string) {
-      this.toastr.success(message);
+    }
+    showSuccess(message: string) {
+        this.toastr.success(message);
     }
     getNeedsACheck() {
         return this.needsACheck;
@@ -55,8 +55,6 @@ export class StorageService {
             if (resp != null) {
                 if (resp.uid) {
                     this.http.patch(this.firebaseURL + "homes/" + Home.ID + ".json", this.Format(Home)).subscribe(params => {
-                        this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID + ".json", this.Format(Home)).subscribe(params => {
-                        });
                     });
                 }
             }
@@ -69,12 +67,12 @@ export class StorageService {
         }
         return postdata
     }
-    FormatForSubmission(homes: Home[]){
+    FormatForSubmission(homes: Home[]) {
         //hopefully a more efficient way to essentially do the above method
         //returns a json obj of just the home's id: true
         var postdata = {}
 
-        homes.forEach(function(home){
+        homes.forEach(function (home) {
             var x = home.ID;
             postdata[x] = true;
         });
@@ -148,18 +146,16 @@ export class StorageService {
             if (resp != null) {
                 if (resp.uid) {
                     this.http.patch(this.firebaseURL + "homes/" + Home.ID + "/reviews/" + Review.reviewID + ".json", this.FormatReview(Review)).subscribe(params => {
-                        this.http.patch(this.firebaseURL + "users/" + resp.uid + "/homes/" + Home.ID + "/reviews/" + Review.reviewID + ".json", this.FormatReview(Review)).subscribe(ret => {
-                            var total = 0;
-                            var reviews = [];
-                            for (var k in Home.reviews) {
-                                reviews.push(Home.reviews[k]);
-                            }
-                            reviews.forEach(element => {
-                                total += element.overall;
-                            });
-                            Home.rating = total / reviews.length;
-                            this.updateHome(Home);
+                        var total = 0;
+                        var reviews = [];
+                        for (var k in Home.reviews) {
+                            reviews.push(Home.reviews[k]);
+                        }
+                        reviews.forEach(element => {
+                            total += element.overall;
                         });
+                        Home.rating = total / reviews.length;
+                        this.updateHome(Home);
                     });
                 }
             }

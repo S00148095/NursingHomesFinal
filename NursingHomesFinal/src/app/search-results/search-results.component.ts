@@ -24,6 +24,10 @@ export class SearchResultsComponent implements OnInit {
   GetHomes(): void {//gets the list of homes
     this.storageService.getHomes().subscribe(homes => {
       for (var k in homes) {
+        if(homes[k].rating==undefined||homes[k].rating==null)
+        {
+          homes[k].rating=0;
+        }
         this.Homes.push(homes[k]);
       }
     });

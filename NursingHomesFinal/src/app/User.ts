@@ -9,7 +9,8 @@ export class User {
         public password: string,
         public phone: string,
         public homes: Home[],
-        public StripeId: string
+        public StripeId: string,
+        public publicUser: boolean
         ) {
     }
 }

@@ -8,8 +8,6 @@ add live home data
 
 should have
 make the account screen less ugly*
-Change password/email option works*
-site to check on submissions for homes-update home user*
 limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*

@@ -24,6 +24,7 @@ export class HomeSignupComponent implements OnInit {
     });
   }
   getAutocomplete() {
+    this.sortedHomes=[];
     this.homes.forEach(element => {
       if (element.name.toUpperCase().indexOf(this.test.toUpperCase()) != -1) {
         this.sortedHomes.push(element);
@@ -48,7 +49,7 @@ export class HomeSignupComponent implements OnInit {
   }
   SubmitHomes()
   { 
-    this.storageService.submitHomes(this.addedHomes);
+    this.storageService.submitHomes(this.addedHomes); 
   }
   ngOnInit() {
     this.GetHomes();

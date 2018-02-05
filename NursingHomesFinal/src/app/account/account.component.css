@@ -9,3 +9,85 @@
     }
 
 }/* end mobile */
+
+/* personal ino */
+.welcome{
+    font-size: 3em;
+    border-bottom: 2px solid #49D49D;
+}
+
+.user-info-holder{
+    height: 60vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom: 2px solid #49D49D;
+}
+
+.individual-info{
+
+}
+
+.info-title{
+    font-size: 2em;
+    margin: 0;
+}
+
+.info-description{
+    font-size: 1em;
+    margin: 0;
+}
+
+.info-edit{
+    margin: 0 5%;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.heavy{
+    font-weight: bold;
+}
+
+/* home info */
+.home-info-holder{
+    display: flex;
+    height: 60vh;
+    margin-top: 2%;
+}
+
+.home-list{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home-list>.list{
+    overflow: scroll;
+    width: 100%;
+    flex-grow: 8;
+}
+
+.home-list>.info-title{
+    text-align: center;
+    flex-grow: 1;
+}
+
+.home-list>.info-description{
+    margin-left: 2%;
+}
+
+.home-spacer{
+    width: 30%;
+    flex-grow: .2;
+}
+
+.home-actions{
+    width: 100%;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

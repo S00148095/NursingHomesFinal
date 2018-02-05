@@ -30,6 +30,7 @@
         "../semantic/dist/semantic.min.js",
         "script.js",
         "hamburger.js",
+        "modals.js",
         "../geocomplete/jquery.geocomplete.js",
         "../node_modules/fullpage.js/vendors/scrolloverflow.min.js",
         "../node_modules/fullpage.js/dist/jquery.fullPage.js"

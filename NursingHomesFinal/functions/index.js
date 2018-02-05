@@ -8,7 +8,6 @@ function updateHomes(homes, userID) {
   var updates = {};
   for (i = 0; i < homes.length; i++) {
     updates['/homes/' + homes[i].id + '/tier'] = homes[i].tier;
-    updates['/users/' + userID + '/homes/' + homes[i].id + '/tier'] = homes[i].tier;
   }
   return updates;
 }

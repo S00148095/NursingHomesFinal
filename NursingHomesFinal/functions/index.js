@@ -1,8 +1,10 @@
-const functions = require('firebase-functions')
-const admin = require('firebase-admin')
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
 admin.initializeApp(functions.config().firebase);
 const stripe = require('stripe')('sk_test_LtS2n7Uh6j8VneCZxqeTGkDh');
+
+var nodemailer = require('nodemailer');
 
 function updateHomes(homes, userID) {
   var updates = {};
@@ -41,6 +43,7 @@ exports.stripeCreate = functions.database
         });
       });
   });
+
 exports.stripeCharge = functions.database
   .ref('/payments/{userId}/{paymentId}')
   .onWrite(event => {
@@ -187,4 +190,21 @@ exports.stripeCharge = functions.database
         );
       }
       );
+  });
+
+  exports.sendEmail = functions.database
+  .ref('/emails/{userId}')
+  .onWrite(event => {
+    const payment = event.data.val();
+    const userId = event.params.userId;
+
+    return admin.database()
+      .ref(`/users/${userId}`)
+      .once('value')
+      .then(snapshot => {
+        return snapshot.val();
+      })
+      .then(val => {
+        
+      });
   });

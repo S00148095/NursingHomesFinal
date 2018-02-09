@@ -32,7 +32,7 @@ export class ContactComponent implements OnInit {
       });
     }
     else{
-      this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@kudoshealth.com","Declan Trumble","","","","","",[],[],0,[],0,0,0,new Image("",""));
+      this.currentHome=new Home("careze","","careze.com","Sligo","Co. Sligo","",0,"0878111111","declan@careze.com","Declan Trumble","","","","","",[],[],0,[],0,0,0,new Image("",""));
     }
   }
   GetUser(): void {//gets the current user from the service

@@ -10,7 +10,6 @@ should have
 limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*
-Adjust styling when a home has no reviews and limit rating to 2 places*
 individual images*
 favicon*
 ratio not reducing fully

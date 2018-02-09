@@ -10,6 +10,7 @@ import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { v4 as uuid } from 'uuid';
 import { FirebaseApp } from 'angularfire2';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 declare var myExtObject: any;
 
@@ -25,6 +26,8 @@ export class DetailsComponent implements OnInit {
   User: User;
   ratio: string;
   gcd: number;
+  reviews:Review[]=[];
+  NumReviews: string;
   image: string;
   values: any[] = [
     { id: 1, name: '1' },
@@ -33,16 +36,86 @@ export class DetailsComponent implements OnInit {
     { id: 4, name: '4' },
     { id: 5, name: '5' }
   ];
+  careTypes: string[];
+  facilities: string[];
+  i: number = 0;
+  j: number = 0;
+  url: SafeResourceUrl;
 
-  constructor(private afa: AngularFireAuth, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
+
+  //facilitie available
+  facilitiesArray: string[] = [
+    "Live-In Carers",
+    "Chiropody",
+    "Oratory",
+    "Visiting Area",
+    "Hairdressing",
+    "Laundry",
+    "Library",
+    "WiFi",
+    "Resident GP",
+    "Dietician",
+    "Dental Care",
+    "Pool",
+    "Garden",
+    "Group Outings",
+    "Bingo"
+  ];
+
+//caretypes available
+caretypesArray = [
+    "Alzheimer’s",
+    "Cancer",
+    "Hearing",
+    "Speech",
+    "Visual",
+    "Residential",
+    "Respite",
+    "Convalescent",
+    "Dementia",
+    "Physiotherapy"
+  ];
+
+  //the icons (currently from semantic ui) to use for the caretypes.  String gets added to its class
+  caretypeIcon = [
+    'doctor', 'user', 'anchor', 'shower', 'space shuttle', 'wifi', 'users', 'building', 'github', 'rebel'
+  ];
+
+  //the icons (currently from semantic ui) to use for the facilities.  String gets added to its class
+  facilityIcon = [
+    'anchor', 'doctor', 'announcement', 'users', 'cut', 'diamond', 'book', 'wifi', 'doctor', 'food', 'smile', 'bath', 'tree', 'space shuttle', 'rebel'
+  ];
+
+  ctBool: boolean[] = [];
+  fBool: boolean[] = [];
+
+  getCT(){
+    this.currentHome.careTypes.forEach(ct =>{
+      this.ctBool[this.i] = ct.value==true ? true: false;
+      this.i++;
+    });
+  }
+  getFacilities(){
+    this.currentHome.facilities.forEach(f =>{
+      this.fBool[this.j] = f.value==true ? true: false;
+      this.j++;
+    });
+  }
+
+
+
+  constructor(private afa: AngularFireAuth, public sanitizer: DomSanitizer, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
     this.Reviews = [];
   }
   GetHome(id): void {//gets current home
     this.storageService.getCurrentHome(id).subscribe(home => { 
       this.currentHome = home;
+      this.url = '//www.google.com/maps/embed/v1/place?q='+ home.lat +','+home.long+'&zoom=14&key=AIzaSyCcprejw3C_TDbMoM1h_Gss2aWaWC4Av8w';
       this.GetReviews();
       this.getImage();
+      this.getCT();
+      this.getFacilities();
     });
   }
   getImage(){//get image from firebase storage, assign it to image variable
@@ -146,5 +219,30 @@ export class DetailsComponent implements OnInit {
       });
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }
+
+  CheckRating(rating: number): string {//displays stars
+    if (this.currentHome.rating >= rating) return "yellow star icon"
+    else if (this.currentHome.rating <= rating - 1 || this.currentHome.rating == null || this.currentHome.rating == undefined) return "empty yellow star icon"
+    else return "yellow star half empty icon"
+  }
+
+  checkHomeReviews() {//checks the home isn't null
+    if (this.currentHome != null) {
+      this.UpdateNumReviews();
+      return true
+    }
+    else return false
+  }
+
+  UpdateNumReviews() {//updates the number of reviews
+    this.reviews=[];
+    for (var k in this.currentHome.reviews) {
+      this.reviews.push(this.currentHome.reviews[k]);
+    }
+    if (this.reviews.length > 1 || this.reviews.length == 0)
+      this.NumReviews = this.reviews.length + " reviews";
+    else this.NumReviews = this.reviews.length + " review";
+  }
+
 
 }

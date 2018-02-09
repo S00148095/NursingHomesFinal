@@ -1,11 +1,13 @@
+ <!--
 <div class="padded scrollablecontent">
+   
     <div *ngIf="CheckHome()">
         <div class="ui nopad custombutton animated topleft button" [routerLink]="['../search-results']">
             <div class="hidden content">Go Back</div>
             <div class="visible content">
                 <i class="arrow circle left icon"></i>
             </div>
-        </div>
+        </div> 
         <h1>{{currentHome.name}}</h1>
         <div class="full">
             <img class="other display" src="{{image}}" />
@@ -156,5 +158,188 @@
         <div class="sk-circle10 sk-child"></div>
         <div class="sk-circle11 sk-child"></div>
         <div class="sk-circle12 sk-child"></div>
+    </div>
+
+</div>
+-->
+<div class="scrollablecontent" *ngIf="CheckHome()"> 
+    <div class="header-section dets">
+        <h1 class="contrast-font contrast-color">{{currentHome.name}}</h1>
+        <div class="rating" *ngIf="checkHomeReviews()">
+            <i [ngClass]="CheckRating(1)"></i>
+            <i [ngClass]="CheckRating(2)"></i>
+            <i [ngClass]="CheckRating(3)"></i>
+            <i [ngClass]="CheckRating(4)"></i>
+            <i [ngClass]="CheckRating(5)"></i>
+            <p>Based on {{NumReviews}}</p>
+        </div>
+        <p><i class="map pin icon"></i>{{currentHome.address}}, {{currentHome.county}}</p>
+    </div>
+    <div class="image-section dets">
+        <h1 class="contrast-font contrast-color">Image gallery here</h1>
+    </div>
+    <div class="info-section dets">
+        <h2 class="contrast-font contrast-color">Overview</h2>
+        <div class="overview">
+            <div class="left-flex">
+                <div class="top-flex">
+                    <div class="overview-details">
+                        <p>Website: <span class="link">{{currentHome.site}}</span></p>
+                        <p>HIQA report: <span class="link">{{currentHome.hiqa}}</span></p>
+                        <p>Bed / resident ratio: {{ratio}}</p>
+                    </div>
+                    <div class="overview-contact">
+                        <p class="contact">Contact {{currentHome.contact}} on</p>
+                        <p><i class="phone icon"></i>{{currentHome.phone}}</p>
+                        <p><i class="mail icon"></i>{{currentHome.email}}</p>
+                    </div> 
+                </div>   
+                <h3>Share</h3>  
+                <div class="bottom-flex">
+                    <share-buttons [theme]="'modern-dark'" [showText]="true" [size]="-2" [include]="['facebook','twitter','google','linkedin','pinterest','email','print']"
+                        [show]="7" [title]="currentHome.name" [image]="image" [description]="currentHome.description" [tags]="'#careze'"></share-buttons>
+                </div>      
+            </div>
+            <div class="overview-map">
+                <iframe [src]="url | clean" frameBorder="0">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <div class="facilities-section dets">
+        <div class="care-types">
+            <h2 class="contrast-font contrast-color">Specialist Care</h2>
+            <ul class="top-features care">
+              <li *ngFor="let ct of ctBool; let i = index">
+                  <i class="large {{caretypeIcon[i]}} icon" [class.exists]="ct==true"></i>
+                  <div class="content" [class.exists]="ct==true">
+                    {{caretypesArray[i]}}
+                  </div>
+              </li>
+            </ul>
+        </div>
+        <div class="facilities-d">
+            <h2 class="contrast-font contrast-color">Facilities</h2>
+            <ul class="top-features facilities">
+              <li *ngFor="let fc of fBool; let i = index">
+                  <i class="large {{facilityIcon[i]}} icon" [class.exists]="fc==true"></i>
+                  <div class="content" [class.exists]="fc==true">
+                    {{facilitiesArray[i]}}
+                  </div>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="reviews-section dets">
+        <h2 class="contrast-font contrast-color">Reviews ({{NumReviews}})</h2>
+        <div class="reviews">
+            <div class="current-reviews">
+                <app-review *ngFor="let Review of Reviews" [Review]="Review" [Home]="currentHome" [Tier]="currentHome.tier"></app-review>
+            </div>
+            <div class="new-review">
+                 <div class="ui form">
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Level of Care</label>
+                            <select class="ui dropdown" #criteria1>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Cleanliness</label>
+                            <select class="ui dropdown" #criteria2>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Staff</label>
+                            <select class="ui dropdown" #criteria3>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Treated with Dignity</label>
+                            <select class="ui dropdown" #criteria4>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Food/drink</label>
+                            <select class="ui dropdown" #criteria5>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Facilities</label>
+                            <select class="ui dropdown" #criteria6>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Management</label>
+                            <select class="ui dropdown" #criteria7>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Rooms</label>
+                            <select class="ui dropdown" #criteria8>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Safety/Security</label>
+                            <select class="ui dropdown" #criteria9>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="three fields">
+                        <div class="field">
+                            <label>Value for Money</label>
+                            <select class="ui dropdown" #criteria10>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Location</label>
+                            <select class="ui dropdown" #criteria11>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Activities</label>
+                            <select class="ui dropdown" #criteria12>
+                                <option value="">Select Option</option>
+                                <option *ngFor="let value of values" [value]="value.id">{{value.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Details</label>
+                        <textarea #comment></textarea>
+                    </div>
+                    <div class="ui fluid two buttons">
+                        <button class="ui red custombutton button" onclick="Expand1()">Cancel</button>
+                        <button class="ui custombutton button" id="create" (click)="LeaveReview(criteria1.value,criteria2.value,criteria3.value,criteria4.value,criteria5.value,criteria6.value,criteria7.value,criteria8.value,criteria9.value,criteria10.value,criteria11.value,criteria12.value,comment.value)">Leave Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,0 +1,49 @@
+.columns{
+    column-count: 2;
+    column-width: 300px;
+} 
+.ui.centered.grid>.column:not(.aligned):not(.justified):not(.row), .ui.centered.grid>.row>.column:not(.aligned):not(.justified), .ui.grid .centered.row>.column:not(.aligned):not(.justified){
+    text-align: center;
+}
+i.circular.icon{
+    box-shadow: 0 0 0 0.1em #49D49D inset;
+    color: rgba(0,0,0,0.6);
+}
+.home-section-head{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    text-align: center;
+}
+.home-section-head:not(.contrasting){
+    color: #2E9AC5;
+}
+.ui.huge.icon.button{
+    background: #49D49D;
+    color: #fff;
+}
+.other-color{
+    color: #2E9AC5;
+}
+.welcome-header{
+    text-align: center;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+}
+div.contrasting{
+    background: #49D49D;
+    color: #fff;
+}
+.home-section-sub{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+.contrasting.image{
+    background-image: linear-gradient(
+        rgba(73, 212, 157, 1),
+        rgba(73, 212, 157, 0.7)
+      ), url("http://cdn1.bestpsdfreebies.com/wp-content/uploads/2014/05/shards_pattern.jpg");
+}
+

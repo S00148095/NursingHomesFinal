@@ -7,7 +7,6 @@ check database rules
 add live home data
 
 should have
-make the account screen less ugly*
 limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*

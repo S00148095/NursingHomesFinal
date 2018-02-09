@@ -40,6 +40,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { environment } from '../environments/environment';
 import { PaymentService } from './payment.service';
+import { AgmCoreModule } from '@agm/core';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ShareButtonsModule } from '@ngx-share/buttons';
@@ -50,6 +51,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 //import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AuthService } from './auth.service';
 import { HomeSignupComponent } from './home-signup/home-signup.component';
+import { CleanPipe } from './clean.pipe';
 
 
 /*===============
@@ -147,7 +149,8 @@ const routes: Routes = [
     CrmSideRouteComponent,
     CallbackComponent,
     PaymentsComponent,
-    HomeSignupComponent
+    HomeSignupComponent,
+    CleanPipe
   ],
   imports: [
     BrowserModule,
@@ -159,6 +162,9 @@ const routes: Routes = [
     HttpClientJsonpModule,
     ShareButtonsModule.forRoot(),    
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCcprejw3C_TDbMoM1h_Gss2aWaWC4Av8w'
+    }),
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService],

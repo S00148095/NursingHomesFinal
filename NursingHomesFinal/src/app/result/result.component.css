@@ -5,10 +5,74 @@
 .mobile-only{
     display: none;
 }
+
+.single-result-holder{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 170px;
+    margin: 1% 0;
+    padding: 1%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+.single-result-holder:hover{
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), -2px 6px 15px 3px rgba(0, 0, 0, 0.19);
+}
+.single-result-holder:active{
+    animation: click .3s linear;
+}
+.single-result-holder>img{
+    width: 170px;
+    height: 100%;
+    object-fit: cover;
+}
+.info{
+    padding: 0 1%;
+    flex-grow: 2.5;
+    max-width: 50%;
+}
+.info>p:not(.num-reviews){
+    margin: 0;
+}
+.home-name{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.6em;
+    color: #2E9AC5;
+    margin: 0;
+}
+.rating{
+    padding: 0;
+    margin: 0;
+}
+.num-reviews{
+    font-size: .9em;
+    margin-bottom: 2%;
+}
+.proceed{
+    max-width: 40%;
+    min-width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.proceed>.button{
+    background: #49D49D;
+    color: #fff;
+}
+.proceed>.button:hover{
+    background: #068A53;
+}
+
+
+
 @media only screen and (max-width: 768px) {
     /* for mobile phones */
 
-    .ui.horizontal.nomargin.nooverflow.segments{
+    .ui.horizontal.nomargin.nooverflow.segments{ 
         display: none;
     }
     .mobile-only{
@@ -38,3 +102,18 @@
     }
 
 }/* end mobile */
+
+
+
+/* animations */
+@keyframes click {
+    0%{
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+    }
+    50%{
+        box-shadow: 0 0.2px 0.2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    }
+    100%{
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+    }
+}

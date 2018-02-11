@@ -1,0 +1,33 @@
+.card-holder{
+    display: flex;
+    flex-direction: column;
+}
+.contrast-font{
+    font-family: 'Quicksand', sans-serif;
+}
+.contrast-color{
+    color: #2E9AC5;
+}
+img{
+     width:100%;
+     height: auto;
+     max-height: 150px;
+     object-fit: cover;
+ }
+ h2, h3{
+     text-align: center;
+ }
+ .rating{
+     margin: 0 auto;
+     text-align: center;
+ }
+ i{
+     font-size: 1.5em;
+ }
+ button>i{
+     color: #49D49D;
+ }
+ button.ui.button{
+     margin: 0 auto;
+     width: 70%;
+ }

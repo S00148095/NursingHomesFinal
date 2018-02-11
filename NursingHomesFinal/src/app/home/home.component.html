@@ -12,7 +12,7 @@
                     #address>
                     <button class="ui huge icon button" (click)="Calculate(address.value)">
                         <i class="search icon"></i>
-                    </button>
+                    </button> 
                 </div>
             </div>
             <br/>
@@ -45,10 +45,19 @@
         <br/>
         <a class="ui fluid huge custombutton button" onclick="moveUp()">Get started</a>
     </div>
+    <div class="contrasting image padded section">
+        <h1 class="contrasting home-section-head">Top listings in Sligo</h1>
+        <div class="top-listings">
+            <app-listing-card class="listing-card" *ngFor="let h of hGroup | async" [home]="h">
+            </app-listing-card>
+        </div>
+    </div>
+<!--
     <div class="contrasting padded section">
         <h1 class="contrasting home-section-head">Something on this page</h1>
         <h2 class="contrasting home-section-sub">But not a wall of text...</h2>
     </div>
+-->
     <div class="padded section">
         <h1 class="home-section-head">Have your home featured here</h1>
         <p>Careze is more than just a directory listing with user reviews.  It’s a back-end enquiry management system which
@@ -73,9 +82,23 @@
         <br/>
         <a class="ui fluid huge custombutton button">Get started</a>
     </div>
-    <div class="contrasting image padded section">
-        <h1 class="contrasting home-section-head">Top listings this week</h1>
-    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--
     <div class="padded section">
         <br/>

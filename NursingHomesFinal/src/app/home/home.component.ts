@@ -3,6 +3,10 @@ import { StorageService } from "../storage.service";
 import { Home } from "../Home";
 import { Router } from "@angular/router";
 import 'script.js';
+import {Observable} from 'rxjs/Rx';
+import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import * as firebase from 'firebase';
 
 declare var myExtObject: any;
 
@@ -11,16 +15,25 @@ declare var myExtObject: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit { 
   Homes: Home[]=[];
+  hGroup: Observable<any[]>;
+  bg: any;
   searchCriteria: string[];
   lats: number[] = [];
   longs: number[] = [];
   address:string;
   interval:any;
 
-  constructor(private storageService: StorageService, private router: Router) {
+  constructor(private db: AngularFireDatabase, private storageService: StorageService, private router: Router, private firebaseApp: FirebaseApp) {
     this.GetHomes();
+    this.GetSomeHomes('Sligo', 3);//we'll make this a random county or something when we get more homes in our database
+  }
+
+  GetSomeHomes(county, amount){
+    //gets AMOUNT of homes from COUNTY
+    //this needs to be redone to return homes
+    this.hGroup = this.db.list('homes', ref => ref.orderByChild('county').equalTo(county).limitToLast(amount)).valueChanges();
   }
 
   GetHomes(): void {//gets the list of homes

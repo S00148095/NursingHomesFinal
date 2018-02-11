@@ -175,9 +175,21 @@
         </div>
         <p><i class="map pin icon"></i>{{currentHome.address}}, {{currentHome.county}}</p>
     </div>
+
     <div class="image-section dets">
-        <h1 class="contrast-font contrast-color">Image gallery here</h1>
+        <!--<img class="" src="{{image}}" />-->
+        <img src="assets/big.jpg" />
+        <div *ngIf="_album.length>0">
+            <h2 class="contrast-font contrast-color">{{_album.length}} more pictures</h2>
+            <p>(click an image to enlarge it)</p>
+            <div class="lb">
+                <div class="img-thumbnail" *ngFor="let image of _album; let i=index">
+                    <img class="img-thumbnail" [src]="image.thumb" (click)="open(i)"/>
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div class="info-section dets">
         <h2 class="contrast-font contrast-color">Overview</h2>
         <div class="overview">
@@ -231,12 +243,12 @@
         </div>
     </div>
     <div class="reviews-section dets">
-        <h2 class="contrast-font contrast-color">Reviews ({{NumReviews}})</h2>
+        <h2 class="contrast-font contrast-color">Reviews ({{NumReviews}})</h2> 
         <div class="reviews">
-            <div class="current-reviews">
+            <div class="current-reviews review-piece">
                 <app-review *ngFor="let Review of Reviews" [Review]="Review" [Home]="currentHome" [Tier]="currentHome.tier"></app-review>
             </div>
-            <div class="new-review">
+            <div class="new-review review-piece">
                  <div class="ui form">
                     <div class="three fields">
                         <div class="field">

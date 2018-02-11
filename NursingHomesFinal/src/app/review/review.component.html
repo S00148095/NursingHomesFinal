@@ -1,3 +1,4 @@
+<!--
 <div class="ui raised vertical segment">
     <div *ngIf="CheckTier()" class="ui form contactForm" [id]="ID">
         <div *ngIf="CheckTier()" class="field">
@@ -9,7 +10,7 @@
         </div>
         <div class="field">
           <label>Response:</label>
-          <select class="ui dropdown" [attr.disabled]="disabled?'':null" #option>
+          <select class="ui dropdown" [attr.disabled]="disabled?'':null" >
             <option value="">Select Option</option>
             <option *ngFor="let response of selectedResponses" [value]="response.text">{{response.text}}</option>
           </select>
@@ -77,7 +78,7 @@
     <p class="comment">{{Review.comment}}</p>
     <p *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
   </div>
-  <!-- MOBILE ONLY -->
+  <!-- MOBILE ONLY --
   <div class="mob-only">
       <h4 class="showuser">{{Review.user}}</h4>
       <div class=rating>
@@ -93,7 +94,7 @@
       <p *ngIf="CheckResponse()">Home responded: {{Review.response}}</p>
     </div>
   </div>
-  <!-- end mobile only -->
+  <!-- end mobile only --
   <div class="smallpad" [attr.data-tooltip]="GetTooltip()" data-position="bottom center">
     <div class="ui inline nopad mini green animated button" (click)="IncrementAgreed()">
       <div class="visible content">Agree</div>
@@ -117,3 +118,145 @@
     <button class="ui custombutton button" (click)="OpenPopup()">Respond</button>
   </div>
 </div>
+-->
+
+
+<div class="review-holder">
+  <div class="user">
+    <div class="user-icon" [ngStyle]="{'background-image':'-webkit-gradient(linear, left top, right bottom,   color-stop(0%,'+ exampleIcon1+'), color-stop(100%,'+ exampleIcon2+'))'}"></div>
+    <h3>{{Review.user}}</h3>
+  </div>
+  <div class="content">
+      <div class="rating">
+          <i [ngClass]="CheckRating(1)"></i>
+          <i [ngClass]="CheckRating(2)"></i>
+          <i [ngClass]="CheckRating(3)"></i>
+          <i [ngClass]="CheckRating(4)"></i>
+          <i [ngClass]="CheckRating(5)"></i>
+      </div>
+      <div class="rating-text">
+        <p>{{Review.comment}}</p>
+      </div>
+      <div class="agree">
+          <div class="ui labeled button up" tabindex="0" (click)="IncrementAgreed()">
+              <div class="ui button">
+                  <i class="thumbs up icon"></i> Agree
+              </div>
+              <a class="ui basic label">
+                  {{Review.agreed.length}}
+              </a>
+            </div>
+          <div class="ui labeled button down" tabindex="0" (click)="IncrementDisagreed()">
+              <div class="ui button">
+                  <i class="thumbs down icon"></i> Disagree
+              </div>
+              <a class="ui basic label">
+                  {{Review.disagreed.length}}
+              </a>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="response" *ngIf="Review.response">
+  <p class="contrast-color">{{Home.name}} replied:</p>
+  <p class="home-text">{{Review.response}}</p>
+</div>
+<div class="respond"  *ngIf="CheckValid()">
+    <button class="ui right floated button" (click)="modalRespondToReview(ID)" *ngIf="!Review.response">Reply</button>
+    <button class="ui right floated button" (click)="modalRespondToReview(ID)" *ngIf="Review.response">Change your reply</button>
+</div>
+
+
+<!-- modals -->
+<div class="ui longer modal respond-to-review {{ID}}">
+    <i class="close icon"></i>
+    <div class="header">
+      Reply to this review
+    </div>
+    <div class="content">
+        <p>Original comment:</p>
+        <p class="rev-comment">{{Review.comment}}</p>
+   
+        <div *ngIf="CheckTier()" class="ui form" [id]="ID">
+            <div *ngIf="CheckTier()" class="field">
+                <label>Response category:</label>
+                <select class="ui dropdow" #cat (change)="UpdateDrop(cat.value)">
+                    <option value="99">Select Option</option>
+                    <option *ngFor="let response of responses" [value]="response.id">{{response.name}}</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Response:</label>
+                <select class="ui dropdown" [attr.disabled]="disabled?'':null" #option [(ngModel)]="op">
+                    <option value="">Select Option</option>
+                    <option *ngFor="let response of selectedResponses" [value]="response.text">{{response.text}}</option>
+                </select>
+                <br/>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui button" (click)="closeModal(ID)">Cancel</div>
+        <div class="ui button" (click)="LeaveReview(ID)">Respond</div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div *ngIf="CheckTier()" class="ui form" [id]="ID">
+    <div *ngIf="CheckTier()" class="field">
+      <label>Response category:</label>
+      <select class="ui dropdow" #cat (change)="UpdateDrop(cat.value)">
+        <option value="99">Select Option</option>
+        <option *ngFor="let response of responses" [value]="response.id">{{response.name}}</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Response:</label>
+      <select class="ui dropdown" [attr.disabled]="disabled?'':null">
+        <option value="">Select Option</option>
+        <option *ngFor="let response of selectedResponses" [value]="response.text">{{response.text}}</option>
+      </select>
+      <br/>
+      <div class="ui medium two buttons">
+        <button class="ui red custombutton button" (click)="ClosePopup()">Cancel</button>
+        <div class=or></div>
+        <button class="ui custombutton button" (click)="LeaveReview(option.value)">Send</button>
+      </div>
+    </div>
+  </div>
+
+<div class="ui vertical menu">
+    <div class="ui left pointing dropdown link item">
+        <i class="dropdown icon"></i>
+        Respond
+        <div class="menu">
+            <div class="ui left pointing dropdown link item">
+                <i class="dropdown icon"></i>
+                Respond
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->

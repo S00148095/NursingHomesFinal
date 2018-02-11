@@ -20,15 +20,34 @@
     color: rgba(0,0,0,0.6);
 }
 .image-section{
-    height: 40vh;
     background: rgba(0,0,0,0.04);
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 90vh;
 }
 .image-section>h1{
-    height: 1em;
+    display: none;
+}
+.image-section>img{
+    max-width: 50%;
+    max-height: 400px;
+}
+.img-thumbnail{
+    width: 80px;
+    height: auto;
+    margin: 0 2%;
+    align-self: center;
+    cursor: pointer;
+}
+.lb{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1% 0;
 }
 .info-section{
     color: rgba(0,0,0,0.6);
@@ -124,6 +143,10 @@ iframe{
   }
   .current-reviews{
       flex-grow: 2;
+      max-width: 70%;
+      margin-right: 3%;
+  }
+  .review-piece{
   }
 
 

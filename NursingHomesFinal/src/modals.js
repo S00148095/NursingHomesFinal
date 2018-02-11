@@ -39,3 +39,12 @@ function modalPassword(){
             .modal('show')
         ;
 }
+
+function modalRespondToReview(id){
+    $('.ui.modal.respond-to-review.'+id)
+            .modal({
+                inverted: true
+            })
+            .modal('show')
+        ;
+}

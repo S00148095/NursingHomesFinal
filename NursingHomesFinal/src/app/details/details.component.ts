@@ -11,6 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { v4 as uuid } from 'uuid';
 import { FirebaseApp } from 'angularfire2';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Lightbox } from 'angular2-lightbox';
 
 declare var myExtObject: any;
 
@@ -89,6 +90,8 @@ caretypesArray = [
   ctBool: boolean[] = [];
   fBool: boolean[] = [];
 
+  _album: Array<any> = [];
+
   getCT(){
     this.currentHome.careTypes.forEach(ct =>{
       this.ctBool[this.i] = ct.value==true ? true: false;
@@ -104,10 +107,28 @@ caretypesArray = [
 
 
 
-  constructor(private afa: AngularFireAuth, public sanitizer: DomSanitizer, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
+  constructor(private afa: AngularFireAuth, private _lightbox: Lightbox, public sanitizer: DomSanitizer, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
     this.Reviews = [];
+    for (let i = 1; i <= 16; i++) {
+      const src = 'assets/big.jpg';
+      const caption = 'Image ' + i + ' caption here';
+      const thumb = 'assets/big.jpg';
+      const album = {
+         src: src,
+         caption: caption,
+         thumb: thumb
+      };
+
+      this._album.push(album);
+    }
   }
+
+  open(index: number): void {
+    // open lightbox
+    this._lightbox.open(this._album, index);
+  }
+
   GetHome(id): void {//gets current home
     this.storageService.getCurrentHome(id).subscribe(home => { 
       this.currentHome = home;

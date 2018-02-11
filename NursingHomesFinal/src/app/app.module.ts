@@ -41,7 +41,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { environment } from '../environments/environment';
 import { PaymentService } from './payment.service';
 import { AgmCoreModule } from '@agm/core';
-
+import { LightboxModule } from 'angular2-lightbox';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
@@ -165,7 +165,8 @@ const routes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCcprejw3C_TDbMoM1h_Gss2aWaWC4Av8w'
     }),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    LightboxModule
   ],
   providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService],
   bootstrap: [AppComponent]

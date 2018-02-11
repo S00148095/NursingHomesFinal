@@ -23,7 +23,8 @@
         "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
         "../semantic/dist/semantic.min.css",
         "../node_modules/fullpage.js/dist/jquery.fullPage.css",
-        "../node_modules/dragula/dist/dragula.css"
+        "../node_modules/dragula/dist/dragula.css",
+        "../node_modules/angular2-lightbox/lightbox.css"
       ],
       "scripts": [
         "jquery-3.2.0.js",

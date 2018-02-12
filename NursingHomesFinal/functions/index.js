@@ -193,18 +193,39 @@ exports.stripeCharge = functions.database
   });
 
   exports.sendEmail = functions.database
-  .ref('/emails/{userId}')
+  .ref('/emails/{emailId}')
   .onWrite(event => {
     const payment = event.data.val();
-    const userId = event.params.userId;
+    const userId = event.params.emailId;
 
     return admin.database()
-      .ref(`/users/${userId}`)
+    .ref('/emails/{emailId}')
       .once('value')
       .then(snapshot => {
         return snapshot.val();
       })
       .then(val => {
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'liamlogandavieswork@gmail.com',
+            pass: 'Gc+6#bXX5qWf.$2}Vz'
+          }
+        });
         
+        var mailOptions = {
+          from: 'liamlogandavieswork@gmail.com',
+          to: 'liamlogandavieswork@gmail.com',
+          subject: 'Sending Email using Node.js',
+          text: 'That was easy!'
+        };
+        
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
       });
   });

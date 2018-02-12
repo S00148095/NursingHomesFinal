@@ -5,13 +5,18 @@ SEO
 update stripe key to live
 check database rules
 add live home data
+try catches
+load testing
 
 should have
 limit reviews?, comment length, description*
 agree/disagree button width*
 contact page does something*
 individual images*
-favicon*
+create own listing*
+add forgot password to login*
+submissions and messages on account*
+more info*
 ratio not reducing fully
 icon on comment
 response section css

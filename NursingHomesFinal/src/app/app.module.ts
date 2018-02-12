@@ -51,7 +51,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './auth.service';
 import { HomeSignupComponent } from './home-signup/home-signup.component';
 
-
 /*===============
 
 Changing this in favour of nested routing, as a test at least

@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class StorageService {
@@ -23,7 +24,22 @@ export class StorageService {
     constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router, public toastr: ToastsManager) {
 
     }
-
+    SendEmail(to:string,from:string,subject:string,resident:string,phone:string,details:string){
+        this.http.patch(this.firebaseURL + "emails/"+ uuid() +".json",this.formatEmail(to,from,subject,resident,phone,details)).subscribe(params => {
+            this.showSuccess("Message sent");
+        });
+      }
+      formatEmail(to:string,from:string,subject:string,resident:string,phone:string,details:string): any {
+        var postdata = {
+            "to": to,
+            "from": from,
+            "subject": subject,
+            "resident": resident,
+            "phone": phone,
+            "details": details
+        }
+        return postdata
+      }
     submitHomes(Homes: Home[]) {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {

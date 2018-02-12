@@ -13,13 +13,13 @@ function updateHomes(homes, userID) {
   }
   return updates;
 }
-function updateUser(userId,id)
-{
-  var updates={
+function updateUser(userId, id) {
+  var updates = {
   };
   updates['/users/' + userId + '/StripeId'] = id;
   return updates;
 }
+
 exports.stripeCreate = functions.database
   .ref('/submissions/{userId}')
   .onWrite(event => {
@@ -32,13 +32,13 @@ exports.stripeCreate = functions.database
         return snapshot.val();
       })
       .then(val => {
-        var email=val.email;
+        var email = val.email;
 
         stripe.customers.create({
           email: email
-        }, function(err, customer) {
-          var updates={};
-          updates = updateUser(userId,customer.id);
+        }, function (err, customer) {
+          var updates = {};
+          updates = updateUser(userId, customer.id);
           return admin.database().ref().update(updates);
         });
       });
@@ -192,14 +192,19 @@ exports.stripeCharge = functions.database
       );
   });
 
-  exports.sendEmail = functions.database
+exports.sendEmail = functions.database
   .ref('/emails/{emailId}')
   .onWrite(event => {
-    const payment = event.data.val();
-    const userId = event.params.emailId;
+    const email = event.data.val();
+    const to = email.to;
+    const from = email.from;
+    const subject = email.subject;
+    const details = email.details;
+    const resident = email.resident;
+    const phone = email.phone;
 
     return admin.database()
-    .ref('/emails/{emailId}')
+      .ref('/emails/{emailId}')
       .once('value')
       .then(snapshot => {
         return snapshot.val();
@@ -208,19 +213,19 @@ exports.stripeCharge = functions.database
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'liamlogandavieswork@gmail.com',
-            pass: 'Gc+6#bXX5qWf.$2}Vz'
+            user: 'carezeofficial@gmail.com',
+            pass: 'NZ9[A7P?2/.Xz,zigu'
           }
         });
-        
+
         var mailOptions = {
-          from: 'liamlogandavieswork@gmail.com',
-          to: 'liamlogandavieswork@gmail.com',
-          subject: 'Sending Email using Node.js',
-          text: 'That was easy!'
+          from: from,
+          to: to,
+          subject: subject,
+          text: "Email: "+from+"\n"+"Phone: "+phone+"\nResident: "+resident+"\n\nSent you the following message:\n\n"+details+"\n\nVia Careze.com"
         };
         
-        transporter.sendMail(mailOptions, function(error, info){
+        transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
             console.log(error);
           } else {

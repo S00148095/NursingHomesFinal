@@ -100,6 +100,7 @@ export class AccountComponent implements OnInit {
   }
 
   public updatePassword(){
+    //updates user's password
     if(this.changePasswordMod != null && this.changePasswordMod != '' && this.changePasswordMod != undefined){
       if(this.changePasswordMod == this.changePasswordConfirm){
         this.authService.updatePassword(this.changePasswordMod);

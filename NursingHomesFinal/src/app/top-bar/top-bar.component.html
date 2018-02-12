@@ -1,11 +1,11 @@
 <div class="mob fixed padded header">
   <h1 class="inline" [routerLink]="['../webSide']">Care<span class="otherhalf">ze</span></h1>
-  <a class="ui inline blue right floated button" *ngIf="CheckLogin()" [routerLink]="['login']">Log In</a>
+  <a class="ui inline inverted right floated button" *ngIf="CheckLogin()" [routerLink]="['login']">Log In</a>
   <div class="inline" *ngIf="CheckLogOut()">
     <div class="ui medium right floated buttons">
-      <button class="ui left attached blue button" [routerLink]="['/webSide/account']">Account</button>
-      <button class="ui  blue button" [routerLink]="['/webSide/dashboard']">Dashboard</button>
-      <button class="ui right attached blue button" (click)="Logout()">Log Out</button>
+      <button class="ui left attached inverted button" [routerLink]="['/webSide/account']">Account</button>
+      <!--<button class="ui inverted button" [routerLink]="['/webSide/dashboard']">Dashboard</button>-->
+      <button class="ui right attached inverted button" (click)="Logout()">Log Out</button>
     </div>
   </div> 
   <button class="mob-button hamburger">&#9776;</button>

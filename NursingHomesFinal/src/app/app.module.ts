@@ -40,7 +40,8 @@ import { CallbackComponent } from './callback/callback.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { environment } from '../environments/environment';
 import { PaymentService } from './payment.service';
-
+import { AgmCoreModule } from '@agm/core';
+import { LightboxModule } from 'angular2-lightbox';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
@@ -50,7 +51,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 //import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AuthService } from './auth.service';
 import { HomeSignupComponent } from './home-signup/home-signup.component';
-
+import { CleanPipe } from './clean.pipe';
+import { ListingCardComponent } from './listing-card/listing-card.component';
 
 /*===============
 
@@ -147,7 +149,9 @@ const routes: Routes = [
     CrmSideRouteComponent,
     CallbackComponent,
     PaymentsComponent,
-    HomeSignupComponent
+    HomeSignupComponent,
+    CleanPipe,
+    ListingCardComponent
   ],
   imports: [
     BrowserModule,
@@ -159,7 +163,11 @@ const routes: Routes = [
     HttpClientJsonpModule,
     ShareButtonsModule.forRoot(),    
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCcprejw3C_TDbMoM1h_Gss2aWaWC4Av8w'
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
+    LightboxModule
   ],
   providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService],
   bootstrap: [AppComponent]

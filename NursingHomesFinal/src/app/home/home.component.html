@@ -1,26 +1,35 @@
 <div class="scrollablecontent home" id="fullpage">
     <div class="padded homecontainer section">
+        <h1 class="welcome-header">Find nursing homes in Ireland</h1>
         <div id="content-pane" class="box">
             <div id="inputs" class="ui massive form">
-                <div class="field">
+                <!--<div class="field">
                     <input type="text" name="address" id="geocomplete" onclick="geocomplete()" placeholder="Eg. Galway, Ballymun or Summerville Nursing Home, Sligo"
                         #address>
+                </div>-->
+                <div class="ui fluid action input">
+                    <input type="text"  name="address" id="geocomplete" onclick="geocomplete()" placeholder="Eg. Galway, Ballymun or Summerville Nursing Home, Sligo"
+                    #address>
+                    <button class="ui huge icon button" (click)="Calculate(address.value)">
+                        <i class="search icon"></i>
+                    </button> 
                 </div>
             </div>
             <br/>
-            <a class="ui fluid massive custombutton button" (click)="Calculate(address.value)">Search for nursing homes</a>
+           <!-- <a class="ui fluid massive custombutton button" (click)="Calculate(address.value)">Search for nursing homes</a>-->
             <a class="ui fluid massive custombutton button mobile-only" (click)="Calculate(address.value)">Search</a>
+            
         </div>
     </div>
     <div class="padded section">
-        <h1>Users</h1>
+        <h1 class="home-section-head">Join our community</h1>
         <p>Careze is the Trip Advisor for Nursing Homes. Read & leave reviews form all the quality nursing homes in your area
             to find the best care for your loved ones.</p>
         <div class="ui three column centered grid">
             <div class="column">
                 <i class="huge circular search icon"></i>
-                <h2>Read</h2>
-                <p>Find a Nursing Home that best suits the needs & requirements of loved ones</p>
+                <h2>Search</h2>
+                <p>Find the Nursing Home that best suits the needs & requirements of loved ones</p>
             </div>
             <div class="column">
                 <i class="huge circular write icon"></i>
@@ -36,13 +45,26 @@
         <br/>
         <a class="ui fluid huge custombutton button" onclick="moveUp()">Get started</a>
     </div>
+    <div class="contrasting image padded section">
+        <h1 class="contrasting home-section-head">Top listings in Sligo</h1>
+        <div class="top-listings">
+            <app-listing-card class="listing-card" *ngFor="let h of hGroup | async" [home]="h">
+            </app-listing-card>
+        </div>
+    </div>
+<!--
+    <div class="contrasting padded section">
+        <h1 class="contrasting home-section-head">Something on this page</h1>
+        <h2 class="contrasting home-section-sub">But not a wall of text...</h2>
+    </div>
+-->
     <div class="padded section">
-        <h1>Homes</h1>
+        <h1 class="home-section-head">Have your home featured here</h1>
         <p>Careze is more than just a directory listing with user reviews.  It’s a back-end enquiry management system which
             enables nursing homes to respond to all their enquiries in a timely and efficient manner</p>
         <div class="ui three column centered grid">
             <div class="column">
-                <i class="huge circular browser icon"></i>
+                <i class="huge centered circular browser icon"></i>
                 <h2>List</h2>
                 <p>Get your listing in front of people looking to make informed decisions for their loved ones</p>
             </div>
@@ -60,35 +82,57 @@
         <br/>
         <a class="ui fluid huge custombutton button">Get started</a>
     </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
     <div class="padded section">
         <br/>
         <h1>Listings</h1>
-        <p>Listing on our site is free, with the option of additional features which can be added to your listing. For free
-            we give you the most comprehensive listing of your services, from the listing on our site a potential patient,
-            or family member can contact you directly from the listings page via our contact box, which has a number of pre-selected
-            topics for the enquiry, this enquiry will be instantly sent directly into your E-mail inbox, and also into your
-            EMS (Enquiry Management System), if you choose the EMS as part of your listing package. This gives you insights
-            on how you listing is preforming, and you now know where the enquiry has originated from. We allow users of our
-            site to leave reviews on a Nursing Home listing for the benefits of other potential users to make better, informed
-            decisions on choosing care for their loved ones. Once a review has been made on your listing you will be notified
-            of the review being made, where you can from a number of pre-set responses select your response to that review.
-            On our paid listing packages there are a greater number of pre-selected responses to choose from. Once a review
-            had been made and a response selected, other users of the site with be able to agree, or disagree with the review
-            and the response. The reviewer will be able to ‘Score’ your homes listing on a number of factors such as staff,
-            management, facilities and cleanliness etc. Some of the factors taken into account in showing your listing at
-            the top of the listings page are the ‘Overall Score’ from the user reviews, and the number of reviews. Our aim
-            is to drive the quality and standards of the nursing home industry upwards through our user’s reviews and feedback.
-            So the better your listing and the greater number of good reviews the higher you’re listing will be displayed
-            on our search pages. We have taken all the possible measure’s to avoid misuse of the review system, one of those
-            steps is that a user must be logged in with a valid e-mail address in order to leave a review, and their name
-            will be partially visible alongside their review. Any reported claims of misuse will be followed up by our review
-            team, and the necessary action taken. We may have already have you listed, (basic free listing) to find out if
-            your listed click on claim listing and search for your nursing home, if your listed you’ll see a claim listing
-            button, click to edit, update or upgrade your listing.
-        </p>
+        <article class="columns">
+            <!-- This has to go to a different page, and probably be shortened significantly --
+            <p>Listing on our site is free, with the option of additional features which can be added to your listing. For free,
+                we give you the most comprehensive listing of your services.</p><p>From the listing on our site a potential patient
+                or family member can contact you directly from the listings page via our contact box, which has a number of pre-selected
+                topics for the enquiry.  This enquiry will be instantly sent directly into your E-mail inbox, and also into your
+                EMS (Enquiry Management System), if you choose the EMS as part of your listing package. This gives you insights
+                on how your listing is preforming, and you now know where the enquiry has originated from.</p><p>We allow users of our
+                site to leave reviews on a Nursing Home listing for the benefits of other potential users to make better, informed
+                decisions on choosing care for their loved ones. Once a review has been made on your listing you will be notified
+                of the review being made, where you can, from a number of pre-set responses, select your response to that review.
+                On our paid listing packages there are a greater number of pre-selected responses to choose from.</p><p>Once a review
+                had been made and a response selected, other users of the site with be able to agree or disagree with the review
+                and the response. The reviewer will be able to ‘Score’ your homes listing on a number of factors such as staff,
+                management, facilities and cleanliness etc.</p><p>Some of the factors taken into account in showing your listing at
+                the top of the listings page are the ‘Overall Score’ from the user reviews, and the number of reviews.</p><p>Our aim
+                is to drive the quality and standards of the nursing home industry upwards through our user’s reviews and feedback.
+                The better your listing and the greater number of good reviews the higher you’re listing will be displayed
+                on our search pages.</p><p>We have taken all the possible measures to avoid misuse of the review system.  One of those
+                steps is that a user must be logged in with a valid e-mail address in order to leave a review, and their name
+                will be partially visible alongside their review.</p><p>Any reported claims of misuse will be followed up by our review
+                team, and the necessary action taken. We may already have you listed, (basic free listing) to find out if
+                you're listed, click on claim listing and search for your nursing home.  If your listed you’ll see a claim listing
+                button, click to edit, update or upgrade your listing.
+            </p>
+        </article>
     </div>
     <div class="padded section">
         <h1>Enquiry Management System</h1>
+        <!-- this has to go to a different page --
         <p>Careze has developed a simple system to enable Nursing Homes to interact and respond to enquiries made by potential
             users of your service, in a timely and efficient manner. It allows you to manage the process of the various stages
             form an initial enquiry all the way through to patient admission. Our Enquiry Management System (EMS) gives you
@@ -108,4 +152,5 @@
             listing package) without the Enquiry Management System.
         </p>
     </div>
+-->
 </div>

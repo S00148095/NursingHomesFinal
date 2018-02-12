@@ -1,4 +1,37 @@
 
+.scrollablecontent{
+    height: 100%;
+    padding: 1% 10%;
+}
+.flex-parent{
+    display: flex;
+    height: 100%;
+}
+.flex-child{
+    width: 100%;
+}
+.refine-search{
+    padding: 2% 5% 0 0;
+    flex-shrink: 3.5;
+    border-right: 2px solid #49D49D;
+}
+.search-results{
+    padding: 2% 0 0 5%;
+}
+.refine-head{
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+.results-head{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    color: #2E9AC5;
+    text-align: center;
+}
+
+
+
 @media only screen and (max-width: 768px) {
     /* for mobile phones */
 
@@ -21,3 +54,4 @@
     }
 
 }/* end mobile */
+

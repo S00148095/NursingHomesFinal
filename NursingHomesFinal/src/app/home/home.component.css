@@ -1,0 +1,91 @@
+.contrast-font{
+    font-family: 'Quicksand', sans-serif;
+}
+.contrast-color{
+    color: #2E9AC5;
+}
+.columns{
+    column-count: 2;
+    column-width: 300px;
+} 
+.ui.centered.grid>.column:not(.aligned):not(.justified):not(.row), .ui.centered.grid>.row>.column:not(.aligned):not(.justified), .ui.grid .centered.row>.column:not(.aligned):not(.justified){
+    text-align: center;
+}
+i.circular.icon{
+    box-shadow: 0 0 0 0.1em #49D49D inset;
+    color: rgba(0,0,0,0.6);
+}
+.home-section-head{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    text-align: center;
+}
+.home-section-head:not(.contrasting){
+    color: #2E9AC5;
+}
+.ui.huge.icon.button{
+    background: #49D49D;
+    color: #fff;
+}
+.other-color{
+    color: #2E9AC5;
+}
+.welcome-header{
+    text-align: center;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+}
+div.contrasting{
+    background: #49D49D;
+    color: #fff;
+}
+.home-section-sub{
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+.contrasting.image{
+    background-image: linear-gradient(
+        rgba(73, 212, 157, 1),
+        rgba(73, 212, 157, 0.5)
+      ), url("http://cdn1.bestpsdfreebies.com/wp-content/uploads/2014/05/shards_pattern.jpg");
+}
+.top-listings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.listing-card{
+    background: #fff;
+    color: rgba(0,0,0,0.7);
+    margin: 2%;
+    width: 30%;
+    padding: 2% 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    border-radius: 4px;
+}
+.listing-card:hover{
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), -2px 6px 15px 3px rgba(0, 0, 0, 0.19);
+}
+.listing-card:active{
+    animation: click .3s linear;
+}
+.listing-card>h2{
+    text-align: center;
+}
+
+/* animations */
+@keyframes click {
+    0%{
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+    }
+    50%{
+        box-shadow: 0 0.2px 0.2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    }
+    100%{
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+    }
+}

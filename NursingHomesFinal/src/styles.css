@@ -3,6 +3,10 @@
 @import "../node_modules/@ngx-share/button/styles/share-buttons.css";
 @import "../node_modules/@ngx-share/button/styles/themes/modern/modern-dark-theme.css";
 
+*{
+    /* just to make sure nothing slips through the cracks */
+    font-family: 'Lato', sans-serif;
+}
 .contentexpanded {
     display: none;
     padding-bottom: 5px;
@@ -136,6 +140,7 @@
 .otherhalf
 {
     color: #2E9AC5;
+    font-family: 'Quicksand', sans-serif;
 }
 .box {
     text-align: center;
@@ -144,7 +149,10 @@
 }
 .homecontainer
 {
-    background-image: url("background.jpg");
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ), url("background.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100%;
@@ -303,6 +311,7 @@ h1
     font-family: 'Quicksand', sans-serif;
     font-size: 40px;
 }
+/* dunno why this here
 .header h1:active
 {    
     margin:0px;
@@ -312,6 +321,7 @@ h1
     font-family: 'Courgette', cursive;
     font-size: 40px;
 }
+*/
 p,label
 {
     font-size: 18px;
@@ -453,7 +463,7 @@ html, body
     position: fixed;
     top: 10%;
     left: 0;
-    border-radius: 0px;
+    border-radius: 0 0 4px 0;
 }
 .comment
 {
@@ -510,6 +520,9 @@ form.checkout {
   }  
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
+  }
+  .honeypot{
+      display: none;
   }
 
 }/*end desktop responsive 

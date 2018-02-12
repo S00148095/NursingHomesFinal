@@ -5,26 +5,27 @@
     <p>{{currentHome.phone}}</p>
     <p>{{currentHome.email}}</p>
   </div>
-  <form class="ui form">
+  <div class="ui form">
     <div class="field">
       <label>To</label>
-      <input type="text" name="to" placeholder="To" [value]="CheckHomeEmail()">
+      <input type="text" name="to" placeholder="To" [(ngModel)]="to">
     </div>
     <div class="field">
       <label>From</label>
-      <input type="text" name="from" placeholder="From" [value]="CheckUserEmail()">
+      <input type="text" name="from" placeholder="From" [(ngModel)]="from">
     </div>
     <div class="field">
       <label>Phone</label>
-      <input type="text" name="phone" placeholder="Telephone Number">
+      <input type="text" name="phone" placeholder="Telephone Number" [(ngModel)]="phone">
     </div>
     <div class="field">
       <label>Resident</label>
-      <input type="text" name="resident" placeholder="Resident Name">
-    </div>
+      <input type="text" name="resident" placeholder="Resident Name" [(ngModel)]="resident">
+    </div>    
+    <input type="text" name="honeypot" class="honeypot" [(ngModel)]="honeypot">
     <div class="field">
       <label>Subject</label>
-      <select class="ui dropdown">
+      <select class="ui dropdown" [(ngModel)]="subject">
     <option value="">Select Option</option>
     <option value="general">General</option>
     <option value="urgent">Urgent</option>
@@ -34,8 +35,8 @@
     </div>
     <div class="field">
       <label>Details</label>
-      <textarea></textarea>
+      <textarea [(ngModel)]="details"></textarea>
     </div>
-    <button class="ui fluid custombutton button">Get In Touch</button>
-  </form>
+    <button class="ui fluid custombutton button" (click)="SendEmail()">Get In Touch</button>
+  </div>
 </div>

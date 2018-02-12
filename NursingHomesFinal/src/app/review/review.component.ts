@@ -7,16 +7,21 @@ import { StorageService } from "../storage.service";
 import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastsManager } from 'ng2-toastr';
+import { FirebaseApp } from 'angularfire2';
 
+declare var $:any;
 declare var myExtObject: any;
 
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
   inputs: ["Review", "Tier", "Home"],
-  styleUrls: ['./review.component.css']
+  styleUrls: ['./review.component.css'] 
 })
 export class ReviewComponent implements OnInit {
+  colors: string[] = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGrey","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"];
+  exampleIcon1: string;
+  exampleIcon2: string;
   User: User;
   Review: Review;
   Tier: number;
@@ -24,15 +29,19 @@ export class ReviewComponent implements OnInit {
   ID: string;
   disabled: boolean;
   uid:string;
+  op: string;
   responses: any[] = [
     { id: 0, name: "General", responses: [{ text: "False Review", tier: 0 }, { text: "Review Acknowledged", tier: 0 }, { text: "Feedback Acknowledged", tier: 0 }, { text: "One-off Incident", tier: 0 }, { text: "Investigating Issue", tier: 1 }, { text: "Issue Resolved", tier: 1 }, { text: "Isolated Issue Resolved", tier: 1 }, { text: "Fair Review", tier: 1 }, { text: "Unfair Review", tier: 1 }, { text: "Slightly Bias Review", tier: 2 }, { text: "Issue Patient Specific", tier: 2 }] },
     { id: 1, name: "Possible Issue", responses: [{ text: "Investigated Issue - Unfair Review", tier: 2 }, { text: "Investigated Issue - Changes Made", tier: 2 }, { text: "Investigated Issue - Fair Review", tier: 2 }, { text: "Outside of Homes Control", tier: 2 }, { text: "Unrealistic Patient Expectations", tier: 3 }, { text: "Unrealistic Patient Demands", tier: 3 }, { text: "Extreme Specialist Care Required", tier: 3 }, { text: "Patient Never Raised Issue to be Resolved", tier: 3 }, { text: "One-off Incident - Dealing with Client", tier: 1 }, { text: "Fair Acceptable Review", tier: 3 }] },
     { id: 2, name: "Change in Circumstances", responses: [{ text: "Change in Patient Needs", tier: 1 }, { text: "Change of Procedure Made", tier: 1 }, { text: "Change of Policies Made", tier: 1 }, { text: "Change in Patient Care Needs", tier: 2 }, { text: "Change in Patient Circumstance", tier: 3 }, { text: "Change in Patients Health Conditions", tier: 3 }, { text: "Not Disclosed on Admission", tier: 2 }, { text: "Reviewing Our Procedures", tier: 2 }, { text: "Management not notified of Issue", tier: 3 }, { text: "Reviewing Our Policies", tier: 2 }] },
-    { id: 3, name: "Patient Issue", responses: [{ text: "Issue is with other Patients", tier: 3 }, { text: "Possible Issue with all Staff", tier: 3 }, { text: "Possible Issue with all Management", tier: 3 }, { text: "Not Current Patient Review", tier: 3 }, { text: "Unhappy with Funding", tier: 3 }, { text: "Not Patient Review", tier: 3 }, { text: "Not Family Member Review", tier: 3 }, { text: "Issued Caused by Patient", tier: 3 }, { text: "Issue Caused by Patient Family Actions", tier: 3 }, { text: "Billing Issue", tier: 3 }] },
+    { id: 3, name: "Resident Issue", responses: [{ text: "Issue is with other Patients", tier: 3 }, { text: "Possible Issue with all Staff", tier: 3 }, { text: "Possible Issue with all Management", tier: 3 }, { text: "Not Current Patient Review", tier: 3 }, { text: "Unhappy with Funding", tier: 3 }, { text: "Not Patient Review", tier: 3 }, { text: "Not Family Member Review", tier: 3 }, { text: "Issued Caused by Patient", tier: 3 }, { text: "Issue Caused by Patient Family Actions", tier: 3 }, { text: "Billing Issue", tier: 3 }] },
   ]
   selectedResponses: any[];
-  constructor(private storageService: StorageService, private afa: AngularFireAuth, public toastr: ToastsManager) {
+  constructor(private storageService: StorageService, private afa: AngularFireAuth, public toastr: ToastsManager, private firebaseApp: FirebaseApp) {
     this.GetUser();
+  }
+  genIcon(): string{
+    return this.colors[Math.floor(Math.random() * this.colors.length)];
   }
   CheckRating(rating: number): string {//shows stars
     if (this.Review.overall >= rating) return "yellow star icon"
@@ -95,10 +104,26 @@ export class ReviewComponent implements OnInit {
     }
     else return false;
   }
-  LeaveReview(value): void {//sets the response of the home
-    this.Review.response = value;
-    this.storageService.UpdateReviews(this.Home,this.Review);
-    this.ClosePopup();
+  LeaveReview(id): void {//sets the response of the home
+    console.log(this.op);
+    this.Review.response = this.op;
+    this.storageService.UpdateReviews(this.Home,this.Review);//  <-- this doesn't work
+    //this.ClosePopup();
+    this.closeModal(id);
+    this.UpdateReview();
+  }
+  UpdateReview(){
+    //update the review in rtdb
+    var reviewRef = this.firebaseApp.database().ref().child('homes/' + this.Home.ID+ '/reviews/' + this.Review.reviewID);
+    reviewRef.update({response:this.op})
+    reviewRef.on('value', function(snap) {
+      console.log(snap.val());
+    });
+  }
+  closeModal(id){
+    $('.ui.longer.modal.respond-to-review.'+id)
+            .modal('hide')
+        ;
   }
   CheckResponse(): boolean {//shows response if there is one
     if (this.Review.response != "") {
@@ -168,6 +193,19 @@ export class ReviewComponent implements OnInit {
     else {
       this.disabled = true;
     }
+    this.exampleIcon1 = this.genIcon();// random color to mock a user avatar
+    this.exampleIcon2 = this.genIcon();// random color to mock a user avatar
   }
+
+  modalRespondToReview(id: string){
+    $('.ui.longer.modal.respond-to-review.'+id)
+            .modal({
+                inverted: true
+            })
+            .modal('show')
+        ;
+  }
+
+  
 
 }

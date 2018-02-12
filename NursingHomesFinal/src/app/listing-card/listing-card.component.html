@@ -1,0 +1,18 @@
+<div class="card-holder">
+    <h2 class="contrast-font contrast-color">
+        {{home.name}}
+    </h2>
+    <img src="{{image}}" />
+    <div class="rating">
+        <i [ngClass]="CheckRating(1)"></i>
+        <i [ngClass]="CheckRating(2)"></i>
+        <i [ngClass]="CheckRating(3)"></i>
+        <i [ngClass]="CheckRating(4)"></i>
+        <i [ngClass]="CheckRating(5)"></i>
+    </div>
+    <h3 class="contrast-font">{{home.address}}, {{home.county}}</h3>
+    <button class="ui right labeled icon button">
+        <i class="right arrow icon"></i>
+        View
+    </button>
+</div>

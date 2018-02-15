@@ -25,6 +25,9 @@ export class HomeComponent implements OnInit {
   address:string;
   interval:any;
 
+  countys: string = "Sligo";
+  amounts: number = 3;
+
   constructor(private db: AngularFireDatabase, private storageService: StorageService, private router: Router, private firebaseApp: FirebaseApp) {
     this.GetHomes();
     this.GetSomeHomes('Sligo', 3);//we'll make this a random county or something when we get more homes in our database

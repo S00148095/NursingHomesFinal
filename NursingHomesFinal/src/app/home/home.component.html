@@ -46,11 +46,7 @@
         <a class="ui fluid huge custombutton button" onclick="moveUp()">Get started</a>
     </div>
     <div class="contrasting image padded section">
-        <h1 class="contrasting home-section-head">Top listings in Sligo</h1>
-        <div class="top-listings">
-            <app-listing-card class="listing-card" *ngFor="let h of hGroup | async" [home]="h">
-            </app-listing-card>
-        </div>
+        <app-listing-cards [county]="countys" [amount]="amounts"></app-listing-cards>
     </div>
 <!--
     <div class="contrasting padded section">

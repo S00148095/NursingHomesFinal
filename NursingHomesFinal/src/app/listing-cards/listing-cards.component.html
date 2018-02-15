@@ -1,0 +1,5 @@
+<h1 class="contrasting home-section-head">Top listings in {{county}}</h1>
+<div class="top-listings">
+    <app-listing-card class="listing-card" *ngFor="let h of homes | async" [home]="h">
+    </app-listing-card>
+</div> 

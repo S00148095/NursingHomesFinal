@@ -1,0 +1,34 @@
+
+.top-listings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.listing-card{
+    background: #fff;
+    color: rgba(0,0,0,0.7);
+    margin: 2%;
+    width: 30%;
+    padding: 2% 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    border-radius: 4px;
+}
+.listing-card:hover{
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), -2px 6px 15px 3px rgba(0, 0, 0, 0.19);
+}
+.listing-card:active{
+    animation: click .3s linear;
+}
+.listing-card>h2{
+    text-align: center;
+}
+.home-section-head{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    text-align: center;
+}
+.home-section-head:not(.contrasting){
+    color: #2E9AC5;
+}

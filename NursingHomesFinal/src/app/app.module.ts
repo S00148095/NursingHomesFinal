@@ -55,7 +55,6 @@ import { CleanPipe } from './clean.pipe';
 import { ListingCardComponent } from './listing-card/listing-card.component';
 import { ListingCardsComponent } from './listing-cards/listing-cards.component';
 
-
 /*===============
 
 Changing this in favour of nested routing, as a test at least

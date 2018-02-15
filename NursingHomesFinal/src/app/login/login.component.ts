@@ -13,6 +13,7 @@ declare var myExtObject: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  honeypot: string="";
   email: string;
   password: string;
   confirmemail: string;
@@ -35,30 +36,32 @@ export class LoginComponent implements OnInit {
   }
 
   SignUp() {
-    if (this.email != null && this.email != undefined && this.confirmemail != null && this.confirmemail != undefined && this.password != null && this.password != undefined && this.confirmpassword != null && this.confirmpassword != undefined && this.firstName != null && this.firstName != undefined && this.surname != null && this.surname != undefined) {
-      if (this.email == this.confirmemail) {
-        if (this.password == this.confirmpassword) {
-          if (this.isHome) {
-            this.authService.emailSignUp(this.email, this.password, this.firstName, this.surname).then(val => {
-              this.router.navigateByUrl("/webSide/home-signup");
-            });
+    if (this.honeypot.length == 0) {
+      if (this.email != null && this.email != undefined && this.confirmemail != null && this.confirmemail != undefined && this.password != null && this.password != undefined && this.confirmpassword != null && this.confirmpassword != undefined && this.firstName != null && this.firstName != undefined && this.surname != null && this.surname != undefined) {
+        if (this.email == this.confirmemail) {
+          if (this.password == this.confirmpassword) {
+            if (this.isHome) {
+              this.authService.emailSignUp(this.email, this.password, this.firstName, this.surname).then(val => {
+                this.router.navigateByUrl("/webSide/home-signup");
+              });
+            }
+            else {
+              this.authService.emailSignUp(this.email, this.password, this.firstName, this.surname).then(val => {
+                this.router.navigateByUrl("/webSide/account");
+              });
+            }
           }
           else {
-            this.authService.emailSignUp(this.email, this.password, this.firstName, this.surname).then(val => {
-              this.router.navigateByUrl("/webSide/account");
-            });
+            this.showWarning("Your passwords do not match");
           }
         }
         else {
-          this.showWarning("Your passwords do not match");
+          this.showWarning("Your emails do not match");
         }
       }
       else {
-        this.showWarning("Your emails do not match");
+        this.showWarning("Please fill out all the fields");
       }
-    }
-    else {
-      this.showWarning("Please fill out all the fields");
     }
     this.email = this.confirmemail = this.password = this.confirmpassword = this.firstName = this.surname = '';
 

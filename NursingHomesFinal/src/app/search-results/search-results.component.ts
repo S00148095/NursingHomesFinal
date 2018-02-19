@@ -16,8 +16,8 @@ declare var myExtObject: any;
 export class SearchResultsComponent implements OnInit {
   Homes: Home[];
   currentHome: Home;
-  lat;
-  long;
+  lat:number;
+  long:number;
 
   constructor(private storageService: StorageService, private db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     this.Homes = [];
@@ -44,9 +44,13 @@ export class SearchResultsComponent implements OnInit {
     this.router.navigate(["/webSide/search-results"], { queryParams: { searchParam: address } });
   }
   CalcDistances(address: string) {
-    for (var i = 0; i < this.Homes.length; i++) {
-      this.Homes[i].distance=this.compareLatLong(this.Homes[i].lat,this.Homes[i].long);
-    }
+    this.storageService.getGeocoding(address).subscribe(data=>{
+      this.lat=data.results[0].geometry.location.lat;
+      this.long=data.results[0].geometry.location.lng;
+      for (var i = 0; i < this.Homes.length; i++) {
+        this.Homes[i].distance=this.compareLatLong(this.Homes[i].lat,this.Homes[i].long);
+      }
+    });
   }
   rad(x) {
     return x * Math.PI / 180;

@@ -40,7 +40,7 @@ export class StorageService {
         }
         return postdata
     }
-    getGeocoding(address){        
+    getGeocoding(address):any{        
        return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyDA5pPdU99LGOn4-eBOeOaWt0Ly2QpQ83A");
     }
     submitHomes(Homes: Home[]) {

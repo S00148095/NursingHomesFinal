@@ -24,12 +24,12 @@ export class StorageService {
     constructor(private afa: AngularFireAuth, private http: HttpClient, private router: Router, public toastr: ToastsManager) {
 
     }
-    SendEmail(to:string,from:string,subject:string,resident:string,phone:string,details:string){
-        this.http.patch(this.firebaseURL + "emails/"+ uuid() +".json",this.formatEmail(to,from,subject,resident,phone,details)).subscribe(params => {
+    SendEmail(to: string, from: string, subject: string, resident: string, phone: string, details: string) {
+        this.http.patch(this.firebaseURL + "emails/" + uuid() + ".json", this.formatEmail(to, from, subject, resident, phone, details)).subscribe(params => {
             this.showSuccess("Message sent");
         });
-      }
-      formatEmail(to:string,from:string,subject:string,resident:string,phone:string,details:string): any {
+    }
+    formatEmail(to: string, from: string, subject: string, resident: string, phone: string, details: string): any {
         var postdata = {
             "to": to,
             "from": from,
@@ -39,7 +39,10 @@ export class StorageService {
             "details": details
         }
         return postdata
-      }
+    }
+    getGeocoding(address){        
+       return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyDA5pPdU99LGOn4-eBOeOaWt0Ly2QpQ83A");
+    }
     submitHomes(Homes: Home[]) {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {

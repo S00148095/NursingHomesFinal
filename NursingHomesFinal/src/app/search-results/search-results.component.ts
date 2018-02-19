@@ -4,6 +4,7 @@ import { StorageService } from "../storage.service";
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import 'script.js';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var myExtObject: any;
 
@@ -15,149 +16,89 @@ declare var myExtObject: any;
 export class SearchResultsComponent implements OnInit {
   Homes: Home[];
   currentHome: Home;
-  searchCriteria: string[];
-  GetData: any[] = [];
+  lat;
+  long;
 
-  constructor(private storageService: StorageService, private db: AngularFireDatabase) {
+  constructor(private storageService: StorageService, private db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     this.Homes = [];
   }
   GetHomes(): void {//gets the list of homes
     this.storageService.getHomes().subscribe(homes => {
       for (var k in homes) {
-        if(homes[k].rating==undefined||homes[k].rating==null)
-        {
-          homes[k].rating=0;
+        if (homes[k].rating == undefined || homes[k].rating == null) {
+          homes[k].rating = 0;
         }
         this.Homes.push(homes[k]);
       }
+      this.route.queryParams
+        .filter(params => params.searchParam)
+        .subscribe(params => {
+          if (params['searchParam']) {
+            this.CalcDistances(params.searchParam);
+          }
+        });
     });
+  }
+  Calculate(address) {//calculates the distances to sort by distance
+    address = address || 'Dublin, Ireland';
+    this.router.navigate(["/webSide/search-results"], { queryParams: { searchParam: address } });
+  }
+  CalcDistances(address: string) {
+    for (var i = 0; i < this.Homes.length; i++) {
+      this.Homes[i].distance=this.compareLatLong(this.Homes[i].lat,this.Homes[i].long);
+    }
+  }
+  rad(x) {
+    return x * Math.PI / 180;
+  }
+  compareLatLong(testlat, testlong) {
+    var R = 6371; // Earth’s mean radius in meters
+    var dLat = this.rad(this.lat - testlat);
+    var dLong = this.rad(this.long - testlong);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.rad(this.lat)) * Math.cos(this.rad(testlat)) *
+      Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d;
   }
   UpdateCurrentHome(Home: Home): void {//sets the current home
     this.storageService.setCurrentHome(Home);
-  }
-  GetCriteria(): void {//gets the search criteria
-    this.searchCriteria = this.storageService.getCriteria();
-  }
-  SetCriteria(): void {//sets the search criteria
-    this.storageService.setCriteria(this.searchCriteria);
   }
   onNotify(Home: Home): void {//updates the current home
     this.UpdateCurrentHome(Home);
   }
   SortHomes(): void {//sorts the list of homes
-    switch (this.searchCriteria[0]) {
-      case "reviews":
-        this.Homes.sort((a, b) => {
-          if(a.reviews && b.reviews){
-            if (a.reviews.length > b.reviews.length) return -1;
-            else if (a.reviews.length < b.reviews.length) return 1;
-            else {
-              if (a.tier > b.tier) return -1;
-              else if (b.tier > a.tier) return 1;
+    this.Homes.sort((a, b) => {
+      if (this.getCategory(a.distance) < this.getCategory(b.distance)) return -1;
+      else if (this.getCategory(a.distance) > this.getCategory(b.distance)) return 1;
+      else {
+        if (a.rating > b.rating) {
+          return -1;
+        }
+        else if (a.rating < b.rating) {
+          return 1;
+        }
+        else {
+          if (a.tier > b.tier) return -1;
+          else if (b.tier > a.tier) return 1;
+          else {
+            if (a.reviews && b.reviews) {
+              if (a.reviews.length > b.reviews.length) return -1;
+              else if (a.reviews.length <= b.reviews.length) return 1;
               else return 0;
             }
-          }
-        });
-        break;
-      case "distance":
-        if (this.storageService.getNeedsACheck()) {
-          this.RetrieveData(this.storageService.getAddress());
-        }
-        this.Homes.sort((a, b) => {
-          if (this.getCategory(a.distance) < this.getCategory(b.distance)) return -1;
-          else if (this.getCategory(a.distance) > this.getCategory(b.distance)) return 1;
-          else {
-            if (a.rating > b.rating) {
-              return -1;
-            }
-            else if (a.rating < b.rating) {
-              return 1;
-            }
-            else {
-              if (a.tier > b.tier) return -1;
-              else if (b.tier > a.tier) return 1;
-              else {
-                if(a.reviews && b.reviews){
-                  if (a.reviews.length > b.reviews.length) return -1;
-                  else if (a.reviews.length <= b.reviews.length) return 1;
-                  else return 0;
-                }
-              };
-            };
           };
-        });
-        break;
-      case "descending":
-        this.Homes.sort((a, b) => {
-          if (a.name > b.name) return -1;
-          else if (a.name < b.name) return 1;
-          else {
-            if (a.tier > b.tier) return -1;
-            else if (b.tier > a.tier) return 1;
-            else return 0;
-          }
-        });
-        break;
-      case "ascending":
-        this.Homes.sort((a, b) => {
-          if (b.name > a.name) return -1;
-          else if (b.name < a.name) return 1;
-          else {
-            if (a.tier > b.tier) return -1;
-            else if (b.tier > a.tier) return 1;
-            else return 0;
-          }
-        });
-        break;
-      default:
-        this.Homes.sort((a, b) => {
-          if (a.rating > b.rating) {
-            return -1;
-          }
-          else if (a.rating < b.rating) {
-            return 1;
-          }
-          else {
-            if (a.tier > b.tier) return -1;
-            else if (b.tier > a.tier) return 1;
-            else {
-              if(a.reviews && b.reviews){
-                if (a.reviews.length > b.reviews.length) return -1;
-                else if (a.reviews.length <= b.reviews.length) return 1;
-                else return 0;
-              }
-            }
-          }
-        });
-    }
+        };
+      };
+    });
   }
   CheckHomes(): boolean {//checks that the list of homes is not null, then sorts them
-    if (this.Homes != null && this.Homes != undefined && this.Homes.length != 0 && this.searchCriteria != null && this.searchCriteria != undefined) {
+    if (this.Homes != null && this.Homes != undefined && this.Homes.length != 0) {
       this.SortHomes();
       return true;
     }
     else return false;
-  }
-  UpdateCriteria(option, county) {//updates the search criteria
-    this.searchCriteria = [option, county];
-  }
-  RetrieveData(address) {//retrieves the distance data from local storage
-    for (var i = 0; i < this.Homes.length; i++) {
-      this.GetData[i] = [];
-      this.GetData[i].push(this.Homes[i].lat);
-      this.GetData[i].push(this.Homes[i].long);
-      this.GetData[i].push(10);
-    }
-    this.GetData = myExtObject.RetrieveData(address, this.GetData);
-    for (var i = 0; i < this.Homes.length; i++) {
-      for (var j = 0; j < this.GetData.length; j++) {
-        if (this.GetData[j][0] == this.Homes[i].lat && this.GetData[j][1] == this.Homes[i].long) {
-          this.Homes[i].distance = this.GetData[j][2];
-        }
-      }
-    }
-    myExtObject.ClearData();
-    this.storageService.updateCheck(false);
   }
   getCategory(distance)//checks how far the home is away
   {
@@ -183,7 +124,6 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
     this.GetHomes();
-    this.GetCriteria();
   }
 
 }

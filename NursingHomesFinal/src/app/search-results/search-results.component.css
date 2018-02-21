@@ -5,18 +5,18 @@
 }
 .flex-parent{
     display: flex;
+    flex-direction: column;
     height: 100%;
 }
 .flex-child{
     width: 100%;
+    padding: 2% 5%;
 }
 .refine-search{
-    padding: 2% 5% 0 0;
     flex-shrink: 3.5;
-    border-right: 2px solid #49D49D;
+    border-bottom: 2px solid #49D49D;
 }
 .search-results{
-    padding: 2% 0 0 5%;
 }
 .refine-head{
     font-family: 'Quicksand', sans-serif;
@@ -28,6 +28,10 @@
     font-weight: 300;
     color: #2E9AC5;
     text-align: center;
+}
+.ui.icon.button{
+    background: #49D49D;
+    color: #fff;
 }
 
 

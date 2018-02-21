@@ -31,5 +31,9 @@ export class ListingCardComponent implements OnInit {
     else return "yellow star half empty icon"
   }
 
+  goToListing(){//navs to the home's full listing
+    this.router.navigate(["/webSide/details"], { queryParams: { id: this.home.ID } });
+  }
+
 }
  

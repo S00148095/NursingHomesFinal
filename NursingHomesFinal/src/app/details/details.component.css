@@ -12,6 +12,12 @@
     font-size: 3em;
     margin: 0;
 }
+.dets>h2{
+    display: inline;
+}
+.dets>a.ui.custombutton.button{
+    float: right;
+}
 .header-section{
     height: auto;
 }
@@ -71,6 +77,7 @@
     display: flex;
     justify-content: space-between;
     border-top: 2px solid #49D49D;
+    margin-top: 1%;
     padding: 2% 0;
 }
 iframe{
@@ -140,6 +147,7 @@ iframe{
   .reviews{
     border-top: 2px solid #49D49D;
     display: flex;
+    margin-top: 1%;
   }
   .current-reviews{
       flex-grow: 2;

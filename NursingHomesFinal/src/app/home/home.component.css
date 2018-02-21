@@ -50,7 +50,7 @@ div.contrasting{
     background-image: linear-gradient(
         rgba(73, 212, 157, 1),
         rgba(73, 212, 157, 0.5)
-      ), url("http://cdn1.bestpsdfreebies.com/wp-content/uploads/2014/05/shards_pattern.jpg");
+      ), url("../../shards_pattern.jpg");
 }
 .top-listings{
     display: flex;

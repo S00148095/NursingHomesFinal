@@ -24,6 +24,17 @@ i.circular.icon{
 .home-section-head:not(.contrasting){
     color: #2E9AC5;
 }
+.homecontainer{
+    position: relative;
+}
+img.bouncer{
+    animation: MoveUpDown 1.5s linear infinite;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+}
 .ui.huge.icon.button{
     background: #49D49D;
     color: #fff;
@@ -89,3 +100,15 @@ div.contrasting{
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
     }
 }
+
+@keyframes MoveUpDown {
+    0% {
+      bottom: 0;
+    }
+    50% {
+      bottom: 10px;
+    }
+    100% {
+      bottom: 0;
+    }
+  }

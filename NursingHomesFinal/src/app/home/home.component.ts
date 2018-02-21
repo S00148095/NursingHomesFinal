@@ -9,6 +9,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 declare var myExtObject: any;
+declare var $:any;
 
 @Component({
   selector: 'app-home',
@@ -49,6 +50,10 @@ export class HomeComponent implements OnInit {
     if(window.screen.width > 767){
       myExtObject.initFullpage("home");//tells the full page plugin to fire on this page if on desktop/laptop
     }
+  }
+
+  moveDown(){
+    $.fn.fullpage.moveSectionDown();
   }
 
 }

@@ -30,7 +30,6 @@ create own listing*
 add forgot password to login*
 submissions and messages on account*
 more info page*
-arrow down on landing page
 ratio not reducing fully
 room types
 viewing times

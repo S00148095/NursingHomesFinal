@@ -15,13 +15,11 @@ create own listing*
 add forgot password to login*
 submissions and messages on account*
 more info page*
-move geolocation*
 ratio not reducing fully
 room types
 viewing times
 number of views-on page and crm
 test extra search paramaters-search results
-distance when not coming from home is buggy
 something sometimes logs out user for no reason
 sort reviews
 

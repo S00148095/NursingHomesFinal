@@ -53,6 +53,7 @@ import { AuthService } from './auth.service';
 import { HomeSignupComponent } from './home-signup/home-signup.component';
 import { CleanPipe } from './clean.pipe';
 import { ListingCardComponent } from './listing-card/listing-card.component';
+import { ListingCardsComponent } from './listing-cards/listing-cards.component';
 
 /*===============
 
@@ -151,7 +152,8 @@ const routes: Routes = [
     PaymentsComponent,
     HomeSignupComponent,
     CleanPipe,
-    ListingCardComponent
+    ListingCardComponent,
+    ListingCardsComponent
   ],
   imports: [
     BrowserModule,

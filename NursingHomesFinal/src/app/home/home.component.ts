@@ -19,11 +19,9 @@ export class HomeComponent implements OnInit {
   Homes: Home[]=[];
   hGroup: Observable<any[]>;
   bg: any;
-  searchCriteria: string[];
-  lats: number[] = [];
-  longs: number[] = [];
-  address:string;
-  interval:any;
+
+  countys: string = "Sligo";
+  amounts: number = 3;
 
   constructor(private db: AngularFireDatabase, private storageService: StorageService, private router: Router, private firebaseApp: FirebaseApp) {
     this.GetHomes();
@@ -43,40 +41,9 @@ export class HomeComponent implements OnInit {
       }
   });
   }
-  GetCriteria(): void {//hets the search criteria
-    this.searchCriteria = this.storageService.getCriteria();
-  }
-  SetCriteria(): void {//sets the searh criteria
-    this.storageService.setCriteria(this.searchCriteria);
-    this.searchCriteria = [];
-  }
-  UpdateCriteria(option, county) {//gets the current search criteria and update the storage
-    this.searchCriteria = [option, county];
-    this.SetCriteria();
-  }
   Calculate(address) {//calculates the distances to sort by ditance
-    this.address = address || 'Dublin, Ireland';
-    for (var i = 0; i < this.Homes.length; i++) {
-      this.lats.push(this.Homes[i].lat);
-      this.longs.push(this.Homes[i].long);
-    }
-    myExtObject.CalculateDistance(this.address, this.lats, this.longs);
-    this.interval = setInterval(() => {
-      this.checkCheck();
-      }, 400);
-  }
-  checkCheck() {//checks if the external javascript is finished running
-    switch(myExtObject.checkFinished()) {
-      case false:
-      break;
-      case true:      
-      clearInterval(this.interval);
-      this.UpdateCriteria("distance", "");
-      this.storageService.updateAddress(this.address);
-      this.storageService.updateCheck(true);
-      this.router.navigateByUrl('/webSide/search-results');
-      break; 
-    }
+    address = address || 'Dublin, Ireland';
+    this.router.navigate(["/webSide/search-results"], { queryParams: { searchParam: address} });   
   }
   ngOnInit() {
     if(window.screen.width > 767){

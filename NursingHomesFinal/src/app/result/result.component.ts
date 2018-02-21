@@ -9,14 +9,13 @@ import { FirebaseApp } from 'angularfire2';
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  inputs: ["Home", "County"],
+  inputs: ["Home"],
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
   Home: Home;
   topReview: Review;
   reviews:Review[]=[];
-  County: string;
   NumReviews: string;
   image: string;
   @Output() notify: EventEmitter<Home> = new EventEmitter<Home>();
@@ -46,21 +45,12 @@ export class ResultComponent implements OnInit {
   UpdateCurrentHome() {//updates the current home when one is clicked on
     this.router.navigate(["/webSide/details"], { queryParams: { id: this.Home.ID } });//navigates to the details page and sets the queryParams
   }
-  CheckCounty() {//checks the county
-    if (this.County == this.Home.county || this.County == "") {
-      return true;
-    }
-    else return false;
-  }
   CheckPremium() {//checks premium
-    if (this.CheckCounty()) {
       if (this.Home.tier == 5) {
         return true;
       }
       else return false
     }
-    else return false
-  }
   CheckTier() {//shows the number of revies on paid versions
     if (this.Home.tier > 1) {
       this.UpdateReviews();

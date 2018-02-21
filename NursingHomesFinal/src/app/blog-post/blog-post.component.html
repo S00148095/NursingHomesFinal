@@ -1,0 +1,46 @@
+<div class="blogs-holder">
+    <div class="blogs-header">
+        <h1 class="contrast-font">Care<span class="contrast-color contrast-font">ze</span> blog</h1>
+        <h2 class="contrast-font">Tips, tricks, and useful information from the Careze team</h2>
+    </div>
+    <div class="blog-posts-holder">
+        <div class="blog-items">
+            <div class="individual-blog">
+                <h2 class="title">{{(blog | async)?.title}}</h2>
+                <p>{{(blog | async)?.date}}</p>
+                <div class="author">
+                    <div class="icon"></div>
+                    <p>{{(blog | async)?.author}}</p>
+                </div>
+                <p class="description">{{(blog | async)?.description}}</p>
+            </div>
+            <p *ngFor="let paragraph of paragraphs | async">{{paragraph}}</p>
+        </div>
+        <div class="blog-options">
+            <h3>About</h3>
+            <p>Careze is ...</p>
+            <h3>Most popular posts</h3>
+            <p *ngFor="let blog of items$ | async" (click)="goToPost(blog.id)">{{blog.title}}</p>
+        </div>
+    </div>
+<!--
+    <div class="agree">
+        <div class="ui labeled button up" tabindex="0" (click)="IncrementAgreed()">
+            <div class="ui button">
+                <i class="thumbs up icon"></i> Like
+            </div>
+            <a class="ui basic label">
+                {{(blog | async)?.likes}}
+            </a>
+          </div>
+        <div class="ui labeled button down" tabindex="0">
+            <div class="ui button">
+                <i class="thumbs down icon"></i> Dislike
+            </div>
+            <a class="ui basic label">
+                {{(blog | async)?.dislikes}}
+            </a>
+        </div>
+    </div>
+-->
+</div>

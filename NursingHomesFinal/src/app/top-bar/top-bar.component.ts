@@ -3,7 +3,8 @@ import { User } from "../User";
 import { StorageService } from "../storage.service";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-top-bar',
@@ -12,8 +13,13 @@ import { Router } from '@angular/router';
 })
 export class TopBarComponent implements OnInit {
   login: boolean;
-  constructor(public firebaseAuth: AngularFireAuth, public authService: AuthService, private router: Router, private service: StorageService) {
+  itemId: number;
+  constructor(public firebaseAuth: AngularFireAuth, private route: ActivatedRoute, public authService: AuthService, public router: Router, private service: StorageService) {
     this.login = false;
+    this.route.params.subscribe(params => {
+      this.itemId = +params['id'];
+      console.log(this.itemId);
+    });
   }
 
   CheckLogin(): boolean {

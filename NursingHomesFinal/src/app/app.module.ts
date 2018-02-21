@@ -54,6 +54,9 @@ import { HomeSignupComponent } from './home-signup/home-signup.component';
 import { CleanPipe } from './clean.pipe';
 import { ListingCardComponent } from './listing-card/listing-card.component';
 import { ListingCardsComponent } from './listing-cards/listing-cards.component';
+import { BlogsComponent } from './blogs/blogs.component';
+import { BlogPostComponent } from './blog-post/blog-post.component';
+import { BlogTileComponent } from './blog-tile/blog-tile.component';
 
 /*===============
 
@@ -85,6 +88,8 @@ const routes: Routes = [
       { path: 'home/login', redirectTo: 'login', pathMatch: 'full' },
       { path: 'webSide', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'blog', component: BlogsComponent },
+      { path: 'blogpost', component: BlogPostComponent },
       { path: 'account', component: AccountComponent, canActivate: [AuthService]},
       { path: 'contact', component: ContactComponent },
       { path: 'dashboard', component: DashboardComponent },
@@ -153,7 +158,10 @@ const routes: Routes = [
     HomeSignupComponent,
     CleanPipe,
     ListingCardComponent,
-    ListingCardsComponent
+    ListingCardsComponent,
+    BlogsComponent,
+    BlogPostComponent,
+    BlogTileComponent
   ],
   imports: [
     BrowserModule,

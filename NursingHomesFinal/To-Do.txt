@@ -30,6 +30,8 @@ create own listing*
 add forgot password to login*
 submissions and messages on account*
 more info page*
+name instead of resident*
+currentHome undefined*
 ratio not reducing fully
 room types
 viewing times

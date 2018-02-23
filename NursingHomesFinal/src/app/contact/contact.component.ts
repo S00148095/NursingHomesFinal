@@ -22,7 +22,7 @@ export class ContactComponent implements OnInit {
   to: string;
   from: string;
   subject: string;
-  resident: string;
+  name: string;
   phone: string;
   details: string;
   honeypot: string="";
@@ -69,15 +69,15 @@ export class ContactComponent implements OnInit {
   }
   SendEmail() {
     if (this.honeypot.length == 0) {
-      if (this.to != null && this.to != undefined && this.to != "" && this.from != null && this.from != undefined && this.from != "" && this.subject != null && this.subject != undefined && this.subject != "" && this.resident != null && this.resident != undefined && this.resident != "" && this.phone != null && this.phone != undefined && this.phone != "" && this.details != null && this.details != undefined && this.details != "") {
-        this.storageService.SendEmail(this.to, this.from, this.subject, this.resident, this.phone, this.details);
-        this.subject=this.resident=this.phone=this.details="";
+      if (this.to != null && this.to != undefined && this.to != "" && this.from != null && this.from != undefined && this.from != "" && this.subject != null && this.subject != undefined && this.subject != "" && this.name != null && this.name != undefined && this.name != "" && this.phone != null && this.phone != undefined && this.phone != "" && this.details != null && this.details != undefined && this.details != "") {
+        this.storageService.SendEmail(this.to, this.from, this.subject, this.name, this.phone, this.details);
+        this.subject=this.name=this.phone=this.details="";
       }
       else{
       this.toastr.warning("Please fill out all the fields");
     }
     }
-    this.subject=this.resident=this.phone=this.details="";
+    this.subject=this.name=this.phone=this.details="";
   }
   ngOnInit() {
     this.route.queryParams//gets the id of the current recipe from the queryParams

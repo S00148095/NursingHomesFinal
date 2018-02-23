@@ -36,12 +36,13 @@ export class ContactComponent implements OnInit {
     if (id != "careze") {
       this.storageService.getCurrentHome(id).subscribe(home => {
         this.currentHome = home;
+        this.to = this.currentHome.email;
       });
     }
     else {
       this.currentHome = new Home("careze", "", "careze.com", "Sligo", "Co. Sligo", "", 0, "0878111111", "declan@careze.com", "Declan Trumble", "", "", "", "", "", [], [], 0, [], 0, 0, 0, new Image("", ""));
+      this.to = this.currentHome.email;
     }
-    this.to = this.currentHome.email;
   }
   GetUser(): void {//gets the current user from the service
     this.afa.authState.subscribe((resp) => {

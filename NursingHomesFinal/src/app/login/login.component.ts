@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     }
     this.email = this.password = '';
   }
-
   SignUp() {
     if (this.honeypot.length == 0) {
       if (this.email != null && this.email != undefined && this.confirmemail != null && this.confirmemail != undefined && this.password != null && this.password != undefined && this.confirmpassword != null && this.confirmpassword != undefined && this.firstName != null && this.firstName != undefined && this.surname != null && this.surname != undefined) {

@@ -2,8 +2,8 @@
   <form class="ui form">
     <div class="field">
       <label>Email Address</label>
-      <input type="text" name="email" placeholder="Email">
+      <input type="text" name="email" placeholder="Email" [(ngModel)]="email">
     </div>
-    <button class="ui custombutton button">Recover Password</button>
+    <button class="ui custombutton button" (click)="changePassword()">Recover Password</button>
   </form>
 </div>

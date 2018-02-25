@@ -27,7 +27,6 @@ star raings for leaving reviews
 limit reviews?, comment length, description*
 individual images*
 create own listing*
-add forgot password to login*
 submissions and messages on account*
 more info page*
 share blog posts*

@@ -200,7 +200,7 @@ exports.sendEmail = functions.database
     const from = email.from;
     const subject = email.subject;
     const details = email.details;
-    const resident = email.resident;
+    const name = email.name;
     const phone = email.phone;
 
     return admin.database()
@@ -222,7 +222,7 @@ exports.sendEmail = functions.database
           from: from,
           to: to,
           subject: subject,
-          text: "Email: "+from+"\n"+"Phone: "+phone+"\nResident: "+resident+"\n\nSent you the following message:\n\n"+details+"\n\nVia Careze.com"
+          text: "Email: "+from+"\n"+"Phone: "+phone+"\nName: "+name+"\n\nSent you the following message:\n\n"+details+"\n\nVia Careze.com"
         };
         
         transporter.sendMail(mailOptions, function (error, info) {

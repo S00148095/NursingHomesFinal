@@ -22,7 +22,7 @@ export class ContactComponent implements OnInit {
   to: string;
   from: string;
   subject: string;
-  resident: string;
+  name: string;
   phone: string;
   details: string;
   honeypot: string="";
@@ -36,12 +36,13 @@ export class ContactComponent implements OnInit {
     if (id != "careze") {
       this.storageService.getCurrentHome(id).subscribe(home => {
         this.currentHome = home;
+        this.to = this.currentHome.email;
       });
     }
     else {
       this.currentHome = new Home("careze", "", "careze.com", "Sligo", "Co. Sligo", "", 0, "0878111111", "declan@careze.com", "Declan Trumble", "", "", "", "", "", [], [], 0, [], 0, 0, 0, new Image("", ""));
+      this.to = this.currentHome.email;
     }
-    this.to = this.currentHome.email;
   }
   GetUser(): void {//gets the current user from the service
     this.afa.authState.subscribe((resp) => {
@@ -69,15 +70,15 @@ export class ContactComponent implements OnInit {
   }
   SendEmail() {
     if (this.honeypot.length == 0) {
-      if (this.to != null && this.to != undefined && this.to != "" && this.from != null && this.from != undefined && this.from != "" && this.subject != null && this.subject != undefined && this.subject != "" && this.resident != null && this.resident != undefined && this.resident != "" && this.phone != null && this.phone != undefined && this.phone != "" && this.details != null && this.details != undefined && this.details != "") {
-        this.storageService.SendEmail(this.to, this.from, this.subject, this.resident, this.phone, this.details);
-        this.subject=this.resident=this.phone=this.details="";
+      if (this.to != null && this.to != undefined && this.to != "" && this.from != null && this.from != undefined && this.from != "" && this.subject != null && this.subject != undefined && this.subject != "" && this.name != null && this.name != undefined && this.name != "" && this.phone != null && this.phone != undefined && this.phone != "" && this.details != null && this.details != undefined && this.details != "") {
+        this.storageService.SendEmail(this.to, this.from, this.subject, this.name, this.phone, this.details);
+        this.subject=this.name=this.phone=this.details="";
       }
       else{
       this.toastr.warning("Please fill out all the fields");
     }
     }
-    this.subject=this.resident=this.phone=this.details="";
+    this.subject=this.name=this.phone=this.details="";
   }
   ngOnInit() {
     this.route.queryParams//gets the id of the current recipe from the queryParams

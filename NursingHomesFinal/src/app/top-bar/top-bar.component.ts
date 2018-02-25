@@ -18,7 +18,6 @@ export class TopBarComponent implements OnInit {
     this.login = false;
     this.route.params.subscribe(params => {
       this.itemId = +params['id'];
-      console.log(this.itemId);
     });
   }
 

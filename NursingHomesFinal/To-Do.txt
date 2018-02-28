@@ -29,12 +29,14 @@ individual images*
 create own listing*
 submissions and messages on account*
 more info page*
+share blog posts*
+share button on review*
+image on blog*
 ratio not reducing fully
 room types
 viewing times
 number of views-on page and crm
-test extra search paramaters-search results
-something sometimes logs out user for no reason
+something sometimes logs out user for no reason - possibly an issue
 sort reviews
 
  _____             _     _   _                     

@@ -69,6 +69,7 @@ export class CreateHomeComponent implements OnInit {
   }
   UpdateHome() {
     this.storageService.SubmitNewHome(this.name, this.address, this.county, this.country, this.phone, this.email, this.contact, this.site, this.hiqa, this.beds, this.staff, this.description, this.facilities, this.careTypes);
+    this.name = this.address = this.county = this.country = this.phone = this.email = this.contact = this.site = this.hiqa = this.beds = this.staff = this.description= "";
   }
   ngOnInit() {
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page

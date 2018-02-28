@@ -29,7 +29,7 @@ export class StorageService {
             this.showSuccess("Message sent");
         });
     }    
-    FormatForNewHomeSubmission(name: string,address: string, county: string, country: string, phone: string,email: string,contact: string, site: string,hiqa: string,beds: string,staff: string,description: string,facilities:any[],careTypes:any[]) {
+    FormatForNewHomeSubmission(name: string,address: string, county: string, country: string, phone: string,email: string,contact: string, site: string,hiqa: string,beds: string,staff: string,description: string,facilities:any[],careTypes:any[],uid :string) {
         var postdata = {
             "name" : name,
             "address" : address,
@@ -44,7 +44,8 @@ export class StorageService {
             "staff" : staff,
             "description" : description,
             "facilities" : facilities,
-            "careTypes" : careTypes
+            "careTypes" : careTypes,
+            "userID" : uid
         }
         return postdata
     }    
@@ -52,7 +53,7 @@ export class StorageService {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
                 if (resp.uid) {
-                    this.http.patch(this.firebaseURL + "submissions/application-new/" + resp.uid + ".json", this.FormatForNewHomeSubmission(name, address, county, country, phone, email, contact, site, hiqa, beds, staff, description, facilities, careTypes)).subscribe(params => {
+                    this.http.patch(this.firebaseURL + "submissions/application-new/" + resp.uid + ".json", this.FormatForNewHomeSubmission(name, address, county, country, phone, email, contact, site, hiqa, beds, staff, description, facilities, careTypes,resp.uid)).subscribe(params => {
                         this.showSuccess("Application submitted, we will contact you within 24 hours");
                     });
                 }

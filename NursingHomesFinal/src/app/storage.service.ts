@@ -28,6 +28,37 @@ export class StorageService {
         this.http.patch(this.firebaseURL + "emails/" + uuid() + ".json", this.formatEmail(to, from, subject, resident, phone, details)).subscribe(params => {
             this.showSuccess("Message sent");
         });
+    }    
+    FormatForNewHomeSubmission(name: string,address: string, county: string, country: string, phone: string,email: string,contact: string, site: string,hiqa: string,beds: string,staff: string,description: string,facilities:any[],careTypes:any[],uid :string) {
+        var postdata = {
+            "name" : name,
+            "address" : address,
+            "county" : county,
+            "country" : country,
+            "phone" : phone,
+            "email" : email,
+            "contact" : contact,
+            "site" : site,
+            "hiqa" : hiqa,
+            "beds" : beds,
+            "staff" : staff,
+            "description" : description,
+            "facilities" : facilities,
+            "careTypes" : careTypes,
+            "userID" : uid
+        }
+        return postdata
+    }    
+    SubmitNewHome(name: string,address: string, county: string, country: string, phone: string,email: string,contact: string, site: string,hiqa: string,beds: string,staff: string,description: string,facilities:any[],careTypes:any[]) {
+        this.afa.authState.subscribe((resp) => {
+            if (resp != null) {
+                if (resp.uid) {
+                    this.http.patch(this.firebaseURL + "submissions/application-new/" + resp.uid + ".json", this.FormatForNewHomeSubmission(name, address, county, country, phone, email, contact, site, hiqa, beds, staff, description, facilities, careTypes,resp.uid)).subscribe(params => {
+                        this.showSuccess("Application submitted, we will contact you within 24 hours");
+                    });
+                }
+            }
+        });
     }
     formatEmail(to: string, from: string, subject: string, resident: string, phone: string, details: string): any {
         var postdata = {

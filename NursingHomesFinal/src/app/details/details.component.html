@@ -191,7 +191,8 @@
     </div>
     
     <div class="info-section dets">
-        <h2 class="contrast-font contrast-color">Overview</h2>
+        <h2 class="contrast-font contrast-color">Overview</h2> 
+        <a class="ui custombutton button" (click)="UpdateCurrentHome()">Contact {{currentHome.name}}</a>
         <div class="overview">
             <div class="left-flex">
                 <div class="top-flex">
@@ -244,6 +245,7 @@
     </div>
     <div class="reviews-section dets">
         <h2 class="contrast-font contrast-color">Reviews ({{NumReviews}})</h2> 
+        <a class="ui custombutton button" (click)="UpdateCurrentHome()">Contact {{currentHome.name}}</a>
         <div class="reviews">
             <div class="current-reviews review-piece">
                 <app-review *ngFor="let Review of Reviews" [Review]="Review" [Home]="currentHome" [Tier]="currentHome.tier"></app-review>

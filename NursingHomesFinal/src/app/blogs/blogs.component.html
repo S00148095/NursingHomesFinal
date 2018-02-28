@@ -1,0 +1,33 @@
+
+<div class="blogs-holder">
+  <div class="blogs-header">
+    <h1 class="contrast-font">Care<span class="contrast-color contrast-font">ze</span> blog</h1>
+    <h2 class="contrast-font">Tips, tricks, and useful information from the Careze team</h2>
+  </div>
+  <div class="blog-posts-holder">
+    <div class="blog-items">
+      <app-blog-tile *ngFor="let blog of items$ | async" [blog]="blog"></app-blog-tile>
+    </div>
+    <div class="blog-options">
+      <h3>About</h3>
+      <p>Careze is ...</p>
+      <h3>Most popular posts</h3>
+      <p *ngFor="let blog of items$ | async" (click)="goToPost(blog.id)">{{blog.title}}</p>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<h1>space</h1><h1>space</h1><h1>space</h1><h1>space</h1><h1>space</h1>
+<div *ngIf="items$ | async; let items; else loading">
+    <ul>
+      <li *ngFor="let item of items">
+        {{ item.payload.val().title }}
+        <p>{{ item.payload.key }}</p>
+      </li>
+    </ul>
+    <div *ngIf="items.length === 0">No results, try clearing filters</div>
+  </div>
+  <ng-template #loading>Loading&hellip;</ng-template>
+-->

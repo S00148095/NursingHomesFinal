@@ -1,0 +1,10 @@
+<div class="individual-blog" *ngIf="blog.published">
+  <h2 class="title">{{blog.title}}</h2>
+  <p>{{blog.date}}</p>
+  <div class="author">
+    <div class="icon"></div>
+    <p>{{blog.author}}</p>
+  </div>
+  <p class="description">{{blog.description}}</p>
+  <a class="read-more" (click)="goToPost()">Read more</a>
+</div>

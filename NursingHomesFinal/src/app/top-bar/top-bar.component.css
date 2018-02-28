@@ -1,3 +1,17 @@
 .mob.fixed.padded.header{
     padding: 1% 2% 0;
 }
+.link{
+    font-size: 1.3em;
+    margin-left: 3%;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0.3%;
+    cursor: pointer;
+}
+.listings{
+    /* margin-left: 5%; <-- not sure */
+}
+.active, .link:hover{
+    border-bottom: 2px solid #2E9AC5;
+}

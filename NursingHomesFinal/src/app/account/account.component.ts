@@ -99,7 +99,7 @@ export class AccountComponent implements OnInit {
     }
   }
 
-  public updatePassword(){
+  public updatePassword(){ 
     //updates user's password
     if(this.changePasswordMod != null && this.changePasswordMod != '' && this.changePasswordMod != undefined){
       if(this.changePasswordMod == this.changePasswordConfirm){

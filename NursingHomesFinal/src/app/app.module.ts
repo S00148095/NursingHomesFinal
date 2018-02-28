@@ -57,6 +57,7 @@ import { ListingCardsComponent } from './listing-cards/listing-cards.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { BlogTileComponent } from './blog-tile/blog-tile.component';
+import { CreateHomeComponent } from './create-home/create-home.component';
 
 /*===============
 
@@ -100,6 +101,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'search-results', component: SearchResultsComponent },
       { path: 'payments', component: PaymentsComponent },
+      { path: 'create-home', component: CreateHomeComponent,canActivate: [AuthService] },
       { path: '**', component: NotFoundComponent }
     ]
   },
@@ -161,7 +163,8 @@ const routes: Routes = [
     ListingCardsComponent,
     BlogsComponent,
     BlogPostComponent,
-    BlogTileComponent
+    BlogTileComponent,
+    CreateHomeComponent
   ],
   imports: [
     BrowserModule,

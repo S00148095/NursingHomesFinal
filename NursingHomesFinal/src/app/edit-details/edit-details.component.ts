@@ -3,8 +3,8 @@ import { Home } from "../Home";
 import { StorageService } from "../storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../User";
-import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
+import 'script.js';
 
 declare var myExtObject: any;
 

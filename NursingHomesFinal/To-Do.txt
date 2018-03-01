@@ -30,7 +30,12 @@ more info page*
 share blog posts*
 share button on review*
 image on blog*
+cloud function to update rating*
 adding homes button glitch*
+top bar squishes on text input/inspect-css issue?
+tablet-fnt sizes account & top bar & reviews*
+message now button*
+currently searched location on results*
 ratio not reducing fully
 room types
 viewing times

@@ -1,5 +1,11 @@
 before release
-must have
+
+___  ___          _     _                     
+|  \/  |         | |   | |                    
+| .  . |_   _ ___| |_  | |__   __ ___   _____ 
+| |\/| | | | / __| __| | '_ \ / _` \ \ / / _ \
+| |  | | |_| \__ \ |_  | | | | (_| |\ V /  __/
+\_|  |_/\__,_|___/\__| |_| |_|\__,_| \_/ \___|  <-- very worthwhile addition!!!
 hosting
 SEO
 update stripe key to live
@@ -7,23 +13,42 @@ check database rules
 add live home data
 try catches
 load testing
+upload images/videos
+image thumbnails
+star raings for leaving reviews
 
-should have
+ _____ _                 _     _   _                     
+/  ___| |               | |   | | | |                    
+\ `--.| |__   ___  _   _| | __| | | |__   __ ___   _____ 
+ `--. \ '_ \ / _ \| | | | |/ _` | | '_ \ / _` \ \ / / _ \
+/\__/ / | | | (_) | |_| | | (_| | | | | | (_| |\ V /  __/
+\____/|_| |_|\___/ \__,_|_|\__,_| |_| |_|\__,_| \_/ \___|
 limit reviews?, comment length, description*
 individual images*
-create own listing*
-add forgot password to login*
 submissions and messages on account*
 more info page*
+share blog posts*
+share button on review*
+image on blog*
+cloud function to update rating*
+adding homes button glitch*
+top bar squishes on text input/inspect-css issue?
+tablet-fnt sizes account & top bar & reviews*
+message now button*
+currently searched location on results*
 ratio not reducing fully
 room types
 viewing times
 number of views-on page and crm
-test extra search paramaters-search results
-something sometimes logs out user for no reason
+something sometimes logs out user for no reason - possibly an issue
 sort reviews
 
-could have
+ _____             _     _   _                     
+/  __ \           | |   | | | |                    
+| /  \/ ___  _   _| | __| | | |__   __ ___   _____ 
+| |    / _ \| | | | |/ _` | | '_ \ / _` \ \ / / _ \
+| \__/\ (_) | |_| | | (_| | | | | | (_| |\ V /  __/
+ \____/\___/ \__,_|_|\__,_| |_| |_|\__,_| \_/ \___|
 menu on first page
 toastr notifications close button, timout etc
 filter by care types accordion

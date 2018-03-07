@@ -1,4 +1,4 @@
-<div class="card-holder">
+<div class="card-holder" (click)="goToListing()">
     <h2 class="contrast-font contrast-color">
         {{home.name}}
     </h2>
@@ -11,8 +11,8 @@
         <i [ngClass]="CheckRating(5)"></i>
     </div>
     <h3 class="contrast-font">{{home.address}}, {{home.county}}</h3>
-    <button class="ui right labeled icon button">
-        <i class="right arrow icon"></i>
+    <button class="ui right labeled icon button" (click)="goToListing()">
+        <i class="right arrow icon"></i> 
         View
     </button>
 </div>

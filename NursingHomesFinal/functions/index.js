@@ -19,6 +19,44 @@ function updateUser(userId, id) {
   updates['/users/' + userId + '/StripeId'] = id;
   return updates;
 }
+function updateRating(homeId, rating) {
+  var updates = {
+  };
+  updates['/homes/' + homeId + '/rating'] = rating;
+  return updates;
+}
+
+exports.ratingUpdate = functions.database
+  .ref('/homes/{homeId}/reviews/{reviewId}')
+  .onWrite(event => {
+    const homeId = event.params.homeId;
+
+    return admin.database()
+      .ref(`/homes/${homeId}`)
+      .once('value')
+      .then(snapshot => {
+        return snapshot.val();
+      })
+      .then(val => {
+        var rating=0;
+        var updates = {};
+        var reviews =[];
+        for (var k in val.reviews) {
+          if (val.reviews[k].rating == undefined || val.reviews[k].rating == null) {
+            val.reviews[k].rating = 0;
+          }
+          reviews.push(val.reviews[k]);
+        }
+        for(var i=0;i<reviews.length;i++)
+        {
+          rating+=reviews[i].overall;
+        }
+
+        updates = updateRating(homeId, rating/reviews.length);
+
+        return admin.database().ref().update(updates);
+      });
+  });
 
 exports.stripeCreate = functions.database
   .ref('/submissions/{userId}')
@@ -200,7 +238,7 @@ exports.sendEmail = functions.database
     const from = email.from;
     const subject = email.subject;
     const details = email.details;
-    const resident = email.resident;
+    const name = email.name;
     const phone = email.phone;
 
     return admin.database()
@@ -222,7 +260,7 @@ exports.sendEmail = functions.database
           from: from,
           to: to,
           subject: subject,
-          text: "Email: "+from+"\n"+"Phone: "+phone+"\nResident: "+resident+"\n\nSent you the following message:\n\n"+details+"\n\nVia Careze.com"
+          text: "Email: "+from+"\n"+"Phone: "+phone+"\nName: "+name+"\n\nSent you the following message:\n\n"+details+"\n\nVia Careze.com"
         };
         
         transporter.sendMail(mailOptions, function (error, info) {

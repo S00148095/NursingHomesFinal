@@ -1,0 +1,38 @@
+.individual-blog{
+    margin-bottom: 15%;
+    padding-bottom: 3%;
+    border-bottom: 2px solid #49D49D;
+}
+
+.individual-blog>h2.title{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5em;
+    font-weight: 100;
+    line-height: 1.2em;
+}
+.individual-blog>p:not(.description), .author{
+    color: rgba(0,0,0,0.54);
+}
+.author{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    margin-bottom: 2%;
+}
+.author>.icon{
+    height: 55px;
+    width: 55px;
+    background: deepskyblue;
+    border-radius: 50%;
+    margin-right: 2%;
+}
+a{
+    font-family: 'Lato', sans-serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #2E9AC5;
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: underline;
+}

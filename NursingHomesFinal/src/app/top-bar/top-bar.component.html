@@ -1,5 +1,7 @@
 <div class="mob fixed padded header">
   <h1 class="inline" [routerLink]="['../webSide']">Care<span class="otherhalf">ze</span></h1>
+  <a class="link listings" routerLinkActive="active" [routerLink]="['home']">Search listings</a>
+  <a class="link blog" routerLinkActive="active" [routerLink]="['blog']">Blog</a>
   <a class="ui inline inverted right floated button" *ngIf="CheckLogin()" [routerLink]="['login']">Log In</a>
   <div class="inline" *ngIf="CheckLogOut()">
     <div class="ui medium right floated buttons">

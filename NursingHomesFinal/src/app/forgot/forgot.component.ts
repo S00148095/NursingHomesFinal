@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'script.js';
+import { AuthService } from '../auth.service';
 
 declare var myExtObject: any;
 
@@ -10,8 +11,13 @@ declare var myExtObject: any;
 })
 export class ForgotComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private authService: AuthService) { }
+  email:string;
+  
+  changePassword()
+  {
+    this.authService.resetPassword(this.email);
+  }
   ngOnInit() {
     myExtObject.initFullpage("not home");//tells the full page plugin not to fire on this page
   }

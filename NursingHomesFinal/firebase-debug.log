@@ -1,0 +1,302 @@
+[debug] [2018-03-07T12:31:26.400Z] ----------------------------------------------------------------------
+[debug] [2018-03-07T12:31:26.408Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\liaml\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-03-07T12:31:26.409Z] CLI Version:   3.17.4
+[debug] [2018-03-07T12:31:26.409Z] Platform:      win32
+[debug] [2018-03-07T12:31:26.409Z] Node Version:  v9.2.0
+[debug] [2018-03-07T12:31:26.412Z] Time:          Wed Mar 07 2018 12:31:26 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:26.412Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-07T12:31:26.455Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-07T12:31:26.456Z] > authorizing via signed-in user
+[debug] [2018-03-07T12:31:26.465Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-03-07T12:31:26.467Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/-e5VWlycZ4ohTT7z-Yds7X1BFz3frNdxQ96GIuNk8AQ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Mar 07 2018 12:31:26 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:26.764Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:26.876Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cmoo-a7730  
+  
+ Wed Mar 07 2018 12:31:26 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:29.393Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:29.395Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cmoo-a7730/tokens  
+  
+ Wed Mar 07 2018 12:31:29 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:30.064Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'cmoo-a7730'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2018-03-07T12:31:30.789Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase experimental:functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "^5.8.0",
+    "firebase-functions": "^0.8.0",
+    "grpc": "^1.8.0",
+    "nodemailer": "^4.4.2",
+    "stripe": "^5.4.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-03-07T12:31:30.793Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/cmoo-a7730?view=CONSUMER_VIEW  
+  
+ Wed Mar 07 2018 12:31:30 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:30.795Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/cmoo-a7730?view=CONSUMER_VIEW  
+  
+ Wed Mar 07 2018 12:31:30 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:32.338Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:32.387Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2018-03-07T12:31:32.391Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cmoo-a7730  
+  
+ Wed Mar 07 2018 12:31:32 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:32.392Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cmoo-a7730/apiKeys  
+  
+ Wed Mar 07 2018 12:31:32 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:33.084Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:33.405Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-03-07T12:31:33.414Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/cmoo-a7730/configs  
+  
+ Wed Mar 07 2018 12:31:33 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:33.755Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:33.757Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/cmoo-a7730/configs/stripe/variables  
+  
+ Wed Mar 07 2018 12:31:33 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:33.955Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:33.956Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/cmoo-a7730/configs/stripe/variables/testkey  
+  
+ Wed Mar 07 2018 12:31:33 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:34.195Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (33.76 KB) for uploading
+[debug] [2018-03-07T12:31:35.792Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.cmoo-a7730.appspot.com  
+  
+ Wed Mar 07 2018 12:31:35 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:36.030Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:36.031Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.cmoo-a7730.appspot.com/o?uploadType=media&name=firebase-functions-source  
+ ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 34569,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: 'C:\\Users\\liaml\\AppData\\Local\\Temp\\firebase-functions-698872lvETvoQ7uN.zip',
+  fd: 6,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 34569 } 
+ Wed Mar 07 2018 12:31:36 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:36.638Z] <<< HTTP RESPONSE 200
+[info] +  functions: functions folder uploaded successfully
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2018-03-07T12:31:37.250Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/cmoo-a7730/uploads/-L7-RV6O-F_AN1m4uWaD?fileCount=18&message=  
+  
+ Wed Mar 07 2018 12:31:37 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:44.850Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:44.851Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[info] +  hosting: 18 files uploaded successfully
+[debug] [2018-03-07T12:31:45.037Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/cmoo-a7730/locations/us-central1/functions  
+  
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.277Z] <<< HTTP RESPONSE 200
+[info] i  functions: updating function ratingUpdate...
+[debug] [2018-03-07T12:31:45.283Z] Trigger is:  {"eventTrigger":{"resource":"projects/_/instances/cmoo-a7730/refs/homes/{homeId}/reviews/{reviewId}","eventType":"providers/google.firebase.database/eventTypes/ref.write"}}
+[info] i  functions: updating function stripeCreate...
+[debug] [2018-03-07T12:31:45.285Z] Trigger is:  {"eventTrigger":{"resource":"projects/_/instances/cmoo-a7730/refs/submissions/{userId}","eventType":"providers/google.firebase.database/eventTypes/ref.write"}}
+[info] i  functions: updating function stripeCharge...
+[debug] [2018-03-07T12:31:45.288Z] Trigger is:  {"eventTrigger":{"resource":"projects/_/instances/cmoo-a7730/refs/payments/{userId}/{paymentId}","eventType":"providers/google.firebase.database/eventTypes/ref.write"}}
+[info] i  functions: updating function sendEmail...
+[debug] [2018-03-07T12:31:45.290Z] Trigger is:  {"eventTrigger":{"resource":"projects/_/instances/cmoo-a7730/refs/emails/{emailId}","eventType":"providers/google.firebase.database/eventTypes/ref.write"}}
+[debug] [2018-03-07T12:31:45.295Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/cmoo-a7730/locations/us-central1/functions/ratingUpdate 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,eventTrigger.resource,eventTrigger.eventType"} 
+ { sourceArchiveUrl: 'gs://staging.cmoo-a7730.appspot.com/firebase-functions-source',
+  name: 'projects/cmoo-a7730/locations/us-central1/functions/ratingUpdate',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  eventTrigger: 
+   { resource: 'projects/_/instances/cmoo-a7730/refs/homes/{homeId}/reviews/{reviewId}',
+     eventType: 'providers/google.firebase.database/eventTypes/ref.write' } } 
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.297Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/cmoo-a7730/locations/us-central1/functions/stripeCreate 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,eventTrigger.resource,eventTrigger.eventType"} 
+ { sourceArchiveUrl: 'gs://staging.cmoo-a7730.appspot.com/firebase-functions-source',
+  name: 'projects/cmoo-a7730/locations/us-central1/functions/stripeCreate',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  eventTrigger: 
+   { resource: 'projects/_/instances/cmoo-a7730/refs/submissions/{userId}',
+     eventType: 'providers/google.firebase.database/eventTypes/ref.write' } } 
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.299Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/cmoo-a7730/locations/us-central1/functions/stripeCharge 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,eventTrigger.resource,eventTrigger.eventType"} 
+ { sourceArchiveUrl: 'gs://staging.cmoo-a7730.appspot.com/firebase-functions-source',
+  name: 'projects/cmoo-a7730/locations/us-central1/functions/stripeCharge',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  eventTrigger: 
+   { resource: 'projects/_/instances/cmoo-a7730/refs/payments/{userId}/{paymentId}',
+     eventType: 'providers/google.firebase.database/eventTypes/ref.write' } } 
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.300Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/cmoo-a7730/locations/us-central1/functions/sendEmail 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,eventTrigger.resource,eventTrigger.eventType"} 
+ { sourceArchiveUrl: 'gs://staging.cmoo-a7730.appspot.com/firebase-functions-source',
+  name: 'projects/cmoo-a7730/locations/us-central1/functions/sendEmail',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  eventTrigger: 
+   { resource: 'projects/_/instances/cmoo-a7730/refs/emails/{emailId}',
+     eventType: 'providers/google.firebase.database/eventTypes/ref.write' } } 
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.622Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:45.719Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:45.726Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:45.841Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:45.844Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.845Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.845Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:45.846Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:45 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:46.100Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:46.115Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:46.122Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:46.207Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:48.102Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:48 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:48.116Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:48 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:48.125Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:48 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:48.207Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:48 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:48.377Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:48.381Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:48.408Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:48.416Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:50.378Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:50 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:50.382Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:50 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:50.410Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:50 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:50.427Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:50 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:50.663Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:50.668Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:50.669Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:50.670Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:52.665Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:52 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:52.671Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:52 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:52.675Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:52 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:52.676Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:52 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:52.882Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:52.884Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:52.886Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:52.898Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:54.882Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:54 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:54.886Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:54 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:54.887Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:54 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:54.900Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:54 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:55.083Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:55.085Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:55.086Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:55.100Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:57.084Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:57 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:57.090Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:57 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:57.091Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:57 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:57.101Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:57 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:57.328Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:57.330Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:57.332Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:57.333Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:59.328Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:31:59 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:59.331Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDaGFyZ2UvaGp3TmRLRndzazQ  
+  
+ Wed Mar 07 2018 12:31:59 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:59.335Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zdHJpcGVDcmVhdGUvSWVoemdDaks3bXM  
+  
+ Wed Mar 07 2018 12:31:59 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:59.335Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9yYXRpbmdVcGRhdGUveFJ3MFRxM1pMRjQ  
+  
+ Wed Mar 07 2018 12:31:59 GMT+0000 (GMT Standard Time)
+[debug] [2018-03-07T12:31:59.522Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:59.524Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:59.535Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:31:59.540Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-07T12:32:01.529Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/Y21vby1hNzczMC91cy1jZW50cmFsMS9zZW5kRW1haWwvMXlRenNRc3puQlE  
+  
+ Wed Mar 07 2018 12:32:01 GMT+0000 (GMT Standard Time)

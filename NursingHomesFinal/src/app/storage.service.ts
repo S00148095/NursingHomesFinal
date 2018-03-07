@@ -196,16 +196,6 @@ export class StorageService {
             if (resp != null) {
                 if (resp.uid) {
                     this.http.patch(this.firebaseURL + "homes/" + Home.ID + "/reviews/" + Review.reviewID + ".json", this.FormatReview(Review)).subscribe(params => {
-                        var total = 0;
-                        var reviews = [];
-                        for (var k in Home.reviews) {
-                            reviews.push(Home.reviews[k]);
-                        }
-                        reviews.forEach(element => {
-                            total += element.overall;
-                        });
-                        Home.rating = total / reviews.length;
-                        this.updateHome(Home);
                     });
                 }
             }

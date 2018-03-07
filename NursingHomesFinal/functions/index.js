@@ -19,6 +19,44 @@ function updateUser(userId, id) {
   updates['/users/' + userId + '/StripeId'] = id;
   return updates;
 }
+function updateRating(homeId, rating) {
+  var updates = {
+  };
+  updates['/homes/' + homeId + '/rating'] = rating;
+  return updates;
+}
+
+exports.ratingUpdate = functions.database
+  .ref('/homes/{homeId}/reviews/{reviewId}')
+  .onWrite(event => {
+    const homeId = event.params.homeId;
+
+    return admin.database()
+      .ref(`/homes/${homeId}`)
+      .once('value')
+      .then(snapshot => {
+        return snapshot.val();
+      })
+      .then(val => {
+        var rating=0;
+        var updates = {};
+        var reviews =[];
+        for (var k in val.reviews) {
+          if (val.reviews[k].rating == undefined || val.reviews[k].rating == null) {
+            val.reviews[k].rating = 0;
+          }
+          reviews.push(val.reviews[k]);
+        }
+        for(var i=0;i<reviews.length;i++)
+        {
+          rating+=reviews[i].overall;
+        }
+
+        updates = updateRating(homeId, rating/reviews.length);
+
+        return admin.database().ref().update(updates);
+      });
+  });
 
 exports.stripeCreate = functions.database
   .ref('/submissions/{userId}')

@@ -348,6 +348,7 @@
 
         </div>
         <div class="flex-child search-results">
+            <h3>Currently searching for homes near: {{searchParam}}</h3>
             <div class="" *ngIf="CheckHomes()">
                 <app-result *ngFor="let Home of Homes" [Home]="Home" (notify)='onNotify($event)'></app-result>
             </div>

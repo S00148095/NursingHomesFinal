@@ -16,6 +16,7 @@ load testing
 upload images/videos
 image thumbnails
 star raings for leaving reviews
+add homes button does not appear on mobile
 
  _____ _                 _     _   _                     
 /  ___| |               | |   | | | |                    
@@ -30,7 +31,6 @@ more info page*
 share blog posts*
 share button on review*
 image on blog*
-adding homes button glitch*
 top bar squishes on text input/inspect-css issue?
 tablet-fnt sizes account & top bar & reviews*
 message now button*

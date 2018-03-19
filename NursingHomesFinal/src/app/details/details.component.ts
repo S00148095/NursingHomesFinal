@@ -6,12 +6,13 @@ import { Image } from '../Image';
 import { StorageService } from "../storage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import 'script.js';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { v4 as uuid } from 'uuid';
 import { FirebaseApp } from 'angularfire2';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Lightbox } from 'angular2-lightbox';
+import { OrderBy } from '../../OrderBy.pipe';
+import 'script.js';
 
 declare var myExtObject: any;
 
@@ -27,7 +28,6 @@ export class DetailsComponent implements OnInit {
   User: User;
   ratio: string;
   gcd: number;
-  reviews:Review[]=[];
   NumReviews: string;
   image: string;
   values: any[] = [
@@ -63,8 +63,8 @@ export class DetailsComponent implements OnInit {
     "Bingo"
   ];
 
-//caretypes available
-caretypesArray = [
+  //caretypes available
+  caretypesArray = [
     "Alzheimer’s",
     "Cancer",
     "Hearing",
@@ -92,21 +92,6 @@ caretypesArray = [
 
   _album: Array<any> = [];
 
-  getCT(){
-    this.currentHome.careTypes.forEach(ct =>{
-      this.ctBool[this.i] = ct.value==true ? true: false;
-      this.i++;
-    });
-  }
-  getFacilities(){
-    this.currentHome.facilities.forEach(f =>{
-      this.fBool[this.j] = f.value==true ? true: false;
-      this.j++;
-    });
-  }
-
-
-
   constructor(private afa: AngularFireAuth, private _lightbox: Lightbox, public sanitizer: DomSanitizer, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
     this.Reviews = [];
@@ -115,13 +100,30 @@ caretypesArray = [
       const caption = 'Image ' + i + ' caption here';
       const thumb = 'assets/big.jpg';
       const album = {
-         src: src,
-         caption: caption,
-         thumb: thumb
+        src: src,
+        caption: caption,
+        thumb: thumb
       };
 
       this._album.push(album);
     }
+  }
+  getLength(array:any[])
+  {
+    if(array!=undefined) return array.length;
+    else return 0;
+  }
+  getCT() {
+    this.currentHome.careTypes.forEach(ct => {
+      this.ctBool[this.i] = ct.value == true ? true : false;
+      this.i++;
+    });
+  }
+  getFacilities() {
+    this.currentHome.facilities.forEach(f => {
+      this.fBool[this.j] = f.value == true ? true : false;
+      this.j++;
+    });
   }
 
   open(index: number): void {
@@ -130,16 +132,16 @@ caretypesArray = [
   }
 
   GetHome(id): void {//gets current home
-    this.storageService.getCurrentHome(id).subscribe(home => { 
+    this.storageService.getCurrentHome(id).subscribe(home => {
       this.currentHome = home;
-      this.url = '//www.google.com/maps/embed/v1/place?q='+ home.lat +','+home.long+'&zoom=14&key=AIzaSyCcprejw3C_TDbMoM1h_Gss2aWaWC4Av8w';
+      this.url = '//www.google.com/maps/embed/v1/place?q=' + home.lat + ',' + home.long + '&zoom=14&key=AIzaSyCcprejw3C_TDbMoM1h_Gss2aWaWC4Av8w';
       this.GetReviews();
       this.getImage();
       this.getCT();
       this.getFacilities();
     });
   }
-  getImage(){//get image from firebase storage, assign it to image variable
+  getImage() {//get image from firebase storage, assign it to image variable
     const storageRef = this.firebaseApp.storage().ref().child(this.currentHome.images.path);
     storageRef.getDownloadURL().then(url => this.image = url);
   }
@@ -150,6 +152,10 @@ caretypesArray = [
       for (var k in this.currentHome.reviews) {
         this.Reviews.push(this.currentHome.reviews[k]);
       }
+      this.Reviews.forEach(element => {
+        element.numAgreed=this.getLength(element.agreed);
+        element.numDisagreed=this.getLength(element.disagreed);
+      });
     }
   }
   calculateRatio(): void {//calculates the bed:staff ratio 
@@ -182,8 +188,8 @@ caretypesArray = [
   //leaves a review, refreshes the list of reviews and informs the user that their review was left successfully 
   LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     if (this.User != null && this.User != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
-      this.newReview = new Review(uuid(), this.User.name , criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, [], [], "");
-      this.storageService.UpdateReviews(this.currentHome,this.newReview);
+      this.newReview = new Review(uuid(), this.User.name, criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, [],0, [],0, "");
+      this.storageService.UpdateReviews(this.currentHome, this.newReview);
       this.GetReviews();
       myExtObject.Clear();
       this.showSuccess();
@@ -229,7 +235,7 @@ caretypesArray = [
   UpdateCurrentHome() {//updates the current home when one is clicked on
     this.router.navigate(["/webSide/contact"], { queryParams: { id: this.currentHome.ID } });//navigates to the details page and sets the queryParams
   }
-  ngOnInit() { 
+  ngOnInit() {
     this.GetUser();
     this.route.queryParams//gets the id of the current home from the queryParams
       .filter(params => params.id)
@@ -256,13 +262,13 @@ caretypesArray = [
   }
 
   UpdateNumReviews() {//updates the number of reviews
-    this.reviews=[];
+    this.Reviews = [];
     for (var k in this.currentHome.reviews) {
-      this.reviews.push(this.currentHome.reviews[k]);
+      this.Reviews.push(this.currentHome.reviews[k]);
     }
-    if (this.reviews.length > 1 || this.reviews.length == 0)
-      this.NumReviews = this.reviews.length + " reviews";
-    else this.NumReviews = this.reviews.length + " review";
+    if (this.Reviews.length > 1 || this.Reviews.length == 0)
+      this.NumReviews = this.Reviews.length + " reviews";
+    else this.NumReviews = this.Reviews.length + " review";
   }
 
 

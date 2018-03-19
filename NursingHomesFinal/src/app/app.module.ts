@@ -58,6 +58,7 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { BlogTileComponent } from './blog-tile/blog-tile.component';
 import { CreateHomeComponent } from './create-home/create-home.component';
+import { OrderBy } from '../OrderBy.pipe';
 
 /*===============
 
@@ -164,7 +165,8 @@ const routes: Routes = [
     BlogsComponent,
     BlogPostComponent,
     BlogTileComponent,
-    CreateHomeComponent
+    CreateHomeComponent,
+    OrderBy
   ],
   imports: [
     BrowserModule,

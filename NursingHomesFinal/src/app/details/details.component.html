@@ -248,7 +248,7 @@
         <a class="ui custombutton button" (click)="UpdateCurrentHome()">Contact {{currentHome.name}}</a>
         <div class="reviews">
             <div class="current-reviews review-piece">
-                <app-review *ngFor="let Review of Reviews" [Review]="Review" [Home]="currentHome" [Tier]="currentHome.tier"></app-review>
+                <app-review *ngFor="let Review of Reviews| OrderBy : ['-overall']" [Review]="Review" [Home]="currentHome" [Tier]="currentHome.tier"></app-review>
             </div>
             <div class="new-review review-piece">
                  <div class="ui form">

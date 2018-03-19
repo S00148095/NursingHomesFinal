@@ -39,7 +39,7 @@ room types
 viewing times
 number of views-on page and crm
 something sometimes logs out user for no reason - possibly an issue
-sort reviews
+sort reviews by agreed
 
  _____             _     _   _                     
 /  __ \           | |   | | | |                    

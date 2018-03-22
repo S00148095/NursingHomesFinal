@@ -59,6 +59,7 @@ import { BlogPostComponent } from './blog-post/blog-post.component';
 import { BlogTileComponent } from './blog-tile/blog-tile.component';
 import { CreateHomeComponent } from './create-home/create-home.component';
 import { OrderBy } from '../OrderBy.pipe';
+import { MoreInfoComponent } from './more-info/more-info.component';
 
 /*===============
 
@@ -88,8 +89,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home/login', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'home/more-info', redirectTo: 'more-info', pathMatch: 'full' },
       { path: 'webSide', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'more-info', component: MoreInfoComponent },
       { path: 'blog', component: BlogsComponent },
       { path: 'blogpost', component: BlogPostComponent },
       { path: 'account', component: AccountComponent, canActivate: [AuthService]},
@@ -166,7 +169,8 @@ const routes: Routes = [
     BlogPostComponent,
     BlogTileComponent,
     CreateHomeComponent,
-    OrderBy
+    OrderBy,
+    MoreInfoComponent
   ],
   imports: [
     BrowserModule,

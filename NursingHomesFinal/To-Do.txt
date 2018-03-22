@@ -27,7 +27,6 @@ add homes button does not appear on mobile
 limit reviews?, comment length, description*
 individual images*
 submissions and messages on account*
-more info page*
 share blog posts*
 share button on review*
 image on blog*
@@ -40,6 +39,7 @@ viewing times
 number of views-on page and crm
 something sometimes logs out user for no reason - possibly an issue
 sort reviews by agreed
+more info page needs review
 
  _____             _     _   _                     
 /  __ \           | |   | | | |                    

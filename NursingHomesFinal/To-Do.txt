@@ -15,7 +15,7 @@ try catches
 load testing
 upload images/videos
 image thumbnails
-star raings for leaving reviews
+star ratings for leaving reviews
 add homes button does not appear on mobile
 
  _____ _                 _     _   _                     
@@ -33,10 +33,6 @@ image on blog*
 top bar squishes on text input/inspect-css issue?
 tablet-fnt sizes account & top bar & reviews*
 message now button*
-ratio not reducing fully
-room types
-viewing times
-number of views-on page and crm
 something sometimes logs out user for no reason - possibly an issue
 sort reviews by agreed
 more info page needs review
@@ -52,3 +48,7 @@ toastr notifications close button, timout etc
 filter by care types accordion
 care types on results
 different currencies
+ratio not reducing fully
+room types
+viewing times
+number of views-on page and crm

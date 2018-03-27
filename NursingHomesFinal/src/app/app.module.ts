@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from '@angular/forms';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { TopBarComponent } from "./top-bar/top-bar.component";
 import { AccountComponent } from "./account/account.component";
@@ -175,6 +176,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     DragulaModule,
+    SuiModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ToastModule.forRoot(),

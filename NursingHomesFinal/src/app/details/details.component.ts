@@ -15,6 +15,7 @@ import { OrderBy } from '../../OrderBy.pipe';
 import 'script.js';
 
 declare var myExtObject: any;
+declare var $: any;
 
 @Component({
   selector: 'app-details',
@@ -37,10 +38,11 @@ export class DetailsComponent implements OnInit {
     { id: 4, name: '4' },
     { id: 5, name: '5' }
   ];
+  m: number[];//stores each score of a new review
   careTypes: string[];
   facilities: string[];
-  i: number = 0;
-  j: number = 0;
+  i: number = 0;//iterator
+  j: number = 0;//iterator
   url: SafeResourceUrl;
 
 
@@ -95,6 +97,7 @@ export class DetailsComponent implements OnInit {
   constructor(private afa: AngularFireAuth, private _lightbox: Lightbox, public sanitizer: DomSanitizer, private storageService: StorageService, private router: Router, private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private firebaseApp: FirebaseApp) {
     this.toastr.setRootViewContainerRef(vcr);//sets the view container that the toasts will appear in
     this.Reviews = [];
+    this.m = [3,3,3,3,3,3,3,3,3,3,3,3];//starts each new review score at 3
     for (let i = 1; i <= 16; i++) {
       const src = 'assets/big.jpg';
       const caption = 'Image ' + i + ' caption here';
@@ -186,7 +189,7 @@ export class DetailsComponent implements OnInit {
     }
   }
   //leaves a review, refreshes the list of reviews and informs the user that their review was left successfully 
-  LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
+  /*LeaveReview(criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, comment) {
     if (this.User != null && this.User != undefined && criteria1 != "" && criteria2 != "" && criteria3 != "" && criteria4 != "" && criteria5 != "" && criteria6 != "" && criteria7 != "" && criteria8 != "" && criteria9 != "" && criteria10 != "" && criteria11 != "" && criteria12 != "" && comment != "") {
       this.newReview = new Review(uuid(), this.User.name, criteria1, criteria2, criteria3, criteria4, criteria5, criteria6, criteria7, criteria8, criteria9, criteria10, criteria11, criteria12, Math.round((parseFloat(criteria1) + parseFloat(criteria2) + parseFloat(criteria3) + parseFloat(criteria4) + parseFloat(criteria5) + parseFloat(criteria6) + parseFloat(criteria7) + parseFloat(criteria8) + parseFloat(criteria9) + parseFloat(criteria10) + parseFloat(criteria11) + parseFloat(criteria12)) / 12), comment, [],0, [],0, "");
       this.storageService.UpdateReviews(this.currentHome, this.newReview);
@@ -200,6 +203,26 @@ export class DetailsComponent implements OnInit {
     else {//shows a toast informing the user that they need to fill out the fields
       this.showWarningContent();
     }
+  }*/
+  LeaveReview(comment){//leaves a review, refreshes the list of reviews and informs the user that their review was left successfully 
+    if(this.User != null && this.User != undefined && comment != ''){
+      this.newReview = new Review(uuid(), this.User.name, this.m[0], this.m[1], this.m[2], this.m[3], this.m[4], this.m[5], this.m[6], this.m[7], this.m[8], this.m[9], this.m[10], this.m[11], Math.round( this.AddScores() / 12), comment, [],0, [],0, "" );
+      this.storageService.UpdateReviews(this.currentHome, this.newReview);
+      this.GetReviews();
+      myExtObject.Clear();
+      this.showSuccess();
+    }else if (this.User == null || this.User == undefined) {//shows a toast asking the user to log in
+      this.showWarningLogIn();
+    }else {//shows a toast informing the user that they need to fill out the fields
+      this.showWarningContent();
+    }
+  }
+  AddScores(){//adds scores left on a new review
+    var val = 0;
+    for (let index = 0; index < this.m.length; index++) {
+      val += this.m[index]
+    }
+    return val;
   }
   GetUser(): void {//gets current user
     this.afa.authState.subscribe((resp) => {
@@ -270,6 +293,5 @@ export class DetailsComponent implements OnInit {
       this.NumReviews = this.Reviews.length + " reviews";
     else this.NumReviews = this.Reviews.length + " review";
   }
-
 
 }

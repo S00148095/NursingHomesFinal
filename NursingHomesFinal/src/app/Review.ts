@@ -18,7 +18,9 @@ export class Review {
         public overall:number,
         public comment: string,
         public agreed:string[],
+        public numAgreed:number,
         public disagreed:string[],
+        public numDisagreed:number,
         public response: string
         ) {
 

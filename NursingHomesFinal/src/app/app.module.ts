@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from '@angular/forms';
+import {SuiModule} from 'ng2-semantic-ui';
 
 import { TopBarComponent } from "./top-bar/top-bar.component";
 import { AccountComponent } from "./account/account.component";
@@ -42,7 +43,7 @@ import { environment } from '../environments/environment';
 import { PaymentService } from './payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { LightboxModule } from 'angular2-lightbox';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
 import { AngularFireModule } from 'angularfire2';
@@ -58,6 +59,9 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { BlogTileComponent } from './blog-tile/blog-tile.component';
 import { CreateHomeComponent } from './create-home/create-home.component';
+import { OrderBy } from '../OrderBy.pipe';
+import { MoreInfoComponent } from './more-info/more-info.component';
+import { CustomOption } from './ToastrOptions';
 
 /*===============
 
@@ -87,8 +91,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home/login', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'home/more-info', redirectTo: 'more-info', pathMatch: 'full' },
       { path: 'webSide', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'more-info', component: MoreInfoComponent },
       { path: 'blog', component: BlogsComponent },
       { path: 'blogpost', component: BlogPostComponent },
       { path: 'account', component: AccountComponent, canActivate: [AuthService]},
@@ -164,11 +170,14 @@ const routes: Routes = [
     BlogsComponent,
     BlogPostComponent,
     BlogTileComponent,
-    CreateHomeComponent
+    CreateHomeComponent,
+    OrderBy,
+    MoreInfoComponent
   ],
   imports: [
     BrowserModule,
     DragulaModule,
+    SuiModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ToastModule.forRoot(),
@@ -182,7 +191,7 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     LightboxModule
   ],
-  providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService],
+  providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService, {provide: ToastOptions, useClass: CustomOption}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

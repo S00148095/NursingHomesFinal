@@ -6,7 +6,6 @@ ___  ___          _     _
 | |\/| | | | / __| __| | '_ \ / _` \ \ / / _ \
 | |  | | |_| \__ \ |_  | | | | (_| |\ V /  __/
 \_|  |_/\__,_|___/\__| |_| |_|\__,_| \_/ \___|  <-- very worthwhile addition!!!
-hosting
 SEO
 update stripe key to live
 check database rules
@@ -15,7 +14,7 @@ try catches
 load testing
 upload images/videos
 image thumbnails
-star raings for leaving reviews
+add homes button does not appear on mobile
 
  _____ _                 _     _   _                     
 /  ___| |               | |   | | | |                    
@@ -26,22 +25,15 @@ star raings for leaving reviews
 limit reviews?, comment length, description*
 individual images*
 submissions and messages on account*
-more info page*
 share blog posts*
 share button on review*
 image on blog*
-cloud function to update rating*
-adding homes button glitch*
 top bar squishes on text input/inspect-css issue?
 tablet-fnt sizes account & top bar & reviews*
 message now button*
-currently searched location on results*
-ratio not reducing fully
-room types
-viewing times
-number of views-on page and crm
 something sometimes logs out user for no reason - possibly an issue
-sort reviews
+sort reviews by agreed
+more info page needs review
 
  _____             _     _   _                     
 /  __ \           | |   | | | |                    
@@ -50,7 +42,10 @@ sort reviews
 | \__/\ (_) | |_| | | (_| | | | | | (_| |\ V /  __/
  \____/\___/ \__,_|_|\__,_| |_| |_|\__,_| \_/ \___|
 menu on first page
-toastr notifications close button, timout etc
 filter by care types accordion
 care types on results
 different currencies
+ratio not reducing fully
+room types
+viewing times
+number of views-on page and crm

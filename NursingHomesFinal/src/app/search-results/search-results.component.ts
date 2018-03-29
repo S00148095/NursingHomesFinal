@@ -18,6 +18,7 @@ export class SearchResultsComponent implements OnInit {
   currentHome: Home;
   lat:number;
   long:number;
+  searchParam:string;
 
   constructor(private storageService: StorageService, private db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     this.Homes = [];
@@ -45,6 +46,7 @@ export class SearchResultsComponent implements OnInit {
   }
   CalcDistances(address: string) {
     this.storageService.getGeocoding(address).subscribe(data=>{
+      this.searchParam=data.results[0].formatted_address;
       this.lat=data.results[0].geometry.location.lat;
       this.long=data.results[0].geometry.location.lng;
       for (var i = 0; i < this.Homes.length; i++) {

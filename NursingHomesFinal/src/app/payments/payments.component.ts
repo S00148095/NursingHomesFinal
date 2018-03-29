@@ -4,9 +4,9 @@ import { StorageService } from "../storage.service";
 import { Home } from "../Home";
 import { Router } from '@angular/router';
 import { PaymentService } from '../payment.service';
-import 'script.js';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
+import 'script.js';
 
 declare var myExtObject: any;
 

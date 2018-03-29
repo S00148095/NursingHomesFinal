@@ -43,7 +43,7 @@ import { environment } from '../environments/environment';
 import { PaymentService } from './payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { LightboxModule } from 'angular2-lightbox';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { DragulaModule } from '../../node_modules/ng2-dragula/ng2-dragula';
 import { AngularFireModule } from 'angularfire2';
@@ -61,6 +61,7 @@ import { BlogTileComponent } from './blog-tile/blog-tile.component';
 import { CreateHomeComponent } from './create-home/create-home.component';
 import { OrderBy } from '../OrderBy.pipe';
 import { MoreInfoComponent } from './more-info/more-info.component';
+import { CustomOption } from './ToastrOptions';
 
 /*===============
 
@@ -190,7 +191,7 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     LightboxModule
   ],
-  providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService],
+  providers: [StorageService, PaymentService, AngularFireDatabase, AngularFireAuth, AuthService, {provide: ToastOptions, useClass: CustomOption}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
